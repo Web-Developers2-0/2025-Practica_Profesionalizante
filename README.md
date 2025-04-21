@@ -1,11 +1,13 @@
-# 2025-Practica_Profesionalizante¨
 <a href='https://postimg.cc/sQKGr0BY' target='_blank'><img src='https://i.postimg.cc/sQKGr0BY/logo-planet-2-2x.png' border='0' alt='logo-planet-2-2x'/></a>
 
+# Proyecto Integrador - Practica Profesionalizante
 
 
->* Este repositorio contiene el código fuente y la documentación relacionada con nuestro Proyecto Integrador para el Módulo Prácticas Profesionalizantes  de la Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales.
+>* Este repositorio contiene el código fuente y la documentación relacionada con nuestro Proyecto Integrador para el Módulo Prácticas Profesionalizantes de la Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales.
 
->* Continuación de este proyecto 👉 https://github.com/Web-Developers2-0/ProyectoIntegrador2 
+>* Es una continuación de estos proyectos:
+>* 👉 https://github.com/Web-Developers2-0/ProyectoIntegrador2
+>* 👉 https://github.com/Web-Developers2-0/ProyectoIntegradorMobile
 
 ## DOCUMENTO IEEE 830-1998:
 
@@ -31,7 +33,7 @@ Los usuarios van a poder crear y personalizar sus perfiles, gestionar su informa
 ## 💻 STACK TECNOLÓGICO:
 
 ![Figma](https://img.shields.io/static/v1?style=for-the-badge&message=Figma&color=4169E1&logo=Figma&logoColor=fff&label=) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)  ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)  ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) 
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white) 
 
 <br/>
 
@@ -43,11 +45,16 @@ Prototipo - Figma: https://acortar.link/pjmxBd
 
 <br/>
 
-## 📌 MOCKUPS:
+## 📌 MOCKUPS MOBILE:
 
 [![mockup1.png](https://i.postimg.cc/MGxJrTt6/mockup1.png)](https://postimg.cc/bZ65ZqKW)
 [![mockup2-1.png](https://i.postimg.cc/bwWCr7CZ/mockup2-1.png)](https://postimg.cc/180cYjZS)
 [![mockup3.png](https://i.postimg.cc/435RCgFz/mockup3.png)](https://postimg.cc/7CfW7p46)
+
+<br/>
+
+## 📌 MOCKUPS WEB:
+[![739shots-so.png](https://i.postimg.cc/pXRRTD9n/739shots-so.png)](https://postimg.cc/G97ZgTxc)
 
 <br/>
 
@@ -73,8 +80,6 @@ Prototipo - Figma: https://acortar.link/pjmxBd
           </a>
         </div>
       </td>
-       </tr>
-    <tr>
       <td style="width: 25%; padding: 10px;">
         <div align="center">
           <a href="https://www.linkedin.com/in/paula-velez/" target="_blank" rel="author">
@@ -92,8 +97,6 @@ Prototipo - Figma: https://acortar.link/pjmxBd
           </a>
         </div>
       </td>
-       </tr>
-    <tr>
       <td style="width: 25%; padding: 10px;">
         <div align="center">
           <a href="https://www.linkedin.com/in/marco-virinni/" target="_blank" rel="author">
@@ -111,46 +114,48 @@ Prototipo - Figma: https://acortar.link/pjmxBd
           </a>
         </div>
       </td>
-    </tr>
-    <tr>
-      <td style="width: 25%; padding: 10px;">
-        <div align="center">
-          <a href=https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank" rel="author">
-            <img width="110" src="https://avatars.githubusercontent.com/u/119015674?v=4"/>
-          </a>
-          <a href="https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank" rel="author">
-            <h4 style="margin-top: 1rem;"> Cassutti, Noah Nicanor</h4>
-            <h4 style="margin-top: 1rem;">Fullstack Developer</h4>
-          </a>
-          <a href="https://github.com/noahcassutti" target="_blank">
-            <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
-          </a>
-          <a href="https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank">
-            <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width: 25%; padding: 10px;">
-        <div align="center">
-          <a href=https://www.linkedin.com" target="_blank" rel="author">
-            <img width="110" src="https://avatars.githubusercontent.com/u/119015674?v=4"/>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="author">
-            <h4 style="margin-top: 1rem;"> Cassutti, Noah Nicanor</h4>
-            <h4 style="margin-top: 1rem;">Fullstack Developer</h4>
-          </a>
-          <a href="https://github.com/erick-lpz" target="_blank">
-            <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
-          </a>
-          <a href="https://www.linkedin.co" target="_blank">
-            <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-          </a>
-        </div>
-      </td>
-   
-    </tr>
+       <tr>
+    <td style="width: 50%; vertical-align: top;">
+      <div>
+        <a href="https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank" rel="author">
+          <img width="110" src="https://avatars.githubusercontent.com/u/119015674?v=4" />
+        </a>
+        <a href="https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank" rel="author">
+          <h4 style="margin-top: 1rem;">Cassutti, Noah Nicanor</h4>
+          <h4 style="margin-top: 1rem;">Fullstack Developer</h4>
+        </a>
+        <a href="https://github.com/noahcassutti" target="_blank">
+          <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label=" />
+        </a>
+        <a href="https://www.linkedin.com/in/noah-a-cassutti-99160b1b5/" target="_blank">
+          <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+        </a>
+      </div>
+    </td>
+    <td style="width: 50%; vertical-align: top;">
+      <div>
+        <a href="https://www.linkedin.com" target="_blank" rel="author">
+          <img width="110" src="https://avatars.githubusercontent.com/u/105466809?v=4" />
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="author">
+          <h4 style="margin-top: 1rem;">Erick Juan Ismael</h4>
+          <h4 style="margin-top: 1rem;">Fullstack Developer</h4>
+        </a>
+        <a href="https://github.com/erick-lpz" target="_blank">
+          <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label=" />
+        </a>
+        <a href="https://www.linkedin.co" target="_blank">
+          <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+        </a>
+      </div>
+    </td>
+  </tr>
   </tbody>
 </table>
 
+<br/>
+
+## 📝 DOCUMENTACIÓN:
+Disponible en 👉 [WIKI del repositorio](https://github.com/Web-Developers2-0/2025-Practica_Profesionalizante/wiki)
+
+## Muchas gracias por visitar nuestro proyecto! 🙌 
