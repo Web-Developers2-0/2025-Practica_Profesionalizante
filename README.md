@@ -9,10 +9,6 @@
 >* 👉 https://github.com/Web-Developers2-0/ProyectoIntegrador2
 >* 👉 https://github.com/Web-Developers2-0/ProyectoIntegradorMobile
 
-## DOCUMENTO IEEE 830-1998:
-
-Link: https://docs.google.com/document/d/1Fi3gPTBTXx6Hx0pH-5FTabKvLVsx-D9d/edit
-
 ## 🚀 PRESENTACIÓN DE LA APP:
 
 "PlanetSuperHeroes" es una aplicación móvil destinada a la gestión integral de una tienda e-commerce especializada en la venta de cómics, esta diseñada especialmente para los amantes de la ciencia ficción, con un enfoque particular en las franquicias de Marvel y DC.
@@ -138,13 +134,13 @@ Prototipo - Figma: https://acortar.link/pjmxBd
           <img width="110" src="https://avatars.githubusercontent.com/u/105466809?v=4" />
         </a>
         <a href="https://www.linkedin.com/" target="_blank" rel="author">
-          <h4 style="margin-top: 1rem;">Erick Juan Ismael</h4>
+          <h4 style="margin-top: 1rem;">López, Erick</h4>
           <h4 style="margin-top: 1rem;">Fullstack Developer</h4>
         </a>
         <a href="https://github.com/erick-lpz" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label=" />
         </a>
-        <a href="https://www.linkedin.co" target="_blank">
+        <a href="https://www.linkedin.com/in/erick-lpz/" target="_blank">
           <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
         </a>
       </div>
