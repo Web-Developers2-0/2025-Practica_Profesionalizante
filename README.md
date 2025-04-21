@@ -7,6 +7,10 @@
 
 >* Continuación de este proyecto 👉 https://github.com/Web-Developers2-0/ProyectoIntegrador2 
 
+## DOCUMENTO IEEE 830-1998:
+
+Link: https://docs.google.com/document/d/1Fi3gPTBTXx6Hx0pH-5FTabKvLVsx-D9d/edit
+
 ## 🚀 PRESENTACIÓN DE LA APP:
 
 "PlanetSuperHeroes" es una aplicación móvil destinada a la gestión integral de una tienda e-commerce especializada en la venta de cómics, esta diseñada especialmente para los amantes de la ciencia ficción, con un enfoque particular en las franquicias de Marvel y DC.
