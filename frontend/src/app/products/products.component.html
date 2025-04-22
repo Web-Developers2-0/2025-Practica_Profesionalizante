@@ -1,0 +1,47 @@
+<div class="card_section-titulo">
+  <a href="#" (click)="updateCategory('marvel'); $event.preventDefault()" class="text-decoration-none">
+    <h2 class="card_section-titulo1">Marvel Comics</h2>
+  </a>
+  <a href="#" (click)="updateCategory('dc'); $event.preventDefault()" class="text-decoration-none">
+    <h2 class="card_section-titulo2">DC Comics</h2>
+  </a>
+</div>
+
+<div id="card_section-root" class="d-flex flex-wrap justify-content-center">
+  <ng-container *ngIf="selectedCategory === 'marvel'">
+    <div *ngFor="let product of productList" class="card m-2" style="width: 18rem;">
+      <img [src]="product.image" [alt]="product.name" class="card-img-top align-self-center">
+      <div class="card-body">
+        <h5 class="card-title">${{ product.price }}</h5>
+        <p class="card-text">{{ product.name }}</p>
+        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">Detalles</button>
+        <div class="purchase-info mt-3">
+          <input type="number" min="0" value="0" (input)="onQuantityChange(product, $event)" class="form-control d-inline-block" style="width: 80px;">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="selectedCategory === 'dc'">
+    <div *ngFor="let product of productList" class="card m-2" style="width: 18rem;">
+      <img [src]="product.image" [alt]="product.name" class="card-img-top align-self-center">
+      <div class="card-body">
+        <h5 class="card-title">${{ product.price }}</h5>
+        <p class="card-text">{{ product.name }}</p>
+        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">Detalles</button>
+        <div class="purchase-info mt-3">
+          <input type="number" min="0" value="0" (input)="onQuantityChange(product, $event)" class="form-control d-inline-block" style="width: 80px;">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div class="select-prod">
+  <h2 class="mt-5">Productos seleccionados:</h2>
+  <ul>
+    <li *ngFor="let selectedProduct of selectedItems">
+      {{ selectedProduct.product.name }} - Cantidad: {{ selectedProduct.quantity }}
+    </li>
+  </ul>
+</div>
+<!-- Agregar un botón para ir al carrito -->
+<button class="go_cart button_slide slide_right" [routerLink]="['/cart']">Ir al carrito</button>

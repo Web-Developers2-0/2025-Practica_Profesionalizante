@@ -1,0 +1,29 @@
+<main>
+  <div class="payment-container">
+    <h1>Pago Seguro</h1>
+    <form [formGroup]="paymentForm" (submit)="processPayment()">
+      <input type="text" formControlName="cardName" placeholder="Nombre en la Tarjeta">
+      <div *ngIf="paymentForm.get('cardName')?.invalid && paymentForm.get('cardName')?.touched">
+        <small>Por favor, introduce el nombre en la tarjeta.</small>
+      </div>
+
+      <input type="text" formControlName="cardNumber" placeholder="Número de Tarjeta">
+      <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched">
+        <small>Por favor, introduce un número de tarjeta válido (16 dígitos).</small>
+      </div>
+
+      <input type="text" formControlName="expiryDate" placeholder="Fecha de Expiración (MM/AA)">
+      <div *ngIf="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched">
+        <small>Por favor, introduce una fecha de expiración válida (MM/AA).</small>
+      </div>
+
+      <input type="text" formControlName="cvv" placeholder="CVV">
+      <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched">
+        <small>Por favor, introduce un CVV válido (3 o 4 dígitos).</small>
+      </div>
+
+      <button type="submit">Pagar</button>
+    </form>
+  </div>
+</main>
+  

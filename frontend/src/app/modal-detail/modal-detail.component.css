@@ -1,0 +1,133 @@
+/* Clases utilitarias */
+.px-4 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Estilos generales del modal */
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos del encabezado */
+
+.modal-header {
+  padding: 0.5rem 1.5rem; 
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-header span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Estilos de la tarjeta de producto */
+
+.card {
+  display: flex;
+  flex-direction: row; 
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-content {
+  padding: 20px;
+  flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column; 
+  }
+
+  .product-imgs {
+    max-width: 100%;
+    min-height: 250px; 
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .product-imgs {
+    max-width: 40%; 
+  }
+}
+
+.product-imgs {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-imgs img {
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+}
+
+.product-title {
+  font-family: 'Bangers', cursive;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-rating i {
+  color: #fcd69e;
+}
+
+.product-price {
+  margin: 1rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.new-price span {
+  color: #88ace0;
+}
+
+.product-detail {
+  font-family: 'Architects Daughter', sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-align: justify;
+  margin-bottom: 20px; 
+}
+
+.product-detail h2 {
+  color: #e5ac57;
+  padding-bottom: 0.6rem;
+}
+
+.product-detail p {
+  margin-bottom: 10px;
+}
+
+.product-detail ul {
+  margin-top: 20px; 
+}
+
+.product-detail ul li {
+  margin: 0.4rem 0;
+  font-weight: 600;
+  padding-left: 1.7rem;
+}
+
+.product-detail ul li span {
+  font-weight: 400;
+}
+
+/* Estilos del pie de página */
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  height: 30px;
+  font-size: 12px;
+}

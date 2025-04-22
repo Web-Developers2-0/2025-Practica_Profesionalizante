@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#262626"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título de la pantalla de notificaciones -->
+    <TextView
+        android:id="@+id/notifications_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notifications_title"
+        android:fontFamily="@font/bangersregular"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Contenedor de notificaciones dinámicas -->
+    <LinearLayout
+        android:id="@+id/notifications_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Ejemplo de notificación dinámica (inicialmente oculto) -->
+        <include
+            layout="@layout/notification_item"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Mensaje para cuando no haya notificaciones -->
+    <TextView
+        android:id="@+id/no_notifications_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_notifications"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/interregular"
+        android:layout_gravity="center_horizontal"
+        android:padding="8dp"
+        android:visibility="gone" />
+</LinearLayout>

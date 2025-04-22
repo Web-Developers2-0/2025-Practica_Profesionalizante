@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Hachi+Maru+Pop&family=Patrick+Hand&display=swap');
+
+main{
+    background: #1e1e1e;
+    height: 100vh;
+    width: 100%;
+}
+
+.user_banner{
+    background-image: url(../../assets/images/banner3.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.user_data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user_data span{
+    background-color: white;
+    color: #000;
+    border: solid 2px #000;
+    border-radius: 0.5rem;
+    padding: 3px 10px;
+    font-weight: 500;
+    font-family: 'Bangers', sans-serif;
+}
+
+.user_img{
+    border: solid 3px rgb(105, 105, 105);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: #000;
+    cursor: pointer;
+}
+
+.user_img img{
+    width: 100%;
+}
+
+.logout_btn{
+    border-radius: 0.7rem;
+    padding: 5px 10px;
+    font-family: 'Bangers', sans-serif;
+    background-color: rgba(255, 255, 255, 0.3);    
+    backdrop-filter: blur(5px);
+    color: #fbf0f0;
+    -webkit-text-stroke: 1.2px black;
+    font-size: 22px;    
+}
+
+.logout_btn:hover {
+    background-color: rgba(255, 0, 0, 0.3); 
+}
+
+.table_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.table_container{
+    border: solid 2px #000;
+    border-radius: 1rem;
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
+    background-color: white;
+}
+
+.thead{
+    background-color: gainsboro;
+}
+
+.table_title{
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    border: solid 2px #000;
+    border-radius: 1rem;
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+    font-family: 'Bangers', sans-serif;
+}
+
+.table_title h3{
+    background-color:#FCD69E;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+tr img{
+    width: 50px;
+    height: 60px;
+}
+
+tr {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td .pending{
+    background-color: rgb(206, 167, 242);
+    border-radius: 20px;
+    border: solid 1px rgb(93, 69, 112);
+    font-weight: 600; 
+    color: rgb(93, 69, 112);
+    padding: 0.1rem 0.8rem;
+}
+
+td .completed{
+    background-color: #C9DCBB;
+    border-radius: 20px;
+    border: solid 1px #3E522E;
+    font-weight: 600; 
+    color: #3E522E;
+    padding: 0.1rem 0.8rem;
+}
+
+.cancelled{
+    background-color: rgb(242, 197, 167);
+    border-radius: 20px;
+    border: solid 1px rgb(112, 85, 69);
+    font-weight: 600;
+    color: rgb(112, 85, 69);
+    padding: 0.1rem 0.8rem;
+}
+
+.logout_dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fbf0f0;
+    margin-top: 2.5rem;
+}

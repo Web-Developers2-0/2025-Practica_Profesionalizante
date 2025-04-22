@@ -1,0 +1,29 @@
+[
+  {
+    "id": "#12345",
+    "date": "11/05/2024",
+    "product_img": "marvel-daredevil.jpg",
+    "quantity": 1,
+    "price": "$2000",
+    "total": "$2000",
+    "status": "En proceso"
+  },
+  {
+    "id": "#34564",
+    "date": "09/05/2024",
+    "product_img": "marvel-blackwidow.jpg",
+    "quantity": 2,
+    "price": "$2000",
+    "total": "$4000",
+    "status": "Completado"
+  },
+  {
+    "id": "#76543",
+    "date": "04/05/2024",
+    "product_img": "marvel-ironMan.jpg",
+    "quantity": 1,
+    "price": "$2000",
+    "total": "$2000",
+    "status": "Cancelado"
+  }
+]

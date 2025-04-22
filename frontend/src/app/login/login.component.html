@@ -1,0 +1,54 @@
+<main>
+    <section class="form_login">
+        <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <div class="title_login">
+            <img src="../../assets/images/logo_planet.png" alt="Logo" class="logo">
+            <h1>PLANET SUPER HEROES</h1>
+        </div>
+            <h2>Login</h2> 
+        
+        <div class="form_container">
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="email" 
+                formControlName="email"
+                name="email" 
+                placeholder="Email" 
+                id="email"
+                autocomplete="off"
+                value=""
+                />
+                <label for="email"></label>
+
+                <small *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">*Email es requerido</small>
+                <small *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">*Email no es valido</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="password" 
+                formControlName="password"
+                name="password" 
+                placeholder="Contraseña" 
+                id="password"
+                autocomplete="off"
+                value=""
+                />
+                <label for="password"></label>
+                <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
+                <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
+            </div>
+
+            <div>
+                <button class="botom" type="submit" [disabled]="!form.valid"> Ingresar </button>
+            </div>
+            
+            <p class="link">No tenés una cuenta? <a routerLink="/register">Regístrate aquí!</a></p>
+            
+            <a class="go_back" href="#">Volver al Inicio</a>
+        </div>
+        </form>
+    </section>
+</main>
