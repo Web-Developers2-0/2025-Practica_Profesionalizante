@@ -1,0 +1,63 @@
+<!-- Lo que renderizo si el usuario se desloguea desde el dashboard -->
+<section *ngIf="isAuthenticated">
+  <div class="logout_dashboard">
+    <p>*Es necesario iniciar sesión para ver el historial de compras, por favor inicie sesión desde la barra de navegación.</p>
+  </div>
+</section>
+
+<!-- Lo que renderizo si el usuario de logueo exitosamente -->
+<main>
+<section class="table_section" *ngIf="!isAuthenticated">
+    <div class="user_banner">
+        <div class="user_data">
+            <div class="user_img">
+                <img
+                  src="../../assets/images/user.png"
+                  alt="usuario"
+                  (click)="goToProfile()"
+                />
+            </div>
+            <!-- <span>Nombre de usuario</span> -->
+            <span>{{ user.email }}</span>
+            <span>{{ user.first_name }}</span>
+        </div>
+        <button class="logout_btn" (click)="logout()">
+          cerrar sesión
+        </button>
+    </div>
+    <div class="table_title">
+        <h3>Historial de compras</h3>
+    </div>
+    <div class="table_container" *ngIf="dashboardData && dashboardData.length > 0">
+        <table class="table">
+            <thead class="thead">
+                <tr class="tr">
+                    <th scope="col">ID</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Método de pago</th>
+                    <th scope="col">Método de envío</th>
+                    <th scope="col">Estado del pago</th>
+                    <th scope="col">Total</th>
+                <th scope="col">Estado de la compra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of userOrders">
+                <td scope="row">{{ order.id_order }}</td>
+                <td>{{ order.order_date }}</td>
+                <!-- <td><img src="../../assets/images/{{ order.product_img }}" alt="comic"></td> -->
+                <td>{{ order.payment_method }}</td>
+                <td>{{ order.shipping_method }}</td>
+                <td>{{ order.payment_status }}</td>
+                <td>{{ order.total_amount }}</td>
+                <td><span [ngClass]="{
+                    'completed': order.state === 'Completado',
+                    'pending': order.state === 'En proceso',
+                    'cancelled': order.state === 'Cancelado'
+                }">{{ order.state }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+</main>

@@ -1,0 +1,50 @@
+<div class="modal-dialog">
+  <div class="modal-content px-4">
+      <div class="modal-header">
+          <span>{{ product?.name }}</span>
+          <span style="margin-left: auto;"></span>
+          <mat-dialog-actions>
+              <button mat-button mat-dialog-close>X</button>
+          </mat-dialog-actions>
+      </div>
+      <mat-dialog-content>
+          <div class="card">
+              <!-- Imágenes -->
+              <div class="product-imgs">
+                  <div class="img-display">
+                      <div class="img-showcase">
+                          <img *ngIf="product?.image" [src]="product?.image ?? ''" [alt]="product?.name ?? 'Imagen del producto'">
+                      </div>
+                  </div>
+              </div>
+              <!-- Card Der -->
+              <div class="product-content">
+                  <h2 class="product-title">{{ product?.name }}</h2>
+                  <div class="product-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star-half-stroke"></i>
+                  </div>
+                  <div class="product-price">
+                      <p class="new-price">Precio: <span>{{ product?.price }} ({{ product?.discount }} off)</span></p>
+                  </div>
+                  <div class="product-detail" style="margin-bottom: 20px;">
+                      <h2>Descripción:</h2>
+                      <div class="description-text">{{ product?.description }}</div>
+                      <p>Páginas: {{ product?.pages }}</p>
+                      <p>Formato: {{ product?.format }}</p>
+                      <p>Peso: {{ product?.weight }}</p>
+                      <p>ISBN: {{ product?.isbn }}</p>
+                      <ul>
+                          <li>Disponibilidad: {{ product?.stock }}</li>
+                          <li>Envíos: A todo el país</li>
+                          <li>Envío gratis: Córdoba Capital</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </mat-dialog-content>
+  </div>
+</div>
