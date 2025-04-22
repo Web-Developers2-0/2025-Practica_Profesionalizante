@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SettingsScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    tools:context=".Settings">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textColor="@color/on_primary_dark">
+
+
+        <!-- Botón para volver atrás -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@drawable/botonatras1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Título de Configuración -->
+        <TextView
+            android:id="@+id/textViewSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textColor="@color/on_primary_dark"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- Sección de Perfil -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewSettings"><!-- Opcional: agregar fondo para distinguir -->
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/imagen_perfil"
+                android:src="@drawable/avatar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/on_primary_dark"
+                android:text="@string/emilce_robles"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profileImage"
+                app:layout_constraintTop_toTopOf="@id/profileImage" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/emi12_gmail_com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/on_primary_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/profileImage"
+                app:layout_constraintTop_toBottomOf="@id/userName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Título de la Sección Cuenta -->
+        <TextView
+            android:id="@+id/cuentaSeccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cuenta"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/on_primary_dark"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@id/profileSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <!-- CardView de la Sección Cuenta -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/text_alternative_dark"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cuentaSeccion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <!-- Opción de Información Personal -->
+                <LinearLayout
+                    android:id="@+id/linearPersonalInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="12dp"
+                        android:contentDescription="@string/icono_chico_user"
+                        android:src="@drawable/usericon" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="12dp"
+                        android:text="@string/info_personal"
+                        android:textColor="#FFFCFB"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:padding="12dp"
+                        android:contentDescription="@string/flechainfopersonal"
+                        app:srcCompat="@drawable/flecha" />
+                </LinearLayout>
+
+                <!-- Switch de Modo Oscuro/Claro -->
+                <!--    <LinearLayout
+                        android:id="@+id/linearDarkLightMode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/linearPersonalInfo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="12dp"
+                            android:contentDescription="@string/dark_light"
+                            android:src="@drawable/diaynoche2" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:padding="16dp"
+                            android:text="@string/light_dark_mode"
+                            android:textColor="@color/on_primary_dark"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/lightDarkModeSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"/>
+                    </LinearLayout> -->
+                <!--Linear Historial de compra -->
+                    <LinearLayout
+                        android:id="@+id/linearIngresoHistorialCompra"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/linearPersonalInfo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="12dp"
+                            android:contentDescription="@string/imagen_de_carrito"
+                            android:src="@drawable/cart"
+                            app:tint="@android:color/white"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:padding="12dp"
+                            android:text="@string/historial_de_compras"
+                            android:textColor="#FFFCFB"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonhistorialcompra"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:padding="12dp"
+                            android:contentDescription="@string/flechahistorialcompra"
+                            app:srcCompat="@drawable/flecha" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Título de la Sección Privacidad y Seguridad -->
+        <TextView
+            android:id="@+id/PrivacitySection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacidad_y_seguridad"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/on_primary_dark"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@id/cardView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <!-- CardView de la Sección Privacidad y Seguridad -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPrivacy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/text_alternative_dark"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/PrivacitySection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <!-- Opción de Notificaciones -->
+                <!--
+                <LinearLayout
+                    android:id="@+id/darkModeButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="@string/campanaicono"
+                        android:src="@drawable/campana" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"
+                        android:text="@string/notificaciones"
+                        android:textColor="@color/on_primary_dark"
+                        android:textSize="18sp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/darkModeSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"/>
+                </LinearLayout>
+                -->
+                <!-- Opción de Cambiar Contraseña -->
+                <LinearLayout
+                    android:id="@+id/linearContrasena"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="@string/iconocontrasena"
+                        android:src="@drawable/contrasena" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"
+                        android:text="@string/contrasena"
+                        android:textColor="@color/on_primary_dark"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/flechaBotonContrasena"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/flechabotoncontrasena"
+                        app:srcCompat="@drawable/flecha" />
+                </LinearLayout>
+                <!-- Opción de términos y condiciones -->
+                <LinearLayout
+                    android:id="@+id/linearTerminos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/linearContrasena"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="@string/icono_terminos"
+                        android:src="@drawable/icterminos_condiciones" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"
+                        android:text="@string/terminos_condiciones"
+                        android:textColor="@color/on_primary_dark"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/flechaBotonTerminos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/flechabotonterminos"
+                        app:srcCompat="@drawable/flecha" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Puedes continuar añadiendo más secciones de manera similar -->
+        <!-- Título de la Sección Soporte -->
+        <TextView
+            android:id="@+id/SoporteSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Soporte"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/on_primary_dark"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@id/cardViewPrivacy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <!-- CardView de la Sección soporte -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewSoporte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/text_alternative_dark"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/SoporteSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp">
+
+                <!-- Opción de Preguntas frecuentes -->
+                <LinearLayout
+                    android:id="@+id/linearpreguntasfrecuentes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="@string/icono_preguntas"
+                        android:src="@drawable/icpreguntas_frecuentes" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"
+                        android:text="@string/preguntas_frecuentes"
+                        android:textColor="@color/on_primary_dark"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/flechaBotonPreguntas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/flechabotonpreguntas"
+                        app:srcCompat="@drawable/flecha" />
+                </LinearLayout>
+
+                <!-- Opción de contactanos -->
+                <LinearLayout
+                    android:id="@+id/contactanos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/linearpreguntasfrecuentes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="14dp"
+                        android:contentDescription="@string/iconocontacto"
+                        android:src="@drawable/iccontacto" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:padding="16dp"
+                        android:text="@string/contactanos"
+                        android:textColor="@color/on_primary_dark"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/flechaBotonContactanos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/flechabotoncontactanos"
+                        app:srcCompat="@drawable/flecha" />
+                </LinearLayout>
+
+                <!-- Logout -->
+                <LinearLayout
+                    android:id="@+id/LinearLayoutLogout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/contactanos"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/colorAccent">
+
+                    <!-- Icono de Logout -->
+                    <Button
+                        android:id="@+id/logoutButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:padding="14dp"
+                        android:text="@string/logout"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:drawableRight="@drawable/logout"
+                        android:background="@android:color/transparent" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
