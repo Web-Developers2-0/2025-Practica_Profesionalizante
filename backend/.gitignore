@@ -1,0 +1,5 @@
+entorno/
+env32/
+__pycache__/
+venv/
+.env
