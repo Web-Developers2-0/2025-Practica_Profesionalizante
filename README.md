@@ -171,4 +171,8 @@ Prototipo - Figma: https://acortar.link/pjmxBd
 ## 📝 DOCUMENTACIÓN:
 Disponible en 👉 [WIKI del repositorio](https://github.com/Web-Developers2-0/2025-Practica_Profesionalizante/wiki)
 
+## IEEE-830:
+
+https://docs.google.com/document/u/0/d/1Fi3gPTBTXx6Hx0pH-5FTabKvLVsx-D9d/mobilebasic
+
 ## Muchas gracias por visitar nuestro proyecto! 🙌 
