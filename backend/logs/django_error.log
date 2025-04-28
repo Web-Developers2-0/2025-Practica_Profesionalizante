@@ -1450,3 +1450,281 @@ LINE 1: ...."is_superuser", "user"."role_id" FROM "mycomicap...
 [2024-09-25 14:09:50 +0000] [1] [INFO] Handling signal: term
 [2024-09-25 14:09:50 +0000] [7] [INFO] Worker exiting (pid: 7)
 [2024-09-25 14:09:51 +0000] [1] [INFO] Shutting down: Master
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 31, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119158
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 31, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119158
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 31, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119234
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 31, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119234
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+You're accessing the development server over HTTPS, but it only supports HTTP.
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 31, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119143
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 33, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119507
+Internal Server Error: /api/orders/create/
+Traceback (most recent call last):
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\views.py", line 16, in post
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 445, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\virin\Desktop\Practica Profesionalizante\Back\backend\Order\serializers.py", line 33, in validate
+    attrs.setdefault('order_date', timezone.now().date())
+                                   ^^^^^^^^^^^^
+AttributeError: type object 'datetime.timezone' has no attribute 'now'
+"POST /api/orders/create/ HTTP/1.1" 500 119507

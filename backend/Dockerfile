@@ -25,7 +25,10 @@ RUN python manage.py collectstatic --noinput
 # Genera las migraciones automáticamente
 RUN python manage.py makemigrations
 
-# Ejecuta las migraciones automáticamente
+# Ejecuta las migraciones automáticamenteRUN mkdir -p /backend/logs
+RUN touch /backend/logs/django_error.log
+RUN touch /backend/logs/django_access.logRUN touch /backend/logs/django_error.log
+RUN touch /backend/logs/django_access.log
 RUN python manage.py migrate
 
 # Expone el puerto de la aplicación
