@@ -3,4 +3,4 @@ env32/
 __pycache__/
 venv/
 .env
-logs/django_error.log
+logs/
