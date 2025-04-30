@@ -47,17 +47,24 @@ class Login(TokenObtainPairView):
                 }, status=status.HTTP_200_OK)
             return Response({'error': 'Contraseña o nombre de usuario incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
         return Response({'error': 'Contraseña o nombre de usuario incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
- 
-class Logout(GenericAPIView):
+    
+class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = LogoutSerializer
-    def post(self, request, *args, **kwargs):
-        user = User.objects.filter(id=request.data.get('user', 0))
-        if user.exists():
-            RefreshToken.for_user(user.first())
-            return Response({'message': 'Sesión cerrada correctamente.'}, status=status.HTTP_200_OK)
-        return Response({'error': 'No existe este usuario.'}, status=status.HTTP_400_BAD_REQUEST)
-                
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        try:
+            refresh_token = serializer.validated_data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+                 
 # ver los datos del usuario logueado
 class UserView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer

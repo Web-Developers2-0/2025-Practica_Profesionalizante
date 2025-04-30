@@ -173,17 +173,12 @@ VALUES
 INSERT INTO user (email, first_name, last_name, password, address, phone, image, date_joined, is_active, is_staff, is_superuser, role_id) 
 VALUES 
 
-
-('duncang@gmail.com', 'Roni Duncan ', 'Martinez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '246 Pine St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('vargasveronica.ar@gmail.com', 'Veronica', 'Vargas', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '789 Elm St', 123456789, 'alice_smith.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
 ('emirobles@gmail.com', 'Emilce', 'Robles', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '101 Oak St', 123456789, 'bob_johnson.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('escuelamedia86@gmail.com', 'Jorge', 'Pegoraro', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '246 Pine St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('pameponce1@gmail.com', 'Pamela', 'Ponce', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '246 Pine St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('gonzaloolmedo1@gmail.com', 'Gonzalo', 'Olmedo', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '246 Pine St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
 ('velezpaula.a@gmail.com', 'Paula', 'Velez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '456 Main St', 123456789, 'joan_doe.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
 ('marcovirinni@gmail.com', 'Marco', 'Virinni', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', 123456789, 'https://res.cloudinary.com/dbz5bknul/image/upload/v1710547090/marco_virinni_oov5tk.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
 ('noahcassutti@gmail.com', 'Noah Nicanor', 'Cassutti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('santibertorello@gmail.com', 'Santiago', 'Bertorello', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
+('erick_lopez@gmail.com', 'Erick ', 'Lopez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
+('valentinolorenti@gmail.com', 'Valentino', 'Lorenti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', 123456789, 'eva_williams.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
 
 
 

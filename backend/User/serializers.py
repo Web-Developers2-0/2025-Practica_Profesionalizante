@@ -39,8 +39,9 @@ class UserSerializer(serializers.ModelSerializer):
         
         instance.save()
         return instance
+
 class LogoutSerializer(serializers.Serializer):
-    user = serializers.IntegerField()
+    refresh = serializers.CharField()
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
