@@ -3,7 +3,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
-from .models import Order, Product, Category, Role
+from .models import  Role
+from Order.models import Order
+from Product.models import Product,Category
+
 
 @receiver(post_migrate)
 def create_groups_and_permissions_on_startup(sender, **kwargs):

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from './login.request';
 import { Observable, BehaviorSubject, tap, catchError, throwError, map } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import { jwtDecode } from "jwt-decode";
 export class LoginService {
   private token : string = '';
   // private headers: HttpHeaders;
-
+  private baseUrl: string = environment.apiUrl;
+  
   currentUserLogin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>('');
   
@@ -28,7 +30,7 @@ export class LoginService {
 
   methodlogin(credentials: LoginRequest):Observable<any>{
     
-    return this.http.post<any>('https://planetsuperheroes.onrender.com/api/login/', credentials).pipe(
+    return this.http.post<any>(`${this.baseUrl}login/`, credentials).pipe(
       
     tap((userData) => {
         this.token = userData.token;
@@ -40,7 +42,6 @@ export class LoginService {
       catchError(this.handleError)
     );
   }
-
   methodlogout(): void {
     localStorage.removeItem('token');
     this.token = '';

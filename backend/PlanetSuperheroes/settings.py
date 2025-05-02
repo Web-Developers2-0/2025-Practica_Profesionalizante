@@ -65,6 +65,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'User',
+    'Product',
+    'Order',
+    'Event',
+    'Notification'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +86,9 @@ MIDDLEWARE = [
 
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
-CORS_ALLOWED_ORIGINS = ['http://localhost:4200',]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Cambia esto por el puerto o dominio donde esté corriendo tu frontend
+]
 CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'PlanetSuperheroes.urls'
 
@@ -156,7 +162,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS':True,
     'BLACKLIST_AFTER_ROTATION':True,
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=255),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME':timedelta(days=1),
        
     'ALGORITHM': 'HS256',
