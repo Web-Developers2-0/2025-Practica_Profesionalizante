@@ -1,0 +1,136 @@
+<main>
+    <section class="form_registro">
+        <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <div class="title_registro">
+            <img src="../../assets/images/logo_planet.png" alt="Logo" class="logo">
+            <h1>PLANET SUPER HEROES</h1>
+        </div>
+            <h2>Registro</h2> 
+        
+        <div class="form_container">
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="text" 
+                formControlName="first_name"
+                name="first_name" 
+                placeholder="Nombre" 
+                id="first_name"
+                autocomplete="off"
+                value=""
+                />
+                <label for="first_name"></label>
+
+                <small *ngIf="form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched">*Nombre es requerido</small>
+                <small *ngIf="form.get('first_name')?.errors?.['minlength'] && form.get('first_name')?.touched">*Nombre no es valido</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="text" 
+                formControlName="last_name"
+                name="last_name" 
+                placeholder="Apellido" 
+                id="last_name"
+                autocomplete="off"
+                value=""
+                />
+                <label for="last_name"></label>
+
+                <small *ngIf="form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched">*Apellido es requerido</small>
+                <small *ngIf="form.get('last_name')?.errors?.['minlength'] && form.get('last_name')?.touched">*Apellido no es valido</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="email" 
+                formControlName="email"
+                name="email" 
+                placeholder="Email" 
+                id="email"
+                autocomplete="off"
+                value=""
+                />
+                <label for="email"></label>
+
+                <small *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">*Email es requerido</small>
+                <small *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">*Email no es valido</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="number" 
+                formControlName="phone"
+                name="phone" 
+                placeholder="Teléfono" 
+                id="phone"
+                autocomplete="off"
+                value=""
+                />
+                <label for="phone"></label>
+
+                <small *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched">*Teléfono es requerido</small>
+                <small *ngIf="form.get('phone')?.errors?.['minlength'] && form.get('phone')?.touched">*Teléfono no es valido</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="text" 
+                formControlName="address"
+                name="address" 
+                placeholder="Dirección" 
+                id="address"
+                autocomplete="off"
+                value=""
+                />
+                <label for="address"></label>
+                <small *ngIf="form.get('address')?.errors?.['required'] && form.get('address')?.touched">*Direcciónn es requerida</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="password" 
+                formControlName="password"
+                name="password" 
+                placeholder="Contraseña" 
+                id="password"
+                autocomplete="off"
+                value=""
+                />
+                <label for="password"></label>
+                <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
+                <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
+            </div>
+
+            <div class="form__field">
+                <input 
+                class="controles" 
+                type="password" 
+                formControlName="confirmPassword"
+                name="confirmPassword" 
+                placeholder="Confirmar contraseña" 
+                id="confirmPassword"
+                autocomplete="off"
+                value=""
+                />
+                <label for="confirmPassword"></label>
+                <small *ngIf="form.get('confirmPassword')?.errors?.['required'] && form.get('confirmPassword')?.touched">*Contraseña es requerida</small>
+                <small *ngIf="form.get('confirmPassword')?.errors?.['minlength'] && form.get('confirmPassword')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
+            </div>
+
+            <div>
+                <button class="botom" type="submit" [disabled]="!form.valid"> Registrarse </button>
+            </div>
+            
+            <p class="link">Ya tenés una cuenta? <a routerLink="/login">Inicia Sesión aquí!</a></p>
+            
+            <a class="go_back" href="#">Volver al Inicio</a>
+        </div>
+        </form>
+    </section>
+</main>

@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContactComponent } from './contact/contact.component';
 import { DetailsprodComponent} from './detailsprod/detailsprod.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegisterComponent } from './register/register.component';
 import { PaymentComponent } from './pasarela de pago/payment.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -41,6 +41,6 @@ export const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard]
     },
-    { path: 'register', component: RegistroComponent }, 
+    { path: 'register', component: RegisterComponent }, 
     { path: 'checkout', component: PaymentComponent }, 
 ];
