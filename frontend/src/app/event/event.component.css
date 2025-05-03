@@ -205,3 +205,115 @@
     box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.4); 
     background-color: #c2e622;
   }
+
+/* Media queries para responsividad  */
+@media (max-width: 1200px) {
+    .event-title-banner {
+      top: 8%;
+      width: 45%;
+    }
+  
+    .event-title {
+      font-size: 2.5rem;
+    }
+  
+    .ver-mas-container {
+      bottom: 8%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .events-line {
+      width: 90%;
+      max-width: 50rem; /* 800px convertido a rem */
+    }
+  
+    .event-title-banner {
+      top: 7%;
+      width: 50%;
+      right: 25%;
+    }
+  
+    .event-title {
+      font-size: 2.2rem;
+    }
+  
+    .ver-mas-btn {
+      font-size: 1.5rem;
+      padding: 0.375rem 1.875rem; /* Convertido a rem */
+    }
+  
+    .ver-mas-container {
+      bottom: 7%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .event-title-banner {
+      top: 6%;
+      padding: 0.3125rem 0.9375rem; /* Convertido a rem */
+      width: 60%;
+      right: 20%;
+    }
+  
+    .event-title {
+      font-size: 1.8rem;
+    }
+  
+    .ver-mas-btn {
+      font-size: 1.3rem;
+      padding: 0.3125rem 1.5625rem; /* Convertido a rem */
+    }
+  
+    .comic-arrow {
+      width: 15%;
+    }
+  
+    .ver-mas-container {
+      bottom: 6%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .event-title-banner {
+      top: 5%;
+      padding: 0.3125rem 0.625rem; 
+      width: 70%;
+      right: 15%;
+    }
+  
+    .event-title {
+      font-size: 1.5rem;
+    }
+  
+    .ver-mas-btn {
+      font-size: 1.1rem;
+      padding: 0.25rem 1.25rem; /* Convertido a rem */
+    }
+  
+    .ver-mas-container {
+      bottom: 5%;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .event-title-banner {
+      top: 4%;
+      width: 80%;
+      right: 10%;
+    }
+  
+    .event-title {
+      font-size: 1.2rem;
+    }
+  
+    .ver-mas-container {
+      bottom: 4%;
+    }
+  
+    .ver-mas-btn {
+      font-size: 1rem;
+      padding: 0.1875rem 0.9375rem;
+    }
+  }
+  
