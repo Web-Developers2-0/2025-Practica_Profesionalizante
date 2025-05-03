@@ -13,6 +13,7 @@ import { PaymentComponent } from './pasarela de pago/payment.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EventComponent } from './event/event.component';
 
 export const routes: Routes = [
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'home', component:HomeComponent },
     { path: 'about', component:AboutComponent },
     { path: 'contact', component:ContactComponent },
+    {path: 'event', component:EventComponent},
     { path: 'app-products', component:ProductsComponent },
     { path: 'detailsprod', component:DetailsprodComponent },
     { path: 'login', component:LoginComponent },
