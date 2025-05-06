@@ -4,14 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register/register.service';
-import { RouterModule } from '@angular/router';
-
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    RouterModule,
     CommonModule,
     ReactiveFormsModule
   ],
@@ -31,7 +28,6 @@ export class RegisterComponent {
       address: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-      terms: ['', [Validators.requiredTrue]]
     });
   }
 
@@ -63,10 +59,6 @@ export class RegisterComponent {
     return this.form.get('confirmPassword');
   }
 
-  getTerms(){
-    return this.form.get('terms');
-  }
-
   onSubmit(event: Event) {
     {
       event.preventDefault();
@@ -80,7 +72,6 @@ export class RegisterComponent {
           address: this.form.get('address')?.value,
           password: this.form.get('password')?.value,
           confirmPassword: this.form.get('confirmPassword')?.value,
-          terms: this.form.get('terms')?.value,
         }). subscribe ({
           next:(response) => {
             console.log(response);
