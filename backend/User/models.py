@@ -2,7 +2,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import Group 
-
+import cloudinary.uploader
+from cloudinary.models import CloudinaryField
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, role=None, **extra_fields):
@@ -32,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30,default='', blank=False)
     address = models.CharField(max_length=255, default='', blank=False)
     phone = models.CharField(max_length=20, default='', blank=False)
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    image = CloudinaryField('image', null=True, blank=True)
     date_joined = models.DateTimeField(default=timezone.now)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -45,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+ 
     def __str__(self):
         return self.email
     
