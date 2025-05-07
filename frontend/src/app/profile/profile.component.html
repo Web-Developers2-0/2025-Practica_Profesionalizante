@@ -1,49 +1,58 @@
-<section class="profile_container">
-    <form (ngSubmit)="onSubmit()">
-        <div class="profile_content">
-            <div class="profile_img">
-                <img 
-                    src="../../assets/images/user.png" 
-                    alt="usuario"
-                />
-                <div class="">
-                    <h4>{{user.first_name}} {{user.last_name}}</h4>
-                    <p class="text-muted font-size-sm">{{user.address}}</p>
-                </div>
-            </div>
 
-            <div class="profile_data">
-                <h4>Detalles de usuario:</h4>
-                <hr>
-                <div class="profile_info">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="first_name" [(ngModel)]="user.first_name" name="first_name">
-                </div>
-                <hr>
-                <div class="profile_info">
-                    <label for="name">Apellido:</label>
-                    <input type="text" id="last_name" [(ngModel)]="user.last_name" name="last_name">
-                </div>
-                <hr>
-                <div class="profile_info">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" [(ngModel)]="user.email" name="email">
-                </div>
-                <hr>
-                <div class="profile_info">
-                    <label for="email">Dirección:</label>
-                    <input type="text" id="adress" [(ngModel)]="user.address" name="adress">
-                </div>
-                <hr>
-                <div class="profile_info">
-                    <label for="email">Teléfono:</label>
-                    <input type="number" id="phone" [(ngModel)]="user.phone" name="phone">
-                </div>
-                <hr>
-                <div class="btn-box">
-                    <button class="btn-edit" type="submit">Guardar cambios</button>
-                </div>
-            </div>
+<section class="profile_container">
+  <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+    <div class="profile_content">
+      <div class="profile_img">
+        <img [src]="previewImage || '../../assets/images/user.png'" alt="usuario" />
+        <div>
+          <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+          <p class="text-muted font-size-sm">{{ user.address }}</p>
         </div>
-    </form>
+        <div class="upload-btn">
+          <label for="imageUpload" class="btn-upload">Cambiar foto</label>
+          <input type="file" id="imageUpload" accept="image/*" (change)="onImageSelected($event)" hidden />
+        </div>
+      </div>
+
+      <div class="profile_data">
+        <h4>Detalles de usuario:</h4>
+        <hr />
+        <div class="profile_info">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="user.first_name" name="first_name" required />
+        </div>
+        <hr />
+        <div class="profile_info">
+          <label>Apellido:</label>
+          <input type="text" [(ngModel)]="user.last_name" name="last_name" required />
+        </div>
+        <hr />
+        <div class="profile_info">
+          <label>Email:</label>
+          <input type="email" [(ngModel)]="user.email" name="email" required />
+        </div>
+        <hr />
+        <div class="profile_info">
+          <label>Dirección:</label>
+          <input type="text" [(ngModel)]="user.address" name="address" />
+        </div>
+        <hr />
+        <div class="profile_info">
+          <label>Teléfono:</label>
+          <input type="text" [(ngModel)]="user.phone" name="phone" />
+        </div>
+        <hr />
+        <div class="profile_info">
+          <label>Contraseña:</label>
+          <input type="password" [(ngModel)]="user.password" name="password" required />
+        </div>
+        <hr />
+        <div class="btn-box">
+          <button class="btn-edit" type="submit">Guardar cambios</button>
+          <button type="button" class="btn-close" (click)="closeWithoutSaving()"></button>
+
+        </div>
+      </div>
+    </div>
+  </form>
 </section>
