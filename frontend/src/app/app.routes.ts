@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EventComponent } from './event/event.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const routes: Routes = [
 
@@ -47,4 +48,5 @@ export const routes: Routes = [
     { path: 'register', component: RegistroComponent }, 
     { path: 'checkout', component: PaymentComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'change-password', component: ChangePasswordComponent },
 ];
