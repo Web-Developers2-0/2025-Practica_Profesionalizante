@@ -1,11 +1,19 @@
+from datetime import time
 from rest_framework import serializers
 from .models import Role, User
 from .models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from decimal import Decimal
-from django.utils import timezone
+import cloudinary
+import cloudinary.uploader
+import time
+from rest_framework.validators import UniqueValidator
 
 class UserSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False)
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=User.objects.all(), message="Este correo ya está registrado.")]
+    )
     class Meta:
         model = User
         fields = ['id','username', 'first_name', 'last_name', 'email', 'password', 'address', 'phone', 'image']
@@ -24,6 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
 
     def update(self, instance, validated_data):
         instance.username = validated_data.get('username', instance.username)
@@ -31,16 +40,22 @@ class UserSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.address = validated_data.get('address', instance.address)
         instance.phone = validated_data.get('phone', instance.phone)
-        instance.image = validated_data.get('image', instance.image)
 
         password = validated_data.get('password', None)
         if password:
-            instance.set_password(password)
-        
+         instance.set_password(password)
+
+    # Asignar directamente la imagen
+        image = validated_data.get('image', None)
+        if image:
+             instance.image = image  # << No usar uploader
+
         instance.save()
         return instance
+
+
 class LogoutSerializer(serializers.Serializer):
-    user = serializers.IntegerField()
+    refresh = serializers.CharField()
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod

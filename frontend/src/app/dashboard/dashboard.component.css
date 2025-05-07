@@ -38,20 +38,30 @@ main{
     font-family: 'Bangers', sans-serif;
 }
 
-.user_img{
-    border: solid 3px rgb(105, 105, 105);
+.user_img {
+    border: 4px solid rgb(105, 105, 105);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 70px;
+    width: 120px; 
+    height: 120px;
     background-color: #000;
     cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.user_img img{
+.user_img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.user_img img {
     width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
 
 .logout_btn{
