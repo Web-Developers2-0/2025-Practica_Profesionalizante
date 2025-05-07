@@ -1,3 +1,5 @@
+
+
 <!-- Lo que renderizo si el usuario se desloguea desde el dashboard -->
 <section *ngIf="isAuthenticated">
   <div class="logout_dashboard">
@@ -12,8 +14,8 @@
         <div class="user_data">
             <div class="user_img">
                 <img
-                  src="../../assets/images/user.png"
-                  alt="usuario"
+                [src]="user.image || '../../assets/images/user.png'"  
+                alt="usuario"
                   (click)="goToProfile()"
                 />
             </div>
