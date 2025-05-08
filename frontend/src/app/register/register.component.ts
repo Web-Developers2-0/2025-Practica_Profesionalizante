@@ -3,23 +3,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { RegistroService } from '../services/register/register.service';
+import { RegisterService } from '../services/register/register.service';
+import { RouterModule } from '@angular/router'; // Agrega RouterModule
 
 @Component({
-  selector: 'app-registro',
+  selector: 'app-register',
   standalone: true,
   imports: [
+    RouterModule,
     CommonModule,
     ReactiveFormsModule
   ],
-  templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
-export class RegistroComponent {
+export class RegisterComponent {
   form!: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private registroService: RegistroService){
+  constructor(private formBuilder: FormBuilder, private router: Router, private registerService: RegisterService){
     this.form = this.formBuilder.group({
       first_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
       last_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
@@ -28,6 +30,7 @@ export class RegistroComponent {
       address: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
+      terms: ['', [Validators.requiredTrue]]
     });
   }
 
@@ -59,12 +62,16 @@ export class RegistroComponent {
     return this.form.get('confirmPassword');
   }
 
+  getTerms(){
+    return this.form.get('terms');
+  }
+
   onSubmit(event: Event) {
     {
       event.preventDefault();
 
       if(this.form.valid) {
-        this.registroService.registerUser({
+        this.registerService.registerUser({
           first_name: this.form.get('first_name')?.value,
           last_name: this.form.get('last_name')?.value,
           email: this.form.get('email')?.value,
@@ -72,6 +79,7 @@ export class RegistroComponent {
           address: this.form.get('address')?.value,
           password: this.form.get('password')?.value,
           confirmPassword: this.form.get('confirmPassword')?.value,
+          terms: this.form.get('terms')?.value,
         }). subscribe ({
           next:(response) => {
             console.log(response);
