@@ -1,9 +1,11 @@
 <main>
+    <div class="background-wrapper">
+
     <section class="form_login">
         <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
         <div class="title_login">
             <img src="../../assets/images/logo_planet.png" alt="Logo" class="logo">
-            <h1>PLANET SUPER HEROES</h1>
+            <h1 class="visually-hidden">PLANET SUPER HEROES</h1>
         </div>
             <h2>Login</h2> 
         
@@ -40,7 +42,7 @@
                 <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
                 <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
             </div>
-
+            
             <div>
                 <button class="botom" type="submit" [disabled]="!form.valid"> Ingresar </button>
             </div>
@@ -51,4 +53,5 @@
         </div>
         </form>
     </section>
+    </div>
 </main>
