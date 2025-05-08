@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/auth/login.service';
 import { LoginRequest } from '../services/auth/login.request';
-
+import { RouterModule } from '@angular/router'; // Agrega RouterModule
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { LoginRequest } from '../services/auth/login.request';
   styleUrl: './login.component.css',
   standalone: true,
   imports: [
+    RouterModule,
     CommonModule,
     ReactiveFormsModule
   ]
