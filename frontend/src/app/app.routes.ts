@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EventComponent } from './event/event.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TermsComponent } from './terms/terms.component';
 
 export const routes: Routes = [
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
     { path: 'app-products', component:ProductsComponent },
     { path: 'detailsprod', component:DetailsprodComponent },
     { path: 'login', component:LoginComponent },
+    { path: 'terms', component: TermsComponent },
     { 
         path: 'dashboard', 
         component: DashboardComponent,

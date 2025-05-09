@@ -19,12 +19,12 @@
 }
 
 main {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+    }
 
 .form_registro {
     width: 100%;
@@ -39,6 +39,17 @@ main {
     z-index: 2;
     margin-left: 5%;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+
+      width: 100%;
+  max-width: 750px;
+  height: fit-content;
+  background: #1e1e1e;
+  margin: 30px auto;
+  border-radius: 40px;
+  box-shadow: 7px 13px 37px #000;
+  color: #ffffff;
+  padding: 2rem;
 }
 
 .form_container {

@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register/register.service';
 import { RouterModule } from '@angular/router'; // Agrega RouterModule
+import { TermsComponent } from '../terms/terms.component';
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 
 @Component({
   selector: 'app-register',
@@ -21,7 +23,7 @@ export class RegisterComponent {
   form!: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private registerService: RegisterService){
+  constructor(private formBuilder: FormBuilder, private router: Router, private registerService: RegisterService, public dialog: MatDialog) {
     this.form = this.formBuilder.group({
       first_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
       last_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
@@ -64,6 +66,19 @@ export class RegisterComponent {
 
   getTerms(){
     return this.form.get('terms');
+  }
+
+  openTermsDialog(): void {
+    const dialogRef = this.dialog.open(TermsComponent, {
+      width: '500px',
+      height: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.form.get('terms')?.setValue(true); // Accept terms if user confirms
+      }
+    });
   }
 
   onSubmit(event: Event) {
