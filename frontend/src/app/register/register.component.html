@@ -138,13 +138,8 @@
                     autocomplete="off"
                     value="terminos y condiciones"
                     />
-                    <label for="terms"> Acepto los <a class="link" routerLink="/">  términos y condiciones </a></label>
+                    <label for="terms"> Acepto los <a (click)="openTermsDialog(); $event.preventDefault()" class="link">  términos y condiciones </a></label>
 
-                </div>
-
-                <div class="termsError">
-                    <label for="terms"></label>
-                    <small *ngIf="form.get('terms')?.errors?.['required'] && form.get('terms')?.touched">*Debes aceptar los términos y condiciones</small>
                 </div>
 
 
