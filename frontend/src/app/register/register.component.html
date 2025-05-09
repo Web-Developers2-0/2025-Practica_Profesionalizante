@@ -142,6 +142,10 @@
 
                 </div>
 
+                <div class="termsError">
+                    <label for="terms"></label>
+                    <small *ngIf="form.get('terms')?.errors?.['required'] && form.get('terms')?.touched">*Debes aceptar los términos y condiciones</small>
+                </div>
 
                 <div>
                     <button class="botom" type="submit" [disabled]="!form.valid"> Registrarse </button>
