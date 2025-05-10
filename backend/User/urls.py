@@ -4,6 +4,7 @@ from User import views
 from rest_framework_simplejwt.views import TokenVerifyView
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from User.views import PasswordResetRequestView, PasswordResetConfirmView
 
 router = routers.DefaultRouter()
 
