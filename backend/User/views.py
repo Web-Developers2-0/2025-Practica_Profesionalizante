@@ -132,3 +132,39 @@ class PasswordResetRequestView(APIView):
             return Response({'error': 'Ocurrió un error al enviar el correo. Intenta nuevamente más tarde.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response({'message': 'Si el correo existe, se enviará un enlace para restablecer la contraseña.'}, status=status.HTTP_200_OK)
+
+class PasswordResetConfirmView(APIView):
+    permission_classes = []
+
+    def post(self, request, token):
+        password = request.data.get('password', '').strip()
+        # Validación de contraseña vacía
+        if not password:
+            return Response({'error': 'La contraseña es requerida.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de longitud mínima
+        if len(password) < 8:
+            return Response({'error': 'La contraseña debe tener al menos 8 caracteres.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de longitud máxima
+        if len(password) > 30:
+            return Response({'error': 'La contraseña no debe superar los 30 caracteres.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de mayúsculas y minúsculas
+        if not (re.search(r'[A-Z]', password) and re.search(r'[a-z]', password)):
+            return Response({'error': 'La contraseña debe contener mayúsculas y minúsculas.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de número o caracter especial
+        if not re.search(r'[\d!@#$%^&*(),.?":{}|<>]', password):
+            return Response({'error': 'La contraseña debe contener al menos un número o caracter especial.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de espacios
+        if ' ' in password:
+            return Response({'error': 'La contraseña no debe contener espacios.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(reset_token=token, reset_token_expiry__gte=timezone.now()) # Establece la expiración del token de reinicio a 2 horas a partir del momento actual
+        except User.DoesNotExist:
+            return Response({'error': 'El enlace es inválido o ha expirado. Solicita uno nuevo.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_password(password)
+        user.reset_token = None
+        user.reset_token_expiry = None
+        user.save()
+        print(f"[SUCCESS] Contraseña restablecida para el usuario {user.email}")
+        return Response({'message': 'Contraseña restablecida correctamente.'}, status=status.HTTP_200_OK)
