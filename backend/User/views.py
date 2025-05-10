@@ -83,3 +83,52 @@ class RoleViewSet(ModelViewSet):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
     permission_classes = [IsAdminUser]
+
+class PasswordResetRequestView(APIView):
+    permission_classes = []
+
+    def post(self, request):
+        email = request.data.get('email', '').strip()
+        # Validación de email vacío
+        if not email:
+            return Response({'error': 'Debes ingresar un correo electrónico.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de formato de email
+        email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+        if not re.match(email_regex, email):
+            return Response({'error': 'El formato del correo electrónico no es válido.'}, status=status.HTTP_400_BAD_REQUEST)
+        # Validación de longitud
+        if len(email) > 100:
+            return Response({'error': 'El correo electrónico es demasiado largo.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            # Mensaje genérico por seguridad
+            return Response({'message': 'Si el correo existe, se enviará un enlace para restablecer la contraseña.'}, status=status.HTTP_200_OK)
+
+        token = get_random_string(64)
+        user.reset_token = token
+        user.reset_token_expiry = timezone.now() + timedelta(hours=2)
+        user.save()
+
+        reset_url = f"http://localhost:4200/change-password/{token}"
+
+        subject = 'Restablecé tu contraseña en PlanetSuperheroes'
+        from_email = settings.EMAIL_HOST_USER
+        to = [email]
+        html_content = render_to_string('reset_password_email.html', {
+            'reset_url': reset_url,
+            'user_first_name': user.first_name,
+            'year': timezone.now().year,
+            'logo_url': 'https://yourdomain.com/static/logo.png'
+        })
+
+        try:
+            msg = EmailMultiAlternatives(subject, '', from_email, to)
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            print(f"[SUCCESS] Correo de recuperación enviado a {email}")
+        except Exception as e:
+            print(f"[ERROR] Error al enviar el correo: {e}")
+            return Response({'error': 'Ocurrió un error al enviar el correo. Intenta nuevamente más tarde.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return Response({'message': 'Si el correo existe, se enviará un enlace para restablecer la contraseña.'}, status=status.HTTP_200_OK)
