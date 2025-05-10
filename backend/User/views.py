@@ -119,7 +119,7 @@ class PasswordResetRequestView(APIView):
             'reset_url': reset_url,
             'user_first_name': user.first_name,
             'year': timezone.now().year,
-            'logo_url': 'https://yourdomain.com/static/logo.png'
+            'logo_url': 'https://postimg.cc/sQKGr0BY',
         })
 
         try:
