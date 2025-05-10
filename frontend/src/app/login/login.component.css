@@ -1,143 +1,237 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Hachi+Maru+Pop&family=Patrick+Hand&display=swap');
 
-main {
+/* Estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.background-wrapper {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* background: url(../assets/fondo2.jpg); */
+    min-height: 100vh;
+    background-image: url('../../assets/images/login-img/fondo-login.png');
     background-size: cover;
+    background-position: center;
     background-attachment: fixed;
+  }
+
+body {
+  font-family: 'Bangers', sans-serif;
+  background-color: #000;
+  margin: 0;
+  padding: 0;
 }
 
-.form_login{
-    width: 600px;
-    height: fit-content;
-    background: #1e1e1e;
-    margin: auto;
-    box-shadow: 7px 13px 37px #000;
-    border-top: 20px solid #9a1515;
-    color: #ffffff;
-    padding: 1rem;
-    margin-top: 2.5rem;
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
 }
 
-.form_container{
-    padding: 10px;
-    height: fit-content;
+.form_login {
+  width: 100%;
+  max-width: 750px;
+  height: fit-content;
+  background: #1e1e1e;
+  margin: 30px auto;
+  border-radius: 40px;
+  box-shadow: 7px 13px 37px #000;
+  color: #ffffff;
+  padding: 2rem;
 }
 
-.title_login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form_container {
+  padding: 10px;
+  height: fit-content;
 }
 
-.form_login h1{
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 10px;
-    font-family: 'Bangers', sans-serif;
-    color: #fbf0f0;
-    -webkit-text-stroke: 1.2px black;
-    text-shadow: #fbf0f0 0 -2px;
+.title_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form_login h2{
-    margin: 0;
-    text-align: center;
-    height: 40px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid;
-    font-size: 2rem;
-    color:#fcd69e ;
+.form_login h1 {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 10px;
+  font-family: 'Bangers', sans-serif;
+  color: #fbf0f0;
+  -webkit-text-stroke: 1px black;
+  text-shadow: #fbf0f0 0 -2px;
 }
 
-.controles{
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 11px 10px;
-    background: #fbf0f0;
-    font-size: 1.1rem;
-    font-weight: bold;
+.form_login h2 {
+  font-family: 'Bangers', sans-serif;
+  margin: 0;
+  text-align: center;
+  height: auto;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #fcd69e;
 }
 
-.botom{ 
-    width: 100%;
-    height: 40px;
-    background: #f2b251;
-    border: none;
-    color: #1e1e1e;
-    margin-bottom: 16px;
-    margin-top: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
+.controles {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px 10px;
+  background: #fbf0f0;
+  font-size: clamp(1rem, 3vw, 20px);
+  border-radius: 12px;
+  font-family: 'Bangers', sans-serif;
+  border: none;
 }
 
-.botom:hover{
-    background: #f0a432;
+.botom {
+  width: 100%;
+  padding: 10px 20px;
+  background: #f2b251;
+  border: none;
+  color: #1e1e1e;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Bangers', sans-serif;
+  letter-spacing: 1px;
 }
-.form_login p{
-    height: 40px;
-    text-align: center;
-    border-bottom: 1px solid;
-} 
+
+.botom:hover {
+  background: #f0a432;
+}
+
+.form_login p {
+  font-family: 'Bangers', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 25px);
+  height: auto;
+  text-align: center;
+  margin: 20px 0;
+}
+
 .form_login a {
-    color: #fcd69e;
-    text-decoration: none;
-    font-size: 14px; 
+  color: #fcd69e;
+  text-decoration: none;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
+
 .form_login a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.go_back{
-    text-decoration: none;
-    background-color: #008bce;
-    color: whitesmoke;
-    padding: 10px 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: larger;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
+.go_back {
+  font-family: 'Bangers', sans-serif;
+  text-decoration: none;
+  background-color: #008bce;
+  color: whitesmoke;
+  border-radius: 20px;
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  font-size: clamp(1rem, 3vw, larger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.3s ease;
 }
 
-.go_back:hover{
-    background-color: #016699;
+.go_back:hover {
+  background-color: #016699;
 }
 
-.logo{
-    max-height: 180px;
-    margin: 0 auto;
-    display: block;
+.logo {
+  max-height: 120px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
 }
 
-.form__field{
-    overflow: hidden;
+.form__field {
+  overflow: hidden;
 }
 
 .ng-invalid:not(form).ng-touched {
-    border: solid 2px red;
+  border: solid 2px red;
 }
 
 .ng-valid:not(form).ng-touched {
-    border: solid 2px rgb(13, 167, 13);
+  border: solid 2px rgb(13, 167, 13);
 }
 
-.form__field small{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#ce2d2d;
-    padding: 4px 0;
-    margin-bottom: 2px;
+.form__field small {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ce2d2d;
+  padding: 4px 0;
+  margin-bottom: 2px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
-.link{
-    cursor: pointer;
+.link {
+  cursor: pointer;
 }
+
+/* Media queries para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+  .form_login {
+    padding: 1.5rem;
+    margin: 20px auto;
+    border-radius: 30px;
+  }
+  
+  .logo {
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form_login {
+    padding: 1rem;
+    margin: 15px auto;
+    border-radius: 20px;
+  }
+  
+  .form_login h1 {
+    -webkit-text-stroke: 0.5px black;
+  }
+  
+  .logo {
+    max-height: 80px;
+  }
+  
+  .controles {
+    padding: 12px 8px;
+  }
+  
+  .botom, .go_back {
+    padding: 8px 15px;
+  }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
