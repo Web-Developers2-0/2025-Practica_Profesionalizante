@@ -1,4 +1,6 @@
 import time
+import re
+import cloudinary
 from rest_framework import status,permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,7 +19,11 @@ from rest_framework.viewsets import ModelViewSet
 from django.utils import timezone
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-import cloudinary
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.crypto import get_random_string
+from datetime import timedelta
+from django.conf import settings
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
