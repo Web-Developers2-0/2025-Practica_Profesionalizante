@@ -48,5 +48,5 @@ export const routes: Routes = [
     { path: 'register', component: RegistroComponent }, 
     { path: 'checkout', component: PaymentComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
-    { path: 'change-password', component: ChangePasswordComponent },
+    { path: 'change-password/:token', component: ChangePasswordComponent },
 ];
