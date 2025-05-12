@@ -1,121 +1,84 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ContactComponent } from '../contact/contact.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ ContactComponent ],
+  imports: [ContactComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-// export class HomeComponent {
-//   counter: number = 0;
-//   operacion: number = 0;
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//     const btnLeft = document.querySelector(".btn-left") as HTMLElement;
-//     const btnRight = document.querySelector(".btn-right") as HTMLElement;
-//     const slider = document.querySelector("#slider") as HTMLElement;
-//     const sliderSections = document.querySelectorAll(".slider-section");
-
-//     btnLeft.addEventListener("click", () => this.moveToLeft());
-//     btnRight.addEventListener("click", () => this.moveToRight());
-
-//     setInterval(() => {
-//         this.moveToRight();
-//     }, 3000);
-//   }
-
-//   private moveToLeft(): void {
-//     const slider = document.querySelector("#slider") as HTMLElement;
-//     const sliderSections = document.querySelectorAll(".slider-section");
-//     const widthImg = 100 / sliderSections.length;
-
-//     this.counter--;
-//     if (this.counter < 0) {
-//         this.counter = sliderSections.length - 1;
-//         this.operacion = widthImg * (sliderSections.length - 1);
-//         slider.style.transform = `translate(-${this.operacion}%)`;
-//         slider.style.transition = "none";
-//         return;
-//     }
-//     this.operacion = this.operacion - widthImg;
-//     slider.style.transform = `translate(-${this.operacion}%)`;
-//     slider.style.transition = "all ease .6s";
-//   }
-
-//   private moveToRight(): void {
-//     const slider = document.querySelector("#slider") as HTMLElement;
-//     const sliderSections = document.querySelectorAll(".slider-section");
-//     const widthImg = 100 / sliderSections.length;
-
-//     if (this.counter >= sliderSections.length - 1) {
-//         this.counter = 0;
-//         this.operacion = 0;
-//         slider.style.transform = `translate(-${this.operacion}%)`;
-//         slider.style.transition = "none";
-//         return;
-//     }
-//     this.counter++;
-//     this.operacion = this.operacion + widthImg;
-//     slider.style.transform = `translate(-${this.operacion}%)`;
-//     slider.style.transition = "all ease .6s";
-//   }
-// }
 
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChild('slider') sliderRef!: ElementRef<HTMLElement>;
+  sliderSections: HTMLElement[] = [];
   counter: number = 0;
   operacion: number = 0;
   interval: any;
-  sliderSections: HTMLElement[] = [];
-
-  constructor() { }
 
   ngOnInit(): void {
-    this.interval = setInterval(() => {
-      this.moveToRight();
-    }, 3000);
+    setTimeout(() => {
+      this.sliderSections = Array.from(document.querySelectorAll('.slider-section')) as HTMLElement[];
+      const btnLeft = document.querySelector('.btn-left') as HTMLElement | null;
+      const btnRight = document.querySelector('.btn-right') as HTMLElement | null;
+      if (btnLeft) btnLeft.addEventListener('click', () => this.moveToLeft());
+      if (btnRight) btnRight.addEventListener('click', () => this.moveToRight());
+      if (this.sliderSections.length > 0) {
+        this.interval = setInterval(() => this.moveToRight(), 3000);
+      }
+    }, 0);
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.interval);
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
   moveToLeft(): void {
+    if (this.sliderSections.length === 0) return;
     this.counter--;
     if (this.counter < 0) {
       this.counter = this.sliderSections.length - 1;
       this.operacion = this.getSectionWidth() * (this.sliderSections.length - 1);
+      this.updateSlider(true); // No transition for loop
     } else {
       this.operacion -= this.getSectionWidth();
+      this.updateSlider();
     }
-    this.updateSlider();
-  } 
+  }
 
   moveToRight(): void {
+    if (this.sliderSections.length === 0) return;
     if (this.counter >= this.sliderSections.length - 1) {
       this.counter = 0;
       this.operacion = 0;
+      this.updateSlider(true); // No transition for loop
     } else {
       this.counter++;
       this.operacion += this.getSectionWidth();
+      this.updateSlider();
     }
-    this.updateSlider();
   }
 
-  updateSlider(): void {
-    const slider = document.querySelector('#slider') as HTMLElement;
-    slider.style.transform = `translate(-${this.operacion}%)`;
-    slider.style.transition = 'all ease .6s';
+  updateSlider(noTransition: boolean = false): void {
+    if (this.sliderRef && this.sliderRef.nativeElement) {
+      const slider = this.sliderRef.nativeElement;
+      slider.style.transform = `translateX(-${this.operacion}%)`;
+      slider.style.transition = noTransition ? 'none' : 'transform 0.6s ease';
+    } else {
+      console.error('Slider element not found');
+    }
   }
 
   getTotalSections(): number {
-    return this.sliderSections.length;
+    return this.sliderSections.length || 1; // Prevent division by zero
   }
 
   getSectionWidth(): number {
     return 100 / this.getTotalSections();
   }
 }
+
+
+
