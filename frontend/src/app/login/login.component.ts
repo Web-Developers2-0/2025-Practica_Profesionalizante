@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/auth/login.service';
 import { LoginRequest } from '../services/auth/login.request';
-import { RouterModule } from '@angular/router'; // Agrega RouterModule
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +18,9 @@ import { RouterModule } from '@angular/router'; // Agrega RouterModule
     ReactiveFormsModule
   ]
 })
-
 export class LoginComponent {
-  form!: FormGroup;
+  form: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
     this.form = this.formBuilder.group({
@@ -29,36 +29,34 @@ export class LoginComponent {
     });
   }
 
-  get Password() {
-    return this.form.get('password');
-  }
-
-  get Email() {
-    return this.form.get('email');
-  }
-
   onSubmit(event: Event) {
-    {
-      event.preventDefault();
-      
-      if(this.form.valid) {
-        this.loginService.methodlogin({
-          email: this.form.get('email')?.value,
-          password: this.form.get('password')?.value
-        }).subscribe({
-          next:(response) => {
-            console.log(response);
-            this.router.navigate(['/dashboard']);
-          },
-          error:(error) => {
-            console.error(error);
-            alert('Error en la autenticación, intente nuevamente');
+    event.preventDefault();
+    this.errorMessage = null;
+    
+    if (this.form.valid) {
+      const loginRequest: LoginRequest = {
+        email: this.form.get('email')?.value,
+        password: this.form.get('password')?.value
+      };
+      this.loginService.methodlogin(loginRequest).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error(error);
+          if (error.status === 401) {
+            this.errorMessage = 'Correo o contraseña incorrectos';
+          } else if (error.status === 500) {
+            this.errorMessage = 'Error del servidor, intenta de nuevo más tarde';
+          } else {
+            this.errorMessage = 'Error en la autenticación, intente nuevamente';
           }
-        });
-      } else {
-        alert('Completa el formulario correctamente');
-        this.form.markAllAsTouched();
-      }
+        }
+      });
+    } else {
+      this.errorMessage = 'Completa el formulario correctamente';
+      this.form.markAllAsTouched();
     }
   }
 }

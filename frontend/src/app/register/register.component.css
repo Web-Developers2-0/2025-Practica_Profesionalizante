@@ -1,3 +1,4 @@
+/* Importación de la fuente Bangers */
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 * {
@@ -19,17 +20,16 @@
 }
 
 main {
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 20px;
-    }
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+/*    padding: 20px; */
+}
 
 .form_registro {
     width: 100%;
     max-width: 750px;
-    height: fit-content;
     background: #1e1e1e;
     border-radius: 40px;
     box-shadow: 7px 13px 37px #000;
@@ -37,19 +37,7 @@ main {
     padding: 2rem;
     margin: 30px auto;
     z-index: 2;
-    margin-left: 5%;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-
-      width: 100%;
-  max-width: 750px;
-  height: fit-content;
-  background: #1e1e1e;
-  margin: 30px auto;
-  border-radius: 40px;
-  box-shadow: 7px 13px 37px #000;
-  color: #ffffff;
-  padding: 2rem;
 }
 
 .form_container {
@@ -67,8 +55,7 @@ main {
     margin-bottom: 10px;
     font-family: 'Bangers', sans-serif;
     color: #fbf0f0;
-    -webkit-text-stroke: 1px black;
-    text-shadow: #fbf0f0 0 -2px;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
     text-align: center;
 }
 
@@ -89,7 +76,7 @@ main {
     background: #fbf0f0;
     font-size: clamp(1rem, 3vw, 1.25rem);
     border-radius: 12px;
-    font-family: 'Bangers', sans-serif;
+    font-family: 'Poppins', sans-serif;
     border: none;
 }
 
@@ -138,11 +125,10 @@ main {
 
 .check {
     appearance: none;
-    -webkit-appearance: none;
     width: 30px;
     height: 30px;
     margin: 20px;
-    border: 2px solid #F4A840;
+    border: 2px solid #f4a840;
     border-radius: 50%;
     background-color: transparent;
     position: relative;
@@ -153,7 +139,7 @@ main {
 .check::after {
     content: '✔';
     font-size: 18px;
-    color: #F4A840;
+    color: #f4a840;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -244,11 +230,14 @@ label[for="terms"] {
     border: 0;
 }
 
+input::placeholder {
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.3rem;
+}
+
 @media (max-width: 1024px) {
     .form_registro {
         margin: 20px auto;
-        margin-left: auto;
-        margin-right: auto;
         padding: 1.5rem;
         border-radius: 30px;
         max-width: 600px;
@@ -277,7 +266,7 @@ label[for="terms"] {
     }
 
     .form_registro h1 {
-        -webkit-text-stroke: 0.5px black;
+        text-shadow: 0.5px 0.5px 0 #000, -0.5px -0.5px 0 #000;
     }
 
     .logo {
