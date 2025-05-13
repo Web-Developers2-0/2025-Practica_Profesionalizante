@@ -1,4 +1,5 @@
 import os
+import re
 from django.db import connection
 from django.conf import settings
 from django.db.models.signals import post_migrate
@@ -12,38 +13,33 @@ def load_data_script(sender, **kwargs):
         print(f'SQL file not found: {sql_file_path}')
         return
 
-    # Lista de tablas afectadas por el script
-    affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
+    # Orden correcto según dependencias
+    affected_tables = ['roles', 'categories', 'user', 'products', 'orders', 'order_items']
 
-    # Verificar y cargar datos en cada tabla individualmente
+    with open(sql_file_path, 'r') as file:
+        sql = file.read()
+
+    # Dividir en sentencias individuales
+    statements = [stmt.strip() for stmt in sql.split(';') if stmt.strip()]
+
+    # Agrupar las sentencias por tabla
+    table_statements = {table: [] for table in affected_tables}
+    for stmt in statements:
+        for table in affected_tables:
+            if re.search(rf"insert\s+into\s+`?{table}`?", stmt, re.IGNORECASE):
+                table_statements[table].append(stmt + ';')
+                break
+
     with connection.cursor() as cursor:
         for table in affected_tables:
             try:
                 cursor.execute(f"SELECT COUNT(*) FROM {table}")
                 count = cursor.fetchone()[0]
-                if count == 0:
-                    # Leer datos específicos para la tabla
-                    with open(sql_file_path, 'r') as file:
-                        sql = file.read()
-                        # Extraer solo los datos relevantes para la tabla actual
-                        table_data = extract_table_data(sql, table)
-                        if table_data:
-                            cursor.execute(table_data)
-                            print(f'Successfully loaded data for table {table}')
+                if count == 0 and table_statements[table]:
+                    for insert_stmt in table_statements[table]:
+                        cursor.execute(insert_stmt)
+                    print(f"✅ Cargados datos en la tabla '{table}'")
+                else:
+                    print(f"ℹ️ La tabla '{table}' ya tiene datos, se omite")
             except Exception as e:
-                print(f"Skipping table {table} because it does not exist yet: {e}")
-                continue
-
-def extract_table_data(sql, table):
-    """
-    Función auxiliar para extraer los datos de la tabla específica desde el archivo SQL.
-    """
-    # Dividir el SQL en sentencias individuales
-    sql_statements = sql.split(';')
-    table_data = []
-
-    for statement in sql_statements:
-        if table in statement:
-            table_data.append(statement.strip())
-
-    return ';\n'.join(table_data) + ';' if table_data else None
+                print(f"⚠️ Saltando tabla '{table}': {e}")
