@@ -1,0 +1,146 @@
+<main>
+    <div class="background-wrapper">
+        <div class="blur-container"></div>
+    
+        <section class="form_registro">
+            <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+                <div class="title_registro">
+                    <img src="../../assets/images/logo_planet.png" alt="Logo de Planet Super Heroes" class="logo">
+                    <h1 class="visually-hidden">Planet Super Heroes</h1>
+                </div>
+                <h2>Registro</h2> 
+            
+                <div class="form_container">
+                    <div class="form__field">
+                        <label for="first_name" class="visually-hidden">Nombre</label>
+                        <input 
+                            class="controles" 
+                            type="text" 
+                            formControlName="first_name"
+                            name="first_name" 
+                            placeholder="Nombre" 
+                            id="first_name"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched">*Nombre es requerido</small>
+                        <small *ngIf="form.get('first_name')?.errors?.['minlength'] && form.get('first_name')?.touched">*Nombre no es válido</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="last_name" class="visually-hidden">Apellido</label>
+                        <input 
+                            class="controles" 
+                            type="text" 
+                            formControlName="last_name"
+                            name="last_name" 
+                            placeholder="Apellido" 
+                            id="last_name"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched">*Apellido es requerido</small>
+                        <small *ngIf="form.get('last_name')?.errors?.['minlength'] && form.get('last_name')?.touched">*Apellido no es válido</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="email" class="visually-hidden">Email</label>
+                        <input 
+                            class="controles" 
+                            type="email" 
+                            formControlName="email"
+                            name="email" 
+                            placeholder="Email" 
+                            id="email"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">*Email es requerido</small>
+                        <small *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">*Email no es válido</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="phone" class="visually-hidden">Teléfono</label>
+                        <input 
+                            class="controles" 
+                            type="number" 
+                            formControlName="phone"
+                            name="phone" 
+                            placeholder="Teléfono" 
+                            id="phone"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched">*Teléfono es requerido</small>
+                        <small *ngIf="form.get('phone')?.errors?.['minlength'] && form.get('phone')?.touched">*Teléfono no es válido</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="address" class="visually-hidden">Dirección</label>
+                        <input 
+                            class="controles" 
+                            type="text" 
+                            formControlName="address"
+                            name="address" 
+                            placeholder="Dirección" 
+                            id="address"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('address')?.errors?.['required'] && form.get('address')?.touched">*Dirección es requerida</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="password" class="visually-hidden">Contraseña</label>
+                        <input 
+                            class="controles" 
+                            type="password" 
+                            formControlName="password"
+                            name="password" 
+                            placeholder="Contraseña" 
+                            id="password"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
+                        <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="confirmPassword" class="visually-hidden">Confirmar contraseña</label>
+                        <input 
+                            class="controles" 
+                            type="password" 
+                            formControlName="confirmPassword"
+                            name="confirmPassword" 
+                            placeholder="Confirmar contraseña" 
+                            id="confirmPassword"
+                            autocomplete="off"
+                        />
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['required'] && form.get('confirmPassword')?.touched">*Contraseña es requerida</small>
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['minlength'] && form.get('confirmPassword')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
+                    </div>
+
+                    <div class="terminos">
+                        <input 
+                            class="check" 
+                            type="checkbox" 
+                            formControlName="terms"
+                            name="terms" 
+                            id="terms"
+                            autocomplete="off"
+                        />
+                        <label for="terms">Acepto los <a (click)="openTermsDialog(); $event.preventDefault()" class="link">términos y condiciones</a></label>
+                    </div>
+
+                    <div class="termsError">
+                        <label for="terms" class="visually-hidden">Términos y condiciones</label>
+                        <small *ngIf="form.get('terms')?.errors?.['required'] && form.get('terms')?.touched">*Debes aceptar los términos y condiciones</small>
+                    </div>
+
+                    <div>
+                        <button class="botom" type="submit" [disabled]="!form.valid">Registrarse</button>
+                    </div>
+                
+                    <p class="link">¿Ya tenés una cuenta? <a routerLink="/login">Inicia Sesión aquí!</a></p>
+                
+                    <a class="go_back" routerLink="/">Volver al Inicio</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
