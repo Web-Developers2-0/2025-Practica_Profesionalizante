@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // import { SignupComponent } from './signup/signup.component';
 import { ContactComponent } from './contact/contact.component';
-import { DetailsprodComponent} from './detailsprod/detailsprod.component';
+import { DetailsprodComponent } from './detailsprod/detailsprod.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PaymentComponent } from './pasarela de pago/payment.component';
@@ -17,38 +17,42 @@ import { EventComponent } from './event/event.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { TermsComponent } from './terms/terms.component';
+import { NoAuthGuard } from './guards/no-auth.guard';
 
 export const routes: Routes = [
-
-    { path: "", redirectTo:"/home", pathMatch:"full" },
-    { path: 'home', component:HomeComponent },
-    { path: 'about', component:AboutComponent },
-    { path: 'contact', component:ContactComponent },
-    { path: 'event', component:EventComponent},
-    { path: 'app-products', component:ProductsComponent },
-    { path: 'detailsprod', component:DetailsprodComponent },
-    { path: 'login', component:LoginComponent },
-    { path: 'terms', component: TermsComponent },
-    { 
-        path: 'dashboard', 
-        component: DashboardComponent,
-        canActivate: [AuthGuard]
-    },
-    // {
-    //     path: '**',
-    //     component: PageNotFoundComponent
-    // },
-    { path: "", redirectTo:"/app-products", pathMatch:"full" },
-    { path: 'app-products', component:ProductsComponent },
-    { path: 'cart', component: CartComponent },
-    { path: 'payment', component: PaymentComponent },
-    { 
-        path: 'profile', 
-        component: ProfileComponent,
-        canActivate: [AuthGuard]
-    },
-    { path: 'register', component: RegisterComponent }, 
-    { path: 'checkout', component: PaymentComponent },
-    { path: 'reset-password', component: ResetPasswordComponent },
-    { path: 'change-password/:token', component: ChangePasswordComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'event', component: EventComponent },
+  { path: 'app-products', component: ProductsComponent },
+  { path: 'detailsprod', component: DetailsprodComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: '', redirectTo: '/app-products', pathMatch: 'full' },
+  { path: 'app-products', component: ProductsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'checkout', component: PaymentComponent },
+  // auth
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [NoAuthGuard],
+  },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'change-password/:token', component: ChangePasswordComponent },
+  // protected
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  // not found
+  { path: '**', component: PageNotFoundComponent },
 ];
