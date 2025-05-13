@@ -1,84 +1,88 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { ContactComponent } from '../contact/contact.component';
+<main>
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="visually-hidden">SUMÉRGETE EN EL MUNDO DE LOS CÓMICS</h1>
+        </div>
+        <div class="col-md-6">
+          <!-- Hero images are part of the background in CSS -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [ContactComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
-})
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5">QUE OFRECEMOS DENTRO DE NUESTRO SITIO!</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3>Todos los medios de pago</h3>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3>Envío gratis Córdoba capital</h3>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Descuentos Exclusivos</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-export class HomeComponent implements OnInit, OnDestroy {
-  @ViewChild('slider') sliderRef!: ElementRef<HTMLElement>;
-  sliderSections: HTMLElement[] = [];
-  counter: number = 0;
-  operacion: number = 0;
-  interval: any;
+  <!-- Comics Section with Spider-Gwen in top-right corner -->
+  <section class="comics-section">
+    <!-- Spider-Gwen image in top-right corner -->
+    <div class="spider-gwen-image"></div>
+    
+    <div class="container">
+      <h2 class="text-center mb-5">CÓMICS DESTACADOS</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic1.webp" alt="Spider-Man: Miles Morales" class="comic-image">
+            <h3>Spider-Man: Miles Morales</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic2.webp" alt="Batman Vol 1 Sus Oscuros Designios" class="comic-image">
+            <h3>Batman Vol 1 Sus Oscuros Designios</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic3.webp" alt="Batman Silencio Parte 1" class="comic-image">
+            <h3>Batman Silencio Parte 1</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.sliderSections = Array.from(document.querySelectorAll('.slider-section')) as HTMLElement[];
-      const btnLeft = document.querySelector('.btn-left') as HTMLElement | null;
-      const btnRight = document.querySelector('.btn-right') as HTMLElement | null;
-      if (btnLeft) btnLeft.addEventListener('click', () => this.moveToLeft());
-      if (btnRight) btnRight.addEventListener('click', () => this.moveToRight());
-      if (this.sliderSections.length > 0) {
-        this.interval = setInterval(() => this.moveToRight(), 3000);
-      }
-    }, 0);
-  }
-
-  ngOnDestroy(): void {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  }
-
-  moveToLeft(): void {
-    if (this.sliderSections.length === 0) return;
-    this.counter--;
-    if (this.counter < 0) {
-      this.counter = this.sliderSections.length - 1;
-      this.operacion = this.getSectionWidth() * (this.sliderSections.length - 1);
-      this.updateSlider(true); // No transition for loop
-    } else {
-      this.operacion -= this.getSectionWidth();
-      this.updateSlider();
-    }
-  }
-
-  moveToRight(): void {
-    if (this.sliderSections.length === 0) return;
-    if (this.counter >= this.sliderSections.length - 1) {
-      this.counter = 0;
-      this.operacion = 0;
-      this.updateSlider(true); // No transition for loop
-    } else {
-      this.counter++;
-      this.operacion += this.getSectionWidth();
-      this.updateSlider();
-    }
-  }
-
-  updateSlider(noTransition: boolean = false): void {
-    if (this.sliderRef && this.sliderRef.nativeElement) {
-      const slider = this.sliderRef.nativeElement;
-      slider.style.transform = `translateX(-${this.operacion}%)`;
-      slider.style.transition = noTransition ? 'none' : 'transform 0.6s ease';
-    } else {
-      console.error('Slider element not found');
-    }
-  }
-
-  getTotalSections(): number {
-    return this.sliderSections.length || 1; // Prevent division by zero
-  }
-
-  getSectionWidth(): number {
-    return 100 / this.getTotalSections();
-  }
-}
-
-
+  <section>
+    <app-contact></app-contact>
+  </section>
+</main>
 
