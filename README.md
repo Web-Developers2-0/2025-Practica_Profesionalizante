@@ -157,7 +157,7 @@ Prototipo - Figma: https://acortar.link/pjmxBd
         <a href="https://github.com/Valentino399" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label=" />
         </a>
-        <a href="https://www.linkedin.com/in/" target="_blank">
+        <a href="https://www.linkedin.com/in/valentino-lorenti-ux/" target="_blank">
           <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
         </a>
       </div>
@@ -170,5 +170,9 @@ Prototipo - Figma: https://acortar.link/pjmxBd
 
 ## 📝 DOCUMENTACIÓN:
 Disponible en 👉 [WIKI del repositorio](https://github.com/Web-Developers2-0/2025-Practica_Profesionalizante/wiki)
+
+## IEEE-830:
+
+https://docs.google.com/document/u/0/d/1Fi3gPTBTXx6Hx0pH-5FTabKvLVsx-D9d/mobilebasic
 
 ## Muchas gracias por visitar nuestro proyecto! 🙌 
