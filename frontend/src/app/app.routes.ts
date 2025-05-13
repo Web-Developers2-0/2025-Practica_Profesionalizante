@@ -8,11 +8,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContactComponent } from './contact/contact.component';
 import { DetailsprodComponent} from './detailsprod/detailsprod.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegisterComponent } from './register/register.component';
 import { PaymentComponent } from './pasarela de pago/payment.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EventComponent } from './event/event.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TermsComponent } from './terms/terms.component';
 
 export const routes: Routes = [
 
@@ -20,9 +24,11 @@ export const routes: Routes = [
     { path: 'home', component:HomeComponent },
     { path: 'about', component:AboutComponent },
     { path: 'contact', component:ContactComponent },
+    { path: 'event', component:EventComponent},
     { path: 'app-products', component:ProductsComponent },
     { path: 'detailsprod', component:DetailsprodComponent },
     { path: 'login', component:LoginComponent },
+    { path: 'terms', component: TermsComponent },
     { 
         path: 'dashboard', 
         component: DashboardComponent,
@@ -41,6 +47,8 @@ export const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard]
     },
-    { path: 'register', component: RegistroComponent }, 
-    { path: 'checkout', component: PaymentComponent }, 
+    { path: 'register', component: RegisterComponent }, 
+    { path: 'checkout', component: PaymentComponent },
+    { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'change-password/:token', component: ChangePasswordComponent },
 ];

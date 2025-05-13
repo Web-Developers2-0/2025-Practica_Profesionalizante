@@ -3,6 +3,7 @@ import { RouterModule, provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog'; 
 
 import { LoginService } from './services/auth/login.service';
 import { JwtService } from './services/auth/jwt.service';
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
     RouterModule,
     LoginService,
     JwtService, provideAnimationsAsync('noop'), provideAnimationsAsync('noop'), 
