@@ -168,51 +168,47 @@ VALUES
 ('Vendedor'),
 ('Admin');
 
-
-
-INSERT INTO user (email, first_name, last_name, password, address, phone, image, date_joined, is_active, is_staff, is_superuser, role_id) 
+-- Usuarios con ID explícito
+INSERT INTO user (id, email, first_name, last_name, password, address, phone, image, date_joined, is_active, is_staff, is_superuser, role_id) 
 VALUES 
-
-('emirobles@gmail.com', 'Emilce', 'Robles', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '101 Oak St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
-('velezpaula.a@gmail.com', 'Paula', 'Velez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '456 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
-('marcovirinni@gmail.com', 'Marco', 'Virinni', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', 'https://res.cloudinary.com/dbz5bknul/image/upload/v1710547090/marco_virinni_oov5tk.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
-('noahcassutti@gmail.com', 'Noah Nicanor', 'Cassutti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
-('erick_lopez@gmail.com', 'Erick ', 'Lopez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
-('valentinolorenti@gmail.com', 'Valentino', 'Lorenti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
-
-
-
-('developers-superheroes@gmail.com', 'Develop', 'Team','pbkdf2_sha256$600000$TM6SUusGx9g4tG3ixjFULr$2D2mz/i5G1/1mEx4bhuIm6NKwPqmg3ZafjD0KD9SLFA=', 'localhost', '123456789', '', '2024-05-23 16:00:04', true, true, true, 3);
+(1, 'emirobles@gmail.com', 'Emilce', 'Robles', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '101 Oak St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
+(2, 'velezpaula.a@gmail.com', 'Paula', 'Velez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '456 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
+(3, 'marcovirinni@gmail.com', 'Marco', 'Virinni', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', 'https://res.cloudinary.com/dbz5bknul/image/upload/v1710547090/marco_virinni_oov5tk.jpg', '2024-05-23 16:00:04', true, true, false, 2), 
+(4, 'noahcassutti@gmail.com', 'Noah Nicanor', 'Cassutti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
+(5, 'erick_lopez@gmail.com', 'Erick ', 'Lopez', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
+(6, 'valentinolorenti@gmail.com', 'Valentino', 'Lorenti', 'pbkdf2_sha256$600000$5AckuCNmyCM6lgLATnfxT8$nljFWwLfJnCPMsUYzrM2bmGsQdUNIraa18TdPPuJnmU=', '123 Main St', '123456789', '', '2024-05-23 16:00:04', true, true, false, 2), 
+(7, 'developers-superheroes@gmail.com', 'Develop', 'Team','pbkdf2_sha256$600000$TM6SUusGx9g4tG3ixjFULr$2D2mz/i5G1/1mEx4bhuIm6NKwPqmg3ZafjD0KD9SLFA=', 'localhost', '123456789', '', '2024-05-23 16:00:04', true, true, true, 3);
 
 
-INSERT INTO orders (user_id, state, order_date, payment_method, shipping_method, payment_status, total_amount)
+-- Pedidos con ID explícito y sin duplicados
+INSERT INTO orders (id_order, user_id, state, order_date, payment_method, shipping_method, payment_status, total_amount)
 VALUES
-(1, 'En Proceso', '2023-09-25', 'Tarjeta de credito', 'Envio expres', 'Aprobado', 200.00),
-(2, 'Cancelado', '2023-09-26', 'PayPal', 'Envio estandar', 'Cancelado', 150.00),
-(3, 'Completado', '2023-09-27', 'Tarjeta de credito', 'Envio estandar', 'Completado', 95.00),
-(4, 'En Proceso', '2023-09-28', 'PayPal', 'Envio expres', 'Aprobado', 300.00),
-(5, 'Completado', '2023-09-29', 'Tarjeta de credito', 'Envio estandar', 'Aprobado', 180.00),
-(6, 'Cancelado', '2023-09-30', 'PayPal', 'Envio estandar', 'Cancelado', 9800),
+(1, 1, 'En Proceso', '2023-09-25', 'Tarjeta de credito', 'Envio expres', 'Aprobado', 200.00),
+(2, 2, 'Cancelado', '2023-09-26', 'PayPal', 'Envio estandar', 'Cancelado', 150.00),
+(3, 3, 'Completado', '2023-09-27', 'Tarjeta de credito', 'Envio estandar', 'Completado', 95.00),
+(4, 4, 'En Proceso', '2023-09-28', 'PayPal', 'Envio expres', 'Aprobado', 300.00),
+(5, 5, 'Completado', '2023-09-29', 'Tarjeta de credito', 'Envio estandar', 'Aprobado', 180.00),
+(6, 6, 'Cancelado', '2023-09-30', 'PayPal', 'Envio estandar', 'Cancelado', 9800.00),
+(7, 1, 'En Proceso', '2023-10-01', 'Tarjeta de credito', 'Envio estandar', 'Aprobado', 100.00),
+(8, 2, 'Completado', '2023-10-02', 'PayPal', 'Envio expres', 'Aprobado', 220.00),
+(9, 3, 'Cancelado', '2023-10-03', 'Tarjeta de credito', 'Envio estandar', 'Cancelado', 175.00),
+(10, 4, 'En Proceso', '2023-10-04', 'PayPal', 'Envio estandar', 'Pendiente', 80.00),
+(11, 5, 'Completado', '2023-10-05', 'Tarjeta de credito', 'Envio expres', 'Aprobado', 240.00),
+(12, 6, 'Cancelado', '2023-10-06', 'PayPal', 'Envio estandar', 'Cancelado', 190.00);
 
-(1, 'En Proceso', '2023-09-25', 'Tarjeta de credito', 'Envío expres', 'Aprobado', 200.00),
-(2, 'Cancelado', '2023-09-26', 'PayPal', 'Envio estandar', 'Cancelado', 150.00),
-(3, 'Completado', '2023-09-27', 'Tarjeta de credito', 'Envio estandar', 'Completado', 95.00),
-(4, 'En Proceso', '2023-09-28', 'PayPal', 'Envio expres', 'Aprobado', 300.00),
-(5, 'Completado', '2023-09-29', 'Tarjeta de credito', 'Envio estandar', 'Aprobado', 180.00),
-(6, 'Cancelado', '2023-09-30', 'PayPal', 'Envio estandar', 'Cancelado', 9800);
 
-INSERT INTO order_items (quantity, product_id, order_id)
+-- Items de pedidos con IDs de producto y pedidos explícitos
+INSERT INTO order_items (id_order_items, quantity, product_id, order_id)
 VALUES
-(3, 1, 1),
-(2, 2, 2),
-(1, 3, 3),
-(2, 4, 4),
-(4, 5, 5),
-(1, 6, 6),
-
-(1, 6, 7),
-(3, 5, 8),
-(2, 4, 9),
-(1, 3, 10),
-(3, 2, 11),
-(2, 1, 12);
+(1, 3, 1, 1),
+(2, 2, 2, 2),
+(3, 1, 3, 3),
+(4, 2, 4, 4),
+(5, 4, 5, 5),
+(6, 1, 6, 6),
+(7, 1, 6, 7),
+(8, 3, 5, 8),
+(9, 2, 4, 9),
+(10, 1, 3, 10),
+(11, 3, 2, 11),
+(12, 2, 1, 12);
