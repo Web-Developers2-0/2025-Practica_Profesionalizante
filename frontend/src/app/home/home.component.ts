@@ -1,71 +1,88 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ContactComponent } from '../contact/contact.component';
+<main>
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="visually-hidden">SUMÉRGETE EN EL MUNDO DE LOS CÓMICS</h1>
+        </div>
+        <div class="col-md-6">
+          <!-- Hero images are part of the background in CSS -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [ ContactComponent ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
-})
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5">QUE OFRECEMOS DENTRO DE NUESTRO SITIO!</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3>Todos los medios de pago</h3>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3>Envío gratis Córdoba capital</h3>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Descuentos Exclusivos</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-export class HomeComponent implements OnInit, OnDestroy {
-  
-   counter: number = 0;
-   operacion: number = 0;
+  <!-- Comics Section with Spider-Gwen in top-right corner -->
+  <section class="comics-section">
+    <!-- Spider-Gwen image in top-right corner -->
+    <div class="spider-gwen-image"></div>
+    
+    <div class="container">
+      <h2 class="text-center mb-5">CÓMICS DESTACADOS</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic1.webp" alt="Spider-Man: Miles Morales" class="comic-image">
+            <h3>Spider-Man: Miles Morales</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic2.webp" alt="Batman Vol 1 Sus Oscuros Designios" class="comic-image">
+            <h3>Batman Vol 1 Sus Oscuros Designios</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic3.webp" alt="Batman Silencio Parte 1" class="comic-image">
+            <h3>Batman Silencio Parte 1</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-   constructor() { }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  <section>
+    <app-contact></app-contact>
+  </section>
+</main>
 
-   ngOnInit(): void {
-     const btnLeft = document.querySelector(".btn-left") as HTMLElement;
-     const btnRight = document.querySelector(".btn-right") as HTMLElement;
-     const slider = document.querySelector("#slider") as HTMLElement;
-     const sliderSections = document.querySelectorAll(".slider-section");
-
-     btnLeft.addEventListener("click", () => this.moveToLeft());
-     btnRight.addEventListener("click", () => this.moveToRight());
-
-     setInterval(() => {
-         this.moveToRight();
-     }, 3000);
-  }
-
-   private moveToLeft(): void {
-     const slider = document.querySelector("#slider") as HTMLElement;
-     const sliderSections = document.querySelectorAll(".slider-section");
-     const widthImg = 100 / sliderSections.length;
-
-     this.counter--;
-     if (this.counter < 0) {
-         this.counter = sliderSections.length - 1;
-         this.operacion = widthImg * (sliderSections.length - 1);
-         slider.style.transform = `translate(-${this.operacion}%)`;
-         slider.style.transition = "none";
-         return;
-     }
-     this.operacion = this.operacion - widthImg;
-     slider.style.transform = `translate(-${this.operacion}%)`;
-     slider.style.transition = "all ease .6s";
-   }
-
-   private moveToRight(): void {
-     const slider = document.querySelector("#slider") as HTMLElement;
-     const sliderSections = document.querySelectorAll(".slider-section");
-     const widthImg = 100 / sliderSections.length;
-
-     if (this.counter >= sliderSections.length - 1) {
-         this.counter = 0;
-         this.operacion = 0;
-         slider.style.transform = `translate(-${this.operacion}%)`;
-         slider.style.transition = "none";
-         return;
-     }
-     this.counter++;
-     this.operacion = this.operacion + widthImg;
-     slider.style.transform = `translate(-${this.operacion}%)`;
-     slider.style.transition = "all ease .6s";
-   }
- }

@@ -8,21 +8,20 @@
 }
 
 .background-wrapper {
-    width: 100%;
-    min-height: 100vh;
-    background-image: url('../../assets/images/login-img/fondo-login.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  }
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../../assets/images/login-img/fondo-login.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
 body {
-  font-family: 'Bangers', sans-serif;
+  font-family: 'Bangers', cursive, sans-serif;
   background-color: #000;
   margin: 0;
   padding: 0;
 }
-
 
 main {
   width: 100%;
@@ -31,10 +30,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 20px;
+/*    padding: 20px; */
 }
 
 .form_login {
@@ -49,8 +45,9 @@ main {
   padding: 2rem;
 }
 
+/* SACAR GRIS */
 .form_container {
-  padding: 10px;
+  padding: 20px;
   height: fit-content;
 }
 
@@ -64,17 +61,14 @@ main {
   text-align: center;
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 10px;
-  font-family: 'Bangers', sans-serif;
   color: #fbf0f0;
   -webkit-text-stroke: 1px black;
   text-shadow: #fbf0f0 0 -2px;
 }
 
 .form_login h2 {
-  font-family: 'Bangers', sans-serif;
   margin: 0;
   text-align: center;
-  height: auto;
   padding-bottom: 15px;
   margin-bottom: 20px;
   border-bottom: 1px solid;
@@ -89,7 +83,7 @@ main {
   background: #fbf0f0;
   font-size: clamp(1rem, 3vw, 20px);
   border-radius: 12px;
-  font-family: 'Bangers', sans-serif;
+  font-family: 'Poppins', cursive, sans-serif;
   border: none;
 }
 
@@ -104,7 +98,7 @@ main {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   border-radius: 20px;
   cursor: pointer;
-  font-family: 'Bangers', sans-serif;
+  font-family: 'Bangers', cursive, sans-serif;
   letter-spacing: 1px;
 }
 
@@ -113,9 +107,8 @@ main {
 }
 
 .form_login p {
-  font-family: 'Bangers', sans-serif;
+  font-family: 'Bangers', cursive, sans-serif;
   font-size: clamp(1.2rem, 3vw, 25px);
-  height: auto;
   text-align: center;
   margin: 20px 0;
 }
@@ -131,7 +124,7 @@ main {
 }
 
 .go_back {
-  font-family: 'Bangers', sans-serif;
+  font-family: 'Bangers', cursive, sans-serif;
   text-decoration: none;
   background-color: #008bce;
   color: whitesmoke;
@@ -165,11 +158,11 @@ main {
 }
 
 .ng-invalid:not(form).ng-touched {
-  border: solid 2px red;
+  border: solid 2px #ce2d2d;
 }
 
 .ng-valid:not(form).ng-touched {
-  border: solid 2px rgb(13, 167, 13);
+  border: solid 2px #0da713;
 }
 
 .form__field small {
@@ -183,9 +176,23 @@ main {
   font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
+.error-message {
+  color: #ce2d2d;
+  text-align: center;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  margin-bottom: 15px;
+}
+
 .link {
   cursor: pointer;
 }
+
+input::placeholder {
+    font-family: 'Bangers', sans-serif;
+    font-size: 1.3rem;
+}
+
 
 /* Media queries para diferentes tamaños de pantalla */
 @media (max-width: 768px) {
@@ -225,13 +232,12 @@ main {
 }
 
 .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-  
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
