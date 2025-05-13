@@ -1,12 +1,10 @@
 from django.db import models
 from Product.models import Product
-
-
-
+from django.conf import settings 
 
 class Order(models.Model):
     id_order = models.AutoField(primary_key=True)
-    id_user = models.ForeignKey('User.User', on_delete=models.CASCADE, null=True, db_column='user_id', related_name='orders')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='orders')
 
     state = models.CharField(max_length=45, blank=True)
     order_date = models.DateField(null=True)
