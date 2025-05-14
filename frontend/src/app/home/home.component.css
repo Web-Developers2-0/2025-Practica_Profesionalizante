@@ -1,142 +1,72 @@
-@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;700&display=swap");
 
-#reseñas {
-  background-color: #9a1515;
-  padding: 80px;
-  width: 100%;
+.hero-section {
+  padding: 60px 0;
+  background-image: url("../../assets/images/home/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.reseña_container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-  gap: 2rem;
-}
-
-.reseña_card {
-  width: 250px; /* Ancho de cada columna */
-  height: 290px;
-  padding: 10px;
-  background-color: #ffffff; /* Color de fondo de las columnas */
-  border: 5px solid #000000; /* Borde de 5px de ancho en color negro */
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bolder;
-  color: #212529;
-}
-
-.reseña_card h2 {
-  font-family: "Bangers";
-  letter-spacing: 2px;
-  font-size: 1.3rem;
-}
-
-
-.reseña_card .top img {
-  width: 150px;
-}
-
-.reseña_card .bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0.2rem;
-}
-
-.bottom{
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.bottom img {
-  width: 55px;
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 12px #1a1a1a;
 }
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.review-title h1 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 60px;
-  font-family: "Bangers";
-  font-size: 50px;
-  font-weight: bold;
-  color: #e5ac57;
-  text-transform: uppercase;
-  border-right-color: #e5ac57;
-  letter-spacing: 3px;
-  -webkit-text-stroke: 1.2px black;
-}
-
-.column h2 {
-  display: inline-block;
-  margin-left: 10px; 
-  font-family: "Hand drawn letters Royalty", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-}
-/* <----------Carousel---------> */
-.container-carousel {
+.slider-container {
   position: relative;
-  width:100%;
-  height: 300px;
-  background-color: #e0e0e0;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
-  border-radius: 15px;
   overflow: hidden;
-  margin-top: 5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.carruseles {
-  width: 400%;
-  height: 100%;
+#slider {
   display: flex;
+  width: 300%; 
+  height: 300px;
 }
 
 .slider-section {
-  width: calc(100% / 4);
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100%;
+  margin-top: 20px;
 }
 
-.slider-section img {
-  width: 100%;
-  height: 100%;
-  object-fit:fill;
-  border-radius: 15px;
-}
-
-.btn-left,
-.btn-right {
-  display: flex;
+/* Botones de navegación */
+.btn-left, .btn-right {
   position: absolute;
   top: 50%;
-  font-size: 1.5rem;
-  background-color: transparent;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
   border-radius: 50%;
-  padding: 5px;
-  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  color: #ffffff81;
-  transform: translate(0,-50%);
-  transition: .5s ease;
-  user-select: none;
-}
-
-.btn-left:hover,
-.btn-right:hover {
-  background-color: #333333d4;
-  color: #fff;
+  z-index: 10;
+  transition: background-color 0.3s;
 }
 
 .btn-left {
@@ -146,52 +76,244 @@
 .btn-right {
   right: 10px;
 }
-/* <----------End Carrousel--------->   */
 
-/*  <----------Section Banner--------->  */
-#banner{
+.btn-left:hover, .btn-right:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  font-family: "Bangers", cursive, sans-serif;
+}
+
+.hero-description {
+    font-size: 1.125rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0px 4px #1a1a1a;
+    margin-top: 20px;
+}
+
+.hero-button {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #c53030;
+}
+
+
+.features-section {
+  padding: 80px 0;
+  background-color: #1E1E1E;
+  position: relative;
+}
+
+.features-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/home/superheroes_home.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: left center;
+  z-index: 1;
+}
+
+.features-section h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Bangers", cursive, sans-serif;
+}
+
+.feature-card {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #F4A840;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.comics-section {
+  padding: 80px 0;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.spider-gwen-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 600px;
+  height: 600px;
+  background-image: url("../../assets/images/home/spider_1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right top;
+  z-index: 1;
+}
+
+.comics-section h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Bangers", cursive, sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+.comic-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.comic-card:hover {
+  transform: translateY(-10px);
+}
+
+.comic-image {
   width: 100%;
   height: 250px;
-  background-color: #1e1e1e;
-  font: 'Bangers';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  border-top: solid 1px #fcd692;
-  border-bottom: solid 1px #fcd692;
-}
-
-.container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.button-container {
-  text-align: center;
-}
-
-.button img {
-  width: 130px;
-  height: auto;
-  padding: 7px;
-  margin-top: 10px;
-  overflow: hidden;
   object-fit: cover;
-  object-position: center;
-  border: solid 4px #9a1515;
-  border-radius: 5rem;
-  background-color: #e5ac57;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
-.button-text {
-  font-family: 'Bangers', sans-serif;
-  color: #88ACE0;
+.comic-card h3 {
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 10px;
-  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 10px;
 }
 
-/* <----------End Section Banner--------->  */
+.comic-button {
+  background-color: #ff3333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comic-button:hover {
+  background-color: #e02b2b;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .features-section h2,
+  .comics-section h2 {
+    font-size: 2rem;
+  }
+
+  .spider-gwen-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 0;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .features-section::before {
+    background-size: auto 80%;
+  }
+
+  .spider-gwen-image {
+    width: 200px;
+    height: 200px;
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .features-section h2,
+  .comics-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .spider-gwen-image {
+    width: 150px;
+    height: 150px;
+    opacity: 0.7;
+  }
+}

@@ -1,114 +1,92 @@
 <main>
-  <section>
-    <div class="container-carousel">
-      <div class="carruseles" id="slider">
-        <section class="slider-section">
-          <img src="../../assets/images/SuscribeteCarousel.jpeg" />
-        </section>
-  
-        <section class="slider-section">
-          <img src="../../assets/images/SpiderCarousel.jpeg" />
-        </section>
-  
-        <section class="slider-section">
-          <img src="../../assets/images/EnviosCarousel.jpeg" />
-        </section>
-        <section class="slider-section">
-          <img src="../../assets/images/CapitanCarousel.jpeg" />
-        </section>
-      </div>
-      <div class="btn-left"><i class="bx bx-chevron-left"></i></div>
-      <div class="btn-right"><i class="bx bx-chevron-right"></i></div>
-    </div>
-  </section>
-  <!-- Sección Banner -->
-  <section id="banner">
+  <section class="hero-section">
     <div class="container">
-      <div class="button-container">
-        <div class="button">
-          <img src="../../assets/images/delivered.png" alt="Descuentos_Exclusivos" />
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="visually-hidden">SUMÉRGETE EN EL MUNDO DE LOS CÓMICS</h1>
+          <h2 class="hero-title">Explora Nuestra Colección de Cómics</h2>
+          <p class="hero-description">Descubre historias fascinantes y personajes inolvidables en nuestra amplia selección de cómics.</p>
+          <button class="hero-button">Ver Colección</button>
         </div>
-          <p class="button-text">Envío gratis Córdoba capital</p>
-      </div>
-      <div class="button-container">
-        <div class="button">
-          <img src="../../assets/images/wallet.png" alt="Descuentos_Exclusivos" />
+        <div class="col-md-6">
+          <div class="slider-container">
+            <div #slider id="slider">
+              <div class="slider-section" style="background-image: url('../../assets/images/home/comics/banner1.jpg');"></div>
+              <div class="slider-section" style="background-image: url('../../assets/images/home/comics/banner2.jpg');"></div>
+              <div class="slider-section" style="background-image: url('../../assets/images/home/comics/banner3.webp');"></div>
+            </div>
+            <button class="btn-left">←</button>
+            <button class="btn-right">→</button>
+          </div>
         </div>
-          <p class="button-text">Todos los medios de pago</p>
-      </div>
-      <div class="button-container">
-        <div class="button">
-          <img src="../../assets/images/discount.png" alt="Descuentos_Exclusivos" />
-        </div>
-          <p class="button-text">Descuentos Exclusivos</p>
       </div>
     </div>
   </section>
-  
-  <!-- sección reseñas -->
-  <section id="reseñas">
-    <div class="review-title">
-      <h1>Reseñas</h1>
-    </div>
-  
-    <div class="reseña_container">
-      <div class="reseña_card">
-        <div class="top">
-          <img src="../../assets/images/estrella.jpg" alt="estrellas" />
-          <p>
-            Excelente atención, necesitaba hacer un regalo y me llegaron los
-            cómics el mismo día.
-          </p>
+
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5">QUE OFRECEMOS DENTRO DE NUESTRO SITIO!</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3>Todos los medios de pago</h3>
+          </div>
         </div>
-        <div class="bottom">
-          <img src="../../assets/images/juan.jpg" alt="User" />
-          <h2>JUAN</h2>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3>Envío gratis Córdoba capital</h3>
+          </div>
         </div>
-      </div>
-  
-      <div class="reseña_card">
-        <div class="top">
-          <img src="../../assets/images/estrella.jpg" alt="estrellas" />
-          <p>
-            La selección de cómics es impresionante, ¡nunca dejo de
-            sorprenderme con lo que encuentro!
-          </p>
-        </div>
-        <div class="bottom">
-          <img src="../../assets/images/Maria.jpg" alt="User" />
-          <h2>MARIA</h2>
-        </div>
-      </div>
-  
-      <div class="reseña_card">
-        <div class="top">
-          <img src="../../assets/images/estrella.jpg" alt="estrellas" />
-          <p>
-            Esta tienda hace que mi niño interior se emocione cada vez que
-            entro, ¡es un lugar único y mágico!
-          </p>
-        </div>
-        <div class="bottom">
-          <img src="../../assets/images/Pilar.jpg" alt="User" />
-          <h2>PILAR</h2>
-        </div>
-      </div>
-  
-      <div class="reseña_card">
-        <div class="top">
-          <img src="../../assets/images/estrella.jpg" alt="estrellas" />
-          <p>
-            Los empleados son súper amables y conocedores, hacen que cada
-            visita sea una experiencia genial.
-          </p>
-        </div>
-        <div class="bottom">
-          <img src="../../assets/images/Lautaro.jpg" alt="User" />
-          <h2>LAUTARO</h2>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Descuentos Exclusivos</h3>
+          </div>
         </div>
       </div>
     </div>
-    <div class="clearfix"></div>
+  </section>
+
+  <section class="comics-section">
+    <div class="spider-gwen-image"></div>
+    
+    <div class="container">
+      <h2 class="text-center mb-5">CÓMICS DESTACADOS</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic1.webp" alt="Spider-Man: Miles Morales" class="comic-image">
+            <h3>Spider-Man: Miles Morales</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic2.webp" alt="Batman Vol 1 Sus Oscuros Designios" class="comic-image">
+            <h3>Batman Vol 1 Sus Oscuros Designios</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="comic-card">
+            <img src="../../assets/images/home/comics/comic3.webp" alt="Batman Silencio Parte 1" class="comic-image">
+            <h3>Batman Silencio Parte 1</h3>
+            <button class="comic-button">Ver Más</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section>
