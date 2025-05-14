@@ -35,7 +35,7 @@ Los usuarios van a poder crear y personalizar sus perfiles, gestionar su informa
 
 ## 🎨 DISEÑO UI:
 
-Wireframes en alta - Figma - Versión Mobile: https://lnkd.in/dFS88jJE 
+Wireframes en alta - Figma - Versión Mobile: https://l1nq.com/CaUMu
 
 Prototipo - Figma: https://acortar.link/pjmxBd
 
