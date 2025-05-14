@@ -11,11 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/planet-superheroes",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -64,10 +64,10 @@
               "extractLicenses": false,
               "sourceMap": true,
               "fileReplacements": [
-               {
-                 "replace": "src/environments/environment.prod.ts",
-                 "with": "src/environments/environment.ts"
-               }
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
               ]
             }
           },

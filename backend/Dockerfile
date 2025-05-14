@@ -5,7 +5,7 @@ FROM python:3.12
 WORKDIR /backend
 
 # Copia el archivo .env al contenedor
-COPY .env /backend/.env
+#COPY .env /backend/.env
 
 # Copia todos los archivos al contenedor
 COPY . .
