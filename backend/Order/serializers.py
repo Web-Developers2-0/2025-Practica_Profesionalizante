@@ -1,17 +1,16 @@
-from django.utils import timezone  
+from django.utils import timezone
 from decimal import Decimal
 from rest_framework import serializers
+from Order.models import Order, OrderItem
+from Product.models import Product
 
-from Order.models import OrderItem,Order
-
-#Order Serializer---> Order Items Serializer 
+# Serializer para crear items de la orden
 class OrderItemCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = ['product', 'quantity']
 
-
-
+# Serializer para crear una orden
 class OrderCreateSerializer(serializers.ModelSerializer):
     order_items = OrderItemCreateSerializer(many=True)
     id_user = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -39,25 +38,25 @@ class OrderCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         order_items_data = validated_data.pop('order_items')
         total_amount = Decimal(0)
-        
+
+        # Calcular el total y actualizar stock
         for order_item_data in order_items_data:
             product = order_item_data['product']
             quantity = order_item_data['quantity']
             subtotal = product.price * quantity
             total_amount += subtotal
-            
-            # Actualizar el stock del producto
             product.stock -= quantity
             product.save()
-        
+
         validated_data['total_amount'] = total_amount
         order = Order.objects.create(**validated_data)
-        
+
         for order_item_data in order_items_data:
             OrderItem.objects.create(order=order, **order_item_data)
-        
+
         return order
 
+# Serializer para mostrar items de la orden
 class OrderItemSerializer(serializers.ModelSerializer):
     product = serializers.StringRelatedField()
 
@@ -65,11 +64,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['id_order_items', 'product', 'quantity']
 
+# Serializer para mostrar la orden completa
 class OrderSerializer(serializers.ModelSerializer):
     order_items = OrderItemSerializer(many=True, read_only=True)
-    user = serializers.StringRelatedField()
+    user = serializers.StringRelatedField(source='id_user')
 
     class Meta:
         model = Order
         fields = ['id_order', 'user', 'state', 'order_date', 'payment_method', 'shipping_method', 'payment_status', 'total_amount', 'order_items']
-
