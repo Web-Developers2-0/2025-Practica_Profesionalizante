@@ -8,40 +8,97 @@
 </div>
 
 <div id="card_section-root" class="d-flex flex-wrap justify-content-center">
+  <!-- Marvel products -->
   <ng-container *ngIf="selectedCategory === 'marvel'">
-    <div *ngFor="let product of productList" class="card m-2" style="width: 18rem;">
+    <div *ngFor="let product of productList"
+         class="card m-2 position-relative"
+         [ngClass]="{'card-unavailable': !product.available}"
+         style="width: 18rem;">
+      <!-- Últimas unidades -->
+      <div *ngIf="product.available && product.stock <= 10 && product.stock > 0"
+           class="stock-warning position-absolute">
+        Últimas <b>{{ product.stock }}</b> unidades disponibles
+      </div>
+      <!-- Sin stock disponible -->
+      <div *ngIf="!product.available"
+           class="no-stock-warning position-absolute">
+        SIN STOCK<br>DISPONIBLE
+      </div>
       <img [src]="product.image" [alt]="product.name" class="card-img-top align-self-center">
       <div class="card-body">
-        <h5 class="card-title">${{ product.price }}</h5>
         <p class="card-text">{{ product.name }}</p>
-        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">Detalles</button>
-        <div class="purchase-info mt-3">
-          <input type="number" min="0" value="0" (input)="onQuantityChange(product, $event)" class="form-control d-inline-block" style="width: 80px;">
+        <h5 class="card-title">${{ product.price }}</h5>
+        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">See more</button>
+        <div class="purchase-info" *ngIf="product.available">
+          <div class="quantity-selector">
+            <button class="quantity-btn minus" type="button" (click)="decreaseQuantity(product)">-</button>
+            <input type="number"
+                   min="0"
+                   [max]="product.stock"
+                   [value]="getProductQuantity(product)"
+                   class="quantity-input"
+                   (input)="onQuantityChange(product, $event)"
+                   style="width: 50px;"
+                   inputmode="numeric">
+            <button class="quantity-btn plus" type="button" (click)="increaseQuantity(product)">+</button>
+          </div>
+          <!-- Límite de selección -->
+          <div *ngIf="getProductQuantity(product) > product.stock" class="limit-warning">
+            Límite de selección: máximo {{ product.stock }}
+          </div>
         </div>
       </div>
     </div>
   </ng-container>
+  <!-- DC products -->
   <ng-container *ngIf="selectedCategory === 'dc'">
-    <div *ngFor="let product of productList" class="card m-2" style="width: 18rem;">
+    <div *ngFor="let product of productList"
+         class="card m-2 position-relative"
+         [ngClass]="{'card-unavailable': !product.available}"
+         style="width: 18rem;">
+      <!-- Últimas unidades -->
+      <div *ngIf="product.available && product.stock <= 10 && product.stock > 0"
+           class="stock-warning position-absolute">
+        Últimas <b>{{ product.stock }}</b> unidades disponibles
+      </div>
+      <!-- Sin stock disponible -->
+      <div *ngIf="!product.available"
+           class="no-stock-warning position-absolute">
+        SIN STOCK<br>DISPONIBLE
+      </div>
       <img [src]="product.image" [alt]="product.name" class="card-img-top align-self-center">
       <div class="card-body">
-        <h5 class="card-title">${{ product.price }}</h5>
         <p class="card-text">{{ product.name }}</p>
-        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">Detalles</button>
-        <div class="purchase-info mt-3">
-          <input type="number" min="0" value="0" (input)="onQuantityChange(product, $event)" class="form-control d-inline-block" style="width: 80px;">
+        <h5 class="card-title">${{ product.price }}</h5>
+        <button class="btn btn-primary" (click)="openModalDetail(product.id_product)">See more</button>
+        <div class="purchase-info" *ngIf="product.available">
+          <div class="quantity-selector">
+            <button class="quantity-btn minus" type="button" (click)="decreaseQuantity(product)">-</button>
+            <input type="number"
+                   min="0"
+                   [max]="product.stock"
+                   [value]="getProductQuantity(product)"
+                   class="quantity-input"
+                   (input)="onQuantityChange(product, $event)"
+                   style="width: 50px;"
+                   inputmode="numeric">
+            <button class="quantity-btn plus" type="button" (click)="increaseQuantity(product)">+</button>
+          </div>
+          <!-- Límite de selección -->
+          <div *ngIf="getProductQuantity(product) > product.stock" class="limit-warning">
+            Límite de selección: máximo {{ product.stock }}
+          </div>
         </div>
       </div>
     </div>
   </ng-container>
 </div>
+
 <div class="select-prod">
-  <h2 class="mt-5">Productos seleccionados:</h2>
+  <h2 class="mt-5">Selected products:</h2>
   <ul>
     <li *ngFor="let selectedProduct of selectedItems">
-      {{ selectedProduct.product.name }} - Cantidad: {{ selectedProduct.quantity }}
+      {{ selectedProduct.product.name }} - Quantity: {{ selectedProduct.quantity }}
     </li>
   </ul>
 </div>
-<!-- Agregar un botón para ir al carrito -->
-<button class="go_cart button_slide slide_right" [routerLink]="['/cart']">Ir al carrito</button>

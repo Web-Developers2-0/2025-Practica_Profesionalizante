@@ -13,6 +13,7 @@ export interface Product {
   calification?: number;
   category: number;
   quantity: number;
+  available: boolean;
 }
 
 export interface Compras {
