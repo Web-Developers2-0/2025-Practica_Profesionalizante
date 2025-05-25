@@ -11,70 +11,84 @@ import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    RouterModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   form!: FormGroup;
 
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private registerService: RegisterService, public dialog: MatDialog) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private registerService: RegisterService,
+    public dialog: MatDialog
+  ) {
     this.form = this.formBuilder.group({
-      first_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
-      last_name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
+      first_name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(16),
+        ],
+      ],
+      last_name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(16),
+        ],
+      ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       address: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-      terms: ['', [Validators.requiredTrue]]
+      terms: ['', [Validators.requiredTrue]],
     });
   }
 
-  getFirstName(){
+  getFirstName() {
     return this.form.get('first_name');
   }
 
-  getLastName(){
+  getLastName() {
     return this.form.get('last_name');
   }
 
-  getEmail(){
+  getEmail() {
     return this.form.get('email');
   }
 
-  getPhone(){
+  getPhone() {
     return this.form.get('phone');
   }
 
-  getAddress(){
+  getAddress() {
     return this.form.get('address');
   }
 
-  getPassword(){
+  getPassword() {
     return this.form.get('password');
   }
 
-  getConfirmPassword(){
+  getConfirmPassword() {
     return this.form.get('confirmPassword');
   }
 
-  getTerms(){
+  getTerms() {
     return this.form.get('terms');
   }
 
   openTermsDialog(): void {
     const dialogRef = this.dialog.open(TermsComponent, {
       width: '500px',
-      height: '400px'
+      height: '400px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         this.form.get('terms')?.setValue(true); // Accept terms if user confirms
       }
@@ -85,30 +99,33 @@ export class RegisterComponent {
     {
       event.preventDefault();
 
-      if(this.form.valid) {
-        this.registerService.registerUser({
-          first_name: this.form.get('first_name')?.value,
-          last_name: this.form.get('last_name')?.value,
-          email: this.form.get('email')?.value,
-          phone: this.form.get('phone')?.value,
-          address: this.form.get('address')?.value,
-          password: this.form.get('password')?.value,
-          confirmPassword: this.form.get('confirmPassword')?.value,
-          terms: this.form.get('terms')?.value,
-        }). subscribe ({
-          next:(response) => {
-            console.log(response);
-            this.router.navigate(['/']);
-          },
-          error:(error) => {
-            console.error(error);
-            alert('Error al registrarse, intente nuevamente');
-          }
-        });
-        } else {
-          alert('Completa el formulario correctamente');
-          this.form.markAllAsTouched();
-        }
+      if (this.form.valid) {
+        this.registerService
+          .registerUser({
+            first_name: this.form.get('first_name')?.value,
+            last_name: this.form.get('last_name')?.value,
+            email: this.form.get('email')?.value,
+            phone: this.form.get('phone')?.value,
+            address: this.form.get('address')?.value,
+            password: this.form.get('password')?.value,
+            confirmPassword: this.form.get('confirmPassword')?.value,
+            terms: this.form.get('terms')?.value,
+          })
+          .subscribe({
+            next: (response) => {
+              console.log(response);
+              // this.router.navigate(['/']);
+              this.router.navigate(['/login']);
+            },
+            error: (error) => {
+              console.error(error);
+              alert('Error al registrarse, intente nuevamente');
+            },
+          });
+      } else {
+        alert('Completa el formulario correctamente');
+        this.form.markAllAsTouched();
+      }
     }
   }
 }

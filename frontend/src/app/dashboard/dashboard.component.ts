@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import dashboardData from '../../assets/data/dashboardData.json';
-import { LoginService } from '../services/auth/login.service';;
+import { LoginService } from '../services/auth/login.service';
 import { Router } from '@angular/router';
 import { User } from '../services/user/user';
 import { UserService } from '../services/user/user.service';
@@ -17,12 +17,12 @@ import { Order } from '../services/orders/order';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-
 export class DashboardComponent implements OnInit {
   dashboardData: any[] = [];
-  isAuthenticated:boolean = false;
+  isAuthenticated: boolean = false;
   userOrders: Order[] = [];
-  
+  dropdownOpen: boolean = false; // <-- Aquí la variable
+
   user: User = {
     id: 0,
     email: '',
@@ -33,8 +33,13 @@ export class DashboardComponent implements OnInit {
     password: '',
     confirmPassword: '',
   };
- 
-  constructor(private loginService: LoginService, private router: Router, private userService: UserService, private ordersService: OrdersService) {
+
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private userService: UserService,
+    private ordersService: OrdersService
+  ) {
     this.dashboardData = dashboardData;
   }
 
@@ -43,10 +48,10 @@ export class DashboardComponent implements OnInit {
       (userData: User) => {
         this.user = userData;
       },
-    )
-    
+    );
+
     this.loginService.userLogin.subscribe((isAuthenticated) => {
-      this.isAuthenticated = this.isAuthenticated;
+      this.isAuthenticated = isAuthenticated;
     });
 
     this.getUserOrders();
@@ -79,4 +84,14 @@ export class DashboardComponent implements OnInit {
   goToProfile() {
     this.router.navigate(['/profile']);
   }
-} 
+
+  onEditProfile() {
+    this.dropdownOpen = false;
+    // Lógica para modificar perfil
+  }
+
+  onChangePassword() {
+    this.dropdownOpen = false;
+    // Lógica para cambiar contraseña
+  }
+}

@@ -2,7 +2,7 @@
       <a class="navbar-logo" href="#">
         <img
           class="logo"
-          src="../../../assets/images/logo_planet.png"
+          src="../../../assets/images/logo_blanco.png"
           alt="Planet_SuperHeroes"
           />
       </a>
@@ -80,7 +80,12 @@
 
           <li class="nav-item"
           >          
-
+          <li class="cart">
+          <a class="link-cart" routerLink="/cart" routerLinkActive="active">
+          <i id="cart" class="cart fas fa-shopping-cart" [attr.data-totalitems]="totalCartItems"></i>
+          </a>
+          </li>
+          
         </ul>
     </nav>
 </header>
