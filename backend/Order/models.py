@@ -1,11 +1,10 @@
 from django.db import models
+from django.conf import settings
 from Product.models import Product
-from django.conf import settings 
 
 class Order(models.Model):
     id_order = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='orders',db_column='user_id')
-
     state = models.CharField(max_length=45, blank=True)
     order_date = models.DateField(null=True)
     payment_method = models.CharField(max_length=45, blank=True)
@@ -24,8 +23,17 @@ class Order(models.Model):
 class OrderItem(models.Model):
     id_order_items = models.AutoField(primary_key=True)
     quantity = models.IntegerField(blank=False)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name='order_items')
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, 
+        on_delete=models.CASCADE, 
+        null=True, 
+        related_name='order_items'
+    )
+    order = models.ForeignKey(
+        Order, 
+        on_delete=models.CASCADE, 
+        related_name='order_items'
+    )
     
     class Meta:
         db_table = 'order_items'
