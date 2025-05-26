@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, IsAdminUser
-from Product.serializers import CategorySerializer, ProductSerializer
-from .models import Category,Product
+from .models import Category, Product
+from .serializers import CategorySerializer, ProductSerializer
 
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
@@ -16,6 +16,4 @@ class ProductViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             self.permission_classes = [IsAdminUser]
- 
         return super(ProductViewSet, self).get_permissions()
-    
