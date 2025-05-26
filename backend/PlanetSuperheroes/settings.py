@@ -78,6 +78,7 @@ MIDDLEWARE = [
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
 CORS_ALLOWED_ORIGINS = [
+    "https://planetsuperheroes-git-hotfix-marco-virinnis-projects.vercel.app",
     "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app",
     "http://localhost:4200", 
     "https://planetsuperheroes.vercel.app"]
