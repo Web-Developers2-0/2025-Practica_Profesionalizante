@@ -4,20 +4,15 @@ from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
-
-
 load_dotenv()
 
 # Ruta base del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 WSGI_APPLICATION = 'PlanetSuperheroes.wsgi.application'
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0e*4)xp%lp!2lc37aujo38n-14a@4wo81qqjsi-!atniye0jd$'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -25,8 +20,6 @@ if not DEBUG:
     # Solo en producción
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    
-    
 AUTH_USER_MODEL = 'User.User'
 
 LOGGING = {
@@ -47,10 +40,6 @@ LOGGING = {
         },
     },
 }
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -84,14 +73,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # Cambia esto por el puerto o dominio donde esté corriendo tu frontend
-]
+    "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app",
+    "http://localhost:4200", 
+    "https://planetsuperheroes.vercel.app"]
 CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'PlanetSuperheroes.urls'
 
@@ -133,8 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 

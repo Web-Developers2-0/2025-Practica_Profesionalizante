@@ -4,11 +4,7 @@ from Product.models import Product
 
 class Order(models.Model):
     id_order = models.AutoField(primary_key=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, 
-        on_delete=models.CASCADE, 
-        related_name='orders'
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='orders',db_column='user_id')
     state = models.CharField(max_length=45, blank=True)
     order_date = models.DateField(null=True)
     payment_method = models.CharField(max_length=45, blank=True)
