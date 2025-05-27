@@ -5,12 +5,12 @@ import { RouterLink } from '@angular/router';
 import { CartService } from '../services/cart/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductModalComponent } from '../modal-detail/modal-detail.component';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink],
+  imports: [NgFor, NgIf, NgClass, RouterLink],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateCategory(this.selectedCategory);
+    this.updateCartCounter();
   }
 
   updateCategory(category: string): void {
@@ -52,29 +53,53 @@ export class ProductsComponent implements OnInit {
   }
 
   onQuantityChange(product: Product, event: any): void {
-    const quantity = parseInt(event.target.value, 10); // Convertir a número
-    const currentQuantity = this.cartService.getItems().find(item => item.product.id_product === product.id_product)?.quantity || 0; // Obtener la cantidad actual del producto en el carrito
-  
-    // Calcular la diferencia entre la nueva cantidad y la cantidad actual
+    const quantity = parseInt(event.target.value, 10) || 0;
+    const currentQuantity = this.cartService.getItems().find(item => item.product.id_product === product.id_product)?.quantity || 0;
     const quantityDiff = quantity - currentQuantity;
-  
-    // Actualizar la cantidad del producto en el carrito
+
     if (quantityDiff > 0) {
       this.cartService.addToCart(product, quantityDiff);
     } else if (quantityDiff < 0) {
-      // Si la diferencia es negativa, eliminar la cantidad excedente del carrito
       this.cartService.removeFromCart(product, Math.abs(quantityDiff));
     }
+    this.updateCartCounter();
   }
-  
+
+  increaseQuantity(product: Product): void {
+    this.cartService.addToCart(product, 1);
+    this.updateCartCounter();
+  }
+
+  decreaseQuantity(product: Product): void {
+    const currentQuantity = this.cartService.getItems().find(item => item.product.id_product === product.id_product)?.quantity || 0;
+    if (currentQuantity > 0) {
+      this.cartService.removeFromCart(product, 1);
+      this.updateCartCounter();
+    }
+  }
+
+  getProductQuantity(product: Product): number {
+    return this.cartService.getItems().find(item => item.product.id_product === product.id_product)?.quantity || 0;
+  }
+
   get selectedItems() {
     return this.cartService.getItems();
   }
 
+  getTotalItems(): number {
+    return this.cartService.getItems().reduce((total, item) => total + item.quantity, 0);
+  }
+
+  updateCartCounter(): void {
+    const cartElement = document.getElementById('cart');
+    if (cartElement) {
+      const totalItems = this.getTotalItems();
+      cartElement.setAttribute('data-totalitems', totalItems.toString());
+    }
+  }
+
   openModalDetail(productId: number): void {
     let dialogRef;
-    console.log("screen.width", screen.width);
-
     if (screen.width < 500) {
       dialogRef = this.dialog.open(ProductModalComponent, {
         maxWidth: '100vw',
@@ -89,3 +114,4 @@ export class ProductsComponent implements OnInit {
     }
   }
 }
+

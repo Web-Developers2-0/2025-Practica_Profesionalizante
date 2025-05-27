@@ -12,9 +12,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 WSGI_APPLICATION = 'PlanetSuperheroes.wsgi.application'
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0e*4)xp%lp!2lc37aujo38n-14a@4wo81qqjsi-!atniye0jd$'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,8 +88,10 @@ MIDDLEWARE = [
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # Cambia esto por el puerto o dominio donde esté corriendo tu frontend
-]
+    "https://planetsuperheroes-git-hotfix-marco-virinnis-projects.vercel.app",
+    "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app",
+    "http://localhost:4200", 
+    "https://planetsuperheroes.vercel.app"]
 CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'PlanetSuperheroes.urls'
 

@@ -1,38 +1,17 @@
-# Usa una imagen base de Python 3.12
 FROM python:3.12
 
-# Establece el directorio de trabajo en /backend
 WORKDIR /backend
 
-# Copia el archivo .env al contenedor
-#COPY .env /backend/.env
-
-# Copia todos los archivos al contenedor
 COPY . .
 
-# Crea el directorio de logs
 RUN mkdir -p /backend/logs
+RUN touch /backend/logs/django_error.log /backend/logs/django_access.log
 
-# Instala las dependencias del proyecto
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Instala psycopg2-binary
 RUN pip install psycopg2-binary
 
-# Comando para recopilar archivos estáticos
-RUN python manage.py collectstatic --noinput
-
-# Genera las migraciones automáticamente
-RUN python manage.py makemigrations
-
-# Ejecuta las migraciones automáticamenteRUN mkdir -p /backend/logs
-RUN touch /backend/logs/django_error.log
-RUN touch /backend/logs/django_access.logRUN touch /backend/logs/django_error.log
-RUN touch /backend/logs/django_access.log
-RUN python manage.py migrate
-
-# Expone el puerto de la aplicación
+# Exponer puerto
 EXPOSE 8000
 
-# Comando para ejecutar la aplicación con Gunicorn
-CMD ["gunicorn", "PlanetSuperheroes.wsgi:application", "--bind", "0.0.0.0:8000", "--error-logfile", "/backend/logs/django_error.log"]
+# Ejecuta el servidor y comandos necesarios al iniciar
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && gunicorn PlanetSuperheroes.wsgi:application --bind 0.0.0.0:8000 --error-logfile /backend/logs/django_error.log"]
