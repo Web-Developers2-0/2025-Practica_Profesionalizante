@@ -12,7 +12,12 @@ def load_data_script(sender, **kwargs):
         print(f'SQL file not found: {sql_file_path}')
         return
 
-    affected_tables = ['categories', 'products', 'roles', '"user"', 'orders', 'order_items']
+    engine = connection.vendor
+
+    if engine == 'postgresql':
+        affected_tables = ['categories', 'products', 'roles', '"user"', 'orders', 'order_items']
+    else:
+        affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
 
     with connection.cursor() as cursor:
         for table in affected_tables:
@@ -22,7 +27,9 @@ def load_data_script(sender, **kwargs):
                 if count == 0:
                     with open(sql_file_path, 'r') as file:
                         sql = file.read()
-                        table_data = extract_table_data(sql, table)
+                        if engine == 'mysql':
+                            sql = sql.replace('INSERT INTO "user"', 'INSERT INTO user')
+                        table_data = extract_table_data(sql, table, engine)
                         if table_data:
                             for stmt in table_data.split(';'):
                                 clean_stmt = stmt.strip()
@@ -33,12 +40,14 @@ def load_data_script(sender, **kwargs):
                 print(f"Skipping table {table}: {e}")
                 continue
 
-def extract_table_data(sql, table):
+def extract_table_data(sql, table, engine):
     sql_statements = sql.split(';')
     table_data = []
 
+    search_table = table.replace('"', '') if engine == 'postgresql' else table
+
     for statement in sql_statements:
-        if table.replace('"', '') in statement.lower():
+        if search_table.lower() in statement.lower():
             table_data.append(statement.strip())
 
     return ';\n'.join(table_data) + ';' if table_data else None
