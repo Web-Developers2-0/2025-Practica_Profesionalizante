@@ -86,7 +86,7 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-            
+
 class UserView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
@@ -211,3 +211,43 @@ class ContactView(APIView):
             return Response({'detail': '¡Mensaje enviado correctamente!'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'detail': 'Ocurrió un error al enviar el mensaje. Intenta nuevamente más tarde.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# --- Cambiar contraseña ---
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+
+        if not user.check_password(current_password):
+            return Response({'error': 'La contraseña actual es incorrecta.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validaciones
+        if len(new_password) < 8 or len(new_password) > 30:
+            return Response({'error': 'La contraseña debe tener entre 8 y 30 caracteres.'}, status=status.HTTP_400_BAD_REQUEST)
+        if not any(c.isupper() for c in new_password) or not any(c.islower() for c in new_password):
+            return Response({'error': 'La contraseña debe tener mayúsculas y minúsculas.'}, status=status.HTTP_400_BAD_REQUEST)
+        if not any(c.isdigit() or c in '!@#$%^&*(),.?":{}|<>' for c in new_password):
+            return Response({'error': 'La contraseña debe tener al menos un número o símbolo.'}, status=status.HTTP_400_BAD_REQUEST)
+        if ' ' in new_password:
+            return Response({'error': 'La contraseña no debe contener espacios.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_password(new_password)
+        user.save()
+
+        # Enviar correo de notificación
+        subject = 'Tu contraseña ha sido cambiada'
+        from_email = settings.DEFAULT_FROM_EMAIL
+        to = [user.email]
+        html_content = render_to_string('password_changed_email.html', {
+            'user_first_name': user.first_name,
+            'year': timezone.now().year,
+            'logo_url': 'https://i.ibb.co/6RPpCJfF/logo-blanco.png',
+        })
+        msg = EmailMultiAlternatives(subject, '', from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=True)
+
+        return Response({'message': 'Contraseña cambiada correctamente.'}, status=status.HTTP_200_OK)
