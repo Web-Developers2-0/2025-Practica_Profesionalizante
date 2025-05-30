@@ -17,6 +17,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1", 
     "[::1]",
     ".mercadopago.com",
+    "planetsuperheroes.onrender.com"
 ]
 
 STATIC_URL = '/static/'
