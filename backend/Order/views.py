@@ -121,11 +121,12 @@ class MercadoPagoWebhookView(APIView):
             return Response({"detail": "Error al consultar el pago"}, status=400)
 
         payment = payment_response["response"]
-        external_reference = payment["external_reference"]
+        external_reference = payment.get("external_reference")
 
         try:
-            order = Order.objects.get(id_order=external_reference)
-        except Order.DoesNotExist:
+            id_order = int(external_reference)
+            order = Order.objects.get(id_order=id_order)
+        except (ValueError, Order.DoesNotExist):
             return Response({"detail": "Orden no encontrada"}, status=404)
 
         if payment["status"] == "approved" and order.payment_status != "paid":
@@ -147,13 +148,14 @@ class MercadoPagoWebhookView(APIView):
 
             # Crear notificación al usuario
             Notification.objects.create(
-            usuario=order.user,
-            mensaje=f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!",
-            tipo="info"                 )
+                usuario=order.user,
+                mensaje=f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!",
+                tipo="info"
+            )
             print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
 
-        # Otros estados o pagos ya procesados no hacen nada
         return Response({"detail": "Notificación recibida"}, status=200)
+
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
