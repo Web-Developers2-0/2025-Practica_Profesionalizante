@@ -148,8 +148,8 @@ class MercadoPagoWebhookView(APIView):
                 product.save()
 
             # Actualizar estado orden
-            order.payment_status = 'paid'
-            order.state = 'completado'
+            order.payment_status = 'MPago recibido'
+            order.state = 'Completado'
             order.save()
 
             # Crear notificación al usuario
