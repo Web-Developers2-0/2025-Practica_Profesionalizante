@@ -18,6 +18,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { TermsComponent } from './terms/terms.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
+import { PasswordComponent } from './password/password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -52,6 +53,10 @@ export const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
+  },
+  { path: 'password', 
+    component: PasswordComponent, 
+    canActivate: [AuthGuard] 
   },
   // not found
   { path: '**', component: PageNotFoundComponent },

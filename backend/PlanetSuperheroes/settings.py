@@ -5,16 +5,20 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-
 load_dotenv()
-
 # Ruta base del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 WSGI_APPLICATION = 'PlanetSuperheroes.wsgi.application'
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "localhost", 
+    "127.0.0.1", 
+    "[::1]",
+    ".mercadopago.com",
+    "planetsuperheroes.onrender.com"
+]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -23,8 +27,6 @@ if not DEBUG:
     # Solo en producción
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    
-    
 AUTH_USER_MODEL = 'User.User'
 
 LOGGING = {
@@ -46,10 +48,7 @@ LOGGING = {
     },
 }
 
-
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -67,9 +66,10 @@ INSTALLED_APPS = [
     'Order',
     'Event',
     'Notification',
-    'cloudinary_storage', #Ubicación según su uso (estático o multimedia) 
+    'cloudinary_storage', 
     'cloudinary',
     #'django_extensions'pip install django-extensions,
+     'csp',
 ]
 
 MIDDLEWARE = [
@@ -82,17 +82,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'csp.middleware.CSPMiddleware',
 
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
 CORS_ALLOWED_ORIGINS = [
+    "https://planetsuperheroes-git-feature-me-5bfd82-marco-virinnis-projects.vercel.app",
     "https://planetsuperheroes-git-hotfix-marco-virinnis-projects.vercel.app",
     "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app",
     "http://localhost:4200", 
-    "https://planetsuperheroes.vercel.app"]
+    "https://planetsuperheroes.vercel.app",
+    "https://www.mercadopago.com.ar",]
+
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["Authorization", "Content-Type"]
 ROOT_URLCONF = 'PlanetSuperheroes.urls'
 
 TEMPLATES = [
@@ -150,7 +155,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 REST_FRAMEWORK = {
  
@@ -210,3 +214,11 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+RESET_PASSWORD_FRONTEND_URL = os.getenv(
+    'RESET_PASSWORD_FRONTEND_URL',
+    'http://localhost:4200'
+)
+
+MP_ACCESS_TOKEN = os.getenv('MP_ACCESS_TOKEN')

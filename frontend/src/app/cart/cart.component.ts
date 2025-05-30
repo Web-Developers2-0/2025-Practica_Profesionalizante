@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart/cart.service';
+import { OrdersService } from '../services/orders/orders.service'; // servicio HTTP para órdenes
 import { Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    private ordersService: OrdersService
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +32,10 @@ export class CartComponent implements OnInit {
   }
 
   hasInvalidQuantity(): boolean {
-    return this.items.some(item => !item.quantity || item.quantity < 1 ||item.quantity > item.product.stock
-   );
-}
+    return this.items.some(item =>
+      !item.quantity || item.quantity < 1 || item.quantity > item.product.stock
+    );
+  }
 
   decrementQuantity(index: number): void {
     if (this.items[index].quantity > 1) {
@@ -51,7 +54,7 @@ export class CartComponent implements OnInit {
       this.showStockWarning[index] = false;
     } else {
       this.showStockWarning[index] = true;
-      setTimeout(() => this.showStockWarning[index] = false, 2000);
+      setTimeout(() => (this.showStockWarning[index] = false), 2000);
     }
   }
 
@@ -62,7 +65,7 @@ export class CartComponent implements OnInit {
     if (qty > stock) {
       qty = stock;
       this.showStockWarning[index] = true;
-      setTimeout(() => this.showStockWarning[index] = false, 2000);
+      setTimeout(() => (this.showStockWarning[index] = false), 2000);
     } else {
       this.showStockWarning[index] = false;
     }
@@ -76,13 +79,35 @@ export class CartComponent implements OnInit {
     this.showStockWarning.splice(index, 1);
   }
 
-  goToPayment(): void {
-    this.router.navigate(['/payment']);
+goToPayment(): void {
+  if (this.hasInvalidQuantity()) {
+    alert('Verifica las cantidades.');
+    return;
   }
+
+  const orderItems = this.items.map(item => ({
+    product: item.product.id_product,
+    quantity: item.quantity
+  }));
+
+  this.ordersService.createOrder(orderItems).subscribe({
+    next: (response) => {
+      if (response.checkout_url) {
+        window.location.href = response.checkout_url;
+      } else {
+        alert('No se pudo iniciar el pago.');
+      }
+    },
+    error: (err) => {
+      console.error('Error al crear orden:', err);
+      alert('Error al procesar el pago.');
+    }
+  });
+}
+
 
   getTotal(): number {
     // Calcular el precio total sumando el precio de cada ítem multiplicado por su cantidad
     return this.items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   }
 }
-
