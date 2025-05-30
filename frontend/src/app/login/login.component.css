@@ -1,26 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Hachi+Maru+Pop&family=Patrick+Hand&display=swap');
 
-/* Estilos base */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .background-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  background-image: url('../../assets/images/login-img/fondo-login.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/images/login-img/fondo-login.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 body {
-  font-family: 'Bangers', cursive, sans-serif;
-  background-color: #000;
-  margin: 0;
-  padding: 0;
+    font-family: 'Bangers', cursive, sans-serif;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
 }
 
 main {
@@ -30,12 +29,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-/*    padding: 20px; */
 }
 
 .form_login {
   width: 100%;
-  max-width: 750px;
+  max-width: 600px;
   height: fit-content;
   background: #1e1e1e;
   margin: 30px auto;
@@ -45,7 +43,6 @@ main {
   padding: 2rem;
 }
 
-/* SACAR GRIS */
 .form_container {
   padding: 20px;
   height: fit-content;
@@ -147,7 +144,7 @@ main {
 }
 
 .logo {
-  max-height: 120px;
+  max-height: 140px;
   max-width: 100%;
   margin: 0 auto;
   display: block;
@@ -193,6 +190,32 @@ input::placeholder {
     font-size: 1.3rem;
 }
 
+.password-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-password {
+  padding-right: 44px !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-70%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #1e1e1e;
+  font-size: 1.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Media queries para diferentes tamaños de pantalla */
 @media (max-width: 768px) {

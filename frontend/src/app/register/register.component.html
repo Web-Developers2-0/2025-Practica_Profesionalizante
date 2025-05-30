@@ -1,146 +1,174 @@
 <main>
-    <div class="background-wrapper">
-        <div class="blur-container"></div>
-    
-        <section class="form_registro">
-            <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
-                <div class="title_registro">
-                    <img src="../../assets/images/logo_planet.png" alt="Logo de Planet Super Heroes" class="logo">
-                    <h1 class="visually-hidden">Planet Super Heroes</h1>
-                </div>
-                <h2>Registro</h2> 
-            
-                <div class="form_container">
-                    <div class="form__field">
-                        <label for="first_name" class="visually-hidden">Nombre</label>
-                        <input 
-                            class="controles" 
-                            type="text" 
-                            formControlName="first_name"
-                            name="first_name" 
-                            placeholder="Nombre" 
-                            id="first_name"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched">*Nombre es requerido</small>
-                        <small *ngIf="form.get('first_name')?.errors?.['minlength'] && form.get('first_name')?.touched">*Nombre no es válido</small>
-                    </div>
+  <div class="background-wrapper">
+    <div class="blur-container"></div>
+    <section class="form_registro">
+      <form id="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <div class="title_registro">
+          <img src="../../assets/images/logo_blanco.png" alt="Logo de Planet Super Heroes" class="logo">
+          <h1 class="visually-hidden">Planet Super Heroes</h1>
+        </div>
+        <h2>Registro</h2>
+        <div class="form_container">
 
-                    <div class="form__field">
-                        <label for="last_name" class="visually-hidden">Apellido</label>
-                        <input 
-                            class="controles" 
-                            type="text" 
-                            formControlName="last_name"
-                            name="last_name" 
-                            placeholder="Apellido" 
-                            id="last_name"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched">*Apellido es requerido</small>
-                        <small *ngIf="form.get('last_name')?.errors?.['minlength'] && form.get('last_name')?.touched">*Apellido no es válido</small>
-                    </div>
+          <!-- Nombre -->
+          <div class="form__field">
+            <label for="first_name" class="visually-hidden">Nombre</label>
+            <input
+              class="controles"
+              type="text"
+              formControlName="first_name"
+              name="first_name"
+              placeholder="Nombre"
+              id="first_name"
+              autocomplete="off"
+            />
+            <small *ngIf="form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched">*Nombre es requerido</small>
+            <small *ngIf="form.get('first_name')?.errors?.['minlength'] && form.get('first_name')?.touched">*Debe tener al menos 4 caracteres</small>
+            <small *ngIf="form.get('first_name')?.errors?.['maxlength'] && form.get('first_name')?.touched">*Máximo 16 caracteres</small>
+            <small *ngIf="form.get('first_name')?.errors?.['noSpaces'] && form.get('first_name')?.touched">*No debe tener espacios</small>
+            <small *ngIf="form.get('first_name')?.errors?.['onlyLetters'] && !form.get('first_name')?.errors?.['noSpaces'] && form.get('first_name')?.touched">*Solo letras permitidas</small>
+          </div>
 
-                    <div class="form__field">
-                        <label for="email" class="visually-hidden">Email</label>
-                        <input 
-                            class="controles" 
-                            type="email" 
-                            formControlName="email"
-                            name="email" 
-                            placeholder="Email" 
-                            id="email"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">*Email es requerido</small>
-                        <small *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">*Email no es válido</small>
-                    </div>
+          <!-- Apellido -->
+          <div class="form__field">
+            <label for="last_name" class="visually-hidden">Apellido</label>
+            <input
+              class="controles"
+              type="text"
+              formControlName="last_name"
+              name="last_name"
+              placeholder="Apellido"
+              id="last_name"
+              autocomplete="off"
+            />
+            <small *ngIf="form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched">*Apellido es requerido</small>
+            <small *ngIf="form.get('last_name')?.errors?.['minlength'] && form.get('last_name')?.touched">*Debe tener al menos 4 caracteres</small>
+            <small *ngIf="form.get('last_name')?.errors?.['maxlength'] && form.get('last_name')?.touched">*Máximo 16 caracteres</small>
+            <small *ngIf="form.get('last_name')?.errors?.['noSpaces'] && form.get('last_name')?.touched">*No debe tener espacios</small>
+            <small *ngIf="form.get('last_name')?.errors?.['onlyLetters'] && !form.get('last_name')?.errors?.['noSpaces'] && form.get('last_name')?.touched">*Solo letras permitidas</small>
+          </div>
 
-                    <div class="form__field">
-                        <label for="phone" class="visually-hidden">Teléfono</label>
-                        <input 
-                            class="controles" 
-                            type="number" 
-                            formControlName="phone"
-                            name="phone" 
-                            placeholder="Teléfono" 
-                            id="phone"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched">*Teléfono es requerido</small>
-                        <small *ngIf="form.get('phone')?.errors?.['minlength'] && form.get('phone')?.touched">*Teléfono no es válido</small>
-                    </div>
+          <!-- Email -->
+          <div class="form__field">
+            <label for="email" class="visually-hidden">Email</label>
+            <input
+              class="controles"
+              type="email"
+              formControlName="email"
+              name="email"
+              placeholder="Email"
+              id="email"
+              autocomplete="off"
+            />
+            <small *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">*Email es requerido</small>
+            <small *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">*Email no es válido</small>
+            <small *ngIf="form.get('email')?.errors?.['noSpaces'] && form.get('email')?.touched">*No debe tener espacios</small>
+          </div>
 
-                    <div class="form__field">
-                        <label for="address" class="visually-hidden">Dirección</label>
-                        <input 
-                            class="controles" 
-                            type="text" 
-                            formControlName="address"
-                            name="address" 
-                            placeholder="Dirección" 
-                            id="address"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('address')?.errors?.['required'] && form.get('address')?.touched">*Dirección es requerida</small>
-                    </div>
+          <!-- Teléfono -->
+          <div class="form__field">
+            <label for="phone" class="visually-hidden">Teléfono</label>
+            <input
+              class="controles"
+              type="text"
+              formControlName="phone"
+              name="phone"
+              placeholder="Teléfono"
+              id="phone"
+              autocomplete="off"
+              maxlength="10"
+              (keypress)="allowOnlyNumbers($event)"
+            />
+            <small *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched">*Teléfono es requerido</small>
+            <small *ngIf="form.get('phone')?.errors?.['pattern'] && form.get('phone')?.touched">*Debe tener 10 números</small>
+            <small *ngIf="form.get('phone')?.errors?.['noSpaces'] && form.get('phone')?.touched">*No debe tener espacios</small>
+          </div>
 
-                    <div class="form__field">
-                        <label for="password" class="visually-hidden">Contraseña</label>
-                        <input 
-                            class="controles" 
-                            type="password" 
-                            formControlName="password"
-                            name="password" 
-                            placeholder="Contraseña" 
-                            id="password"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
-                        <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
-                    </div>
+          <!-- Dirección -->
+          <div class="form__field">
+            <label for="address" class="visually-hidden">Dirección</label>
+            <input
+              class="controles"
+              type="text"
+              formControlName="address"
+              name="address"
+              placeholder="Dirección"
+              id="address"
+              autocomplete="off"
+            />
+            <small *ngIf="form.get('address')?.errors?.['required'] && form.get('address')?.touched">*Dirección es requerida</small>
+            <small *ngIf="form.get('address')?.errors?.['maxlength'] && form.get('address')?.touched">*Máximo 50 caracteres</small>
+          </div>
 
-                    <div class="form__field">
-                        <label for="confirmPassword" class="visually-hidden">Confirmar contraseña</label>
-                        <input 
-                            class="controles" 
-                            type="password" 
-                            formControlName="confirmPassword"
-                            name="confirmPassword" 
-                            placeholder="Confirmar contraseña" 
-                            id="confirmPassword"
-                            autocomplete="off"
-                        />
-                        <small *ngIf="form.get('confirmPassword')?.errors?.['required'] && form.get('confirmPassword')?.touched">*Contraseña es requerida</small>
-                        <small *ngIf="form.get('confirmPassword')?.errors?.['minlength'] && form.get('confirmPassword')?.touched">*Contraseña debe tener al menos 8 caracteres</small>
-                    </div>
+          <!-- Contraseña -->
+          <div class="form__field">
+            <label for="password" class="visually-hidden">Contraseña</label>
+            <div class="controls password-controls">
+              <input
+                class="controles input-password"
+                [type]="passwordFieldType"
+                formControlName="password"
+                name="password"
+                placeholder="Contraseña"
+                id="password"
+                autocomplete="off"
+              />
+              <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" tabindex="-1">
+                <i [ngClass]="passwordFieldType === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+              </button>
+            </div>
+            <small *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">*Contraseña es requerida</small>
+            <small *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">*Debe tener al menos 8 caracteres</small>
+            <small *ngIf="form.get('password')?.errors?.['maxlength'] && form.get('password')?.touched">*No puede tener más de 30 caracteres</small>
+            <small *ngIf="form.get('password')?.errors?.['noSpaces'] && form.get('password')?.touched">*La contraseña no debe tener espacios en blanco</small>
+            <small *ngIf="form.get('password')?.errors?.['strongPassword'] && form.get('password')?.touched">*Debe tener mayúscula, minúscula, número y símbolo</small>
+          </div>
 
-                    <div class="terminos">
-                        <input 
-                            class="check" 
-                            type="checkbox" 
-                            formControlName="terms"
-                            name="terms" 
-                            id="terms"
-                            autocomplete="off"
-                        />
-                        <label for="terms">Acepto los <a (click)="openTermsDialog(); $event.preventDefault()" class="link">términos y condiciones</a></label>
-                    </div>
+          <!-- Confirmar contraseña -->
+          <div class="form__field">
+            <label for="confirmPassword" class="visually-hidden">Confirmar contraseña</label>
+            <div class="controls password-controls">
+              <input
+                class="controles input-password"
+                [type]="confirmPasswordFieldType"
+                formControlName="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirmar contraseña"
+                id="confirmPassword"
+                autocomplete="off"
+              />
+              <button type="button" class="toggle-password" (click)="toggleConfirmPasswordVisibility()" tabindex="-1">
+                <i [ngClass]="confirmPasswordFieldType === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+              </button>
+            </div>
+            <small *ngIf="form.get('confirmPassword')?.errors?.['required'] && form.get('confirmPassword')?.touched">*Confirmación de contraseña es requerida</small>
+            <small *ngIf="form.get('confirmPassword')?.errors?.['passwordsMismatch'] && form.get('confirmPassword')?.touched">*Las contraseñas no coinciden</small>
+          </div>
 
-                    <div class="termsError">
-                        <label for="terms" class="visually-hidden">Términos y condiciones</label>
-                        <small *ngIf="form.get('terms')?.errors?.['required'] && form.get('terms')?.touched">*Debes aceptar los términos y condiciones</small>
-                    </div>
+          <!-- Términos -->
+          <div class="terminos">
+            <input
+              class="check"
+              type="checkbox"
+              formControlName="terms"
+              name="terms"
+              id="terms"
+              autocomplete="off"
+            />
+            <label for="terms">Acepto los <a (click)="openTermsDialog(); $event.preventDefault()" class="link">términos y condiciones</a></label>
+          </div>
+          <div class="termsError">
+            <label for="terms" class="visually-hidden">Términos y condiciones</label>
+            <small *ngIf="form.get('terms')?.errors?.['required'] && form.get('terms')?.touched">*Debes aceptar los términos y condiciones</small>
+          </div>
 
-                    <div>
-                        <button class="botom" type="submit" [disabled]="!form.valid">Registrarse</button>
-                    </div>
-                
-                    <p class="link">¿Ya tenés una cuenta? <a routerLink="/login">Inicia Sesión aquí!</a></p>
-                
-                    <a class="go_back" routerLink="/">Volver al Inicio</a>
-                </div>
-            </form>
-        </section>
-    </div>
+          <div>
+            <button class="botom" type="submit" [disabled]="!form.valid">Registrarse</button>
+          </div>
+          <p class="link">¿Ya tenés una cuenta? <a routerLink="/login">Inicia Sesión aquí!</a></p>
+          <a class="go_back" routerLink="/login">Volver al Inicio</a>
+        </div>
+      </form>
+    </section>
+  </div>
 </main>

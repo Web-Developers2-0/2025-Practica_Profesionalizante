@@ -4,7 +4,7 @@ from User import views
 from rest_framework_simplejwt.views import TokenVerifyView
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from User.views import PasswordResetRequestView, PasswordResetConfirmView
+from User.views import PasswordResetRequestView, PasswordResetConfirmView, ContactView, ChangePasswordView
 
 router = routers.DefaultRouter()
 
@@ -20,4 +20,6 @@ urlpatterns = [
     path('user/', views.UserView.as_view(), name='user'),
     path('password-reset/', PasswordResetRequestView.as_view(), name='password_reset'),
     path('password-reset-confirm/<str:token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
 ]
