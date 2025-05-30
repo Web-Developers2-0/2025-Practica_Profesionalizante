@@ -59,7 +59,7 @@ class CreateOrderCheckoutView(APIView):
             "pending": f"https://planetsuperheroes.vercel.app/home",
                             },
             "auto_return": "approved",
-             "notification_url": "https://planetsuperheroes.onrender.com/api/orders/webhook"
+             "notification_url": "https://planetsuperheroes.onrender.com/api/orders/webhook/"
                                 }
             preference_response = sdk.preference().create(preference_data)
 
