@@ -82,11 +82,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-     'csp.middleware.CSPMiddleware',
+    'csp.middleware.CSPMiddleware',
 
 ]
 CORS_ORIGIN_WHITELIST = ['http://localhost:4200']
 CORS_ALLOWED_ORIGINS = [
+    "https://planetsuperheroes-git-feature-me-5bfd82-marco-virinnis-projects.vercel.app",
     "https://planetsuperheroes-git-hotfix-marco-virinnis-projects.vercel.app",
     "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app",
     "http://localhost:4200", 
