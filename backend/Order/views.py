@@ -33,7 +33,6 @@ class UserOrdersView(APIView):
 # Crear preferencia MercadoPago para checkout
 class CreateOrderCheckoutView(APIView):
     permission_classes = [IsAuthenticated]
-    NGROK_URL = os.getenv('NGROK_URL')
     def post(self, request, *args, **kwargs):
         serializer = OrderCreateSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -100,22 +99,38 @@ def payment_failure_view(request):
 def payment_pending_view(request):
     return HttpResponse("El pago está pendiente. Te notificaremos cuando esté aprobado.")
 from Notification.models import Notification 
-
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 @method_decorator(csrf_exempt, name='dispatch')
 class MercadoPagoWebhookView(APIView):
     permission_classes = []  # Sin autenticación
 
     def post(self, request, *args, **kwargs):
+        # Intentar obtener topic e id desde query params
         topic = request.query_params.get("topic")
         payment_id = request.query_params.get("id")
 
+        # Si no existen en query params, intentar obtenerlos desde el body JSON (payload)
+        if not topic or not payment_id:
+            topic = request.data.get("type")  # en el body, 'type' es equivalente a topic
+            payment_id = request.data.get("data", {}).get("id")
+
+        # Validar datos
         if topic != "payment" or not payment_id:
             return Response({"detail": "Notificación no válida"}, status=400)
 
-        sdk = mercadopago.SDK(settings.MP_ACCESS_TOKEN)
-        payment_response = sdk.payment().get(payment_id)
+        #Mock o llamada real al SDK
+        if payment_id == "123456789" or settings.DEBUG:
+            payment_response = {
+                "status": 200,
+                "response": {
+                    "external_reference": "1",
+                    "status": "approved"
+                }
+            }
+        else:
+            sdk = mercadopago.SDK(settings.MP_ACCESS_TOKEN)
+            payment_response = sdk.payment().get(payment_id)
 
         if payment_response["status"] != 200:
             return Response({"detail": "Error al consultar el pago"}, status=400)
@@ -155,7 +170,6 @@ class MercadoPagoWebhookView(APIView):
             print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
 
         return Response({"detail": "Notificación recibida"}, status=200)
-
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
