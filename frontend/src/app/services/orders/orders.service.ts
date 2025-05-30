@@ -26,12 +26,13 @@ export class OrdersService {
       .pipe(catchError(this.handleError));
   }
 
+  
   createOrder(orderItems: { product: number, quantity: number }[]): Observable<Order> {
-    const headers = this.getAuthHeaders();
     const orderPayload = { order_items: orderItems };
-    return this.http.post<Order>(`${this.baseUrl}orders/create/`, orderPayload, { headers })
+    return this.http.post<Order>(`${this.baseUrl}orders/create-checkout/`, orderPayload, { headers: this.getAuthHeaders() })
       .pipe(catchError(this.handleError));
   }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

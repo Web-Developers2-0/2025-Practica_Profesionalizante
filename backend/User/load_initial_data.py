@@ -15,7 +15,7 @@ def load_data_script(sender, **kwargs):
     engine = connection.vendor
 
     if engine == 'postgresql':
-        affected_tables = ['categories', 'products', 'roles', '"user"', 'orders', 'order_items']
+        affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
     else:
         affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
 
