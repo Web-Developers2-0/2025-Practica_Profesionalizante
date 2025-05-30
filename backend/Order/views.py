@@ -119,18 +119,9 @@ class MercadoPagoWebhookView(APIView):
         if topic != "payment" or not payment_id:
             return Response({"detail": "Notificación no válida"}, status=400)
 
-        #Mock o llamada real al SDK
-        if payment_id == "123456789" or settings.DEBUG:
-            payment_response = {
-                "status": 200,
-                "response": {
-                    "external_reference": "1",
-                    "status": "approved"
-                }
-            }
-        else:
-            sdk = mercadopago.SDK(settings.MP_ACCESS_TOKEN)
-            payment_response = sdk.payment().get(payment_id)
+        
+        sdk = mercadopago.SDK(settings.MP_ACCESS_TOKEN)
+        payment_response = sdk.payment().get(payment_id)
 
         if payment_response["status"] != 200:
             return Response({"detail": "Error al consultar el pago"}, status=400)
