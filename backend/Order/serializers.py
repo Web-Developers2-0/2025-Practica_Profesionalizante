@@ -11,6 +11,8 @@ class OrderItemCreateSerializer(serializers.ModelSerializer):
         fields = ['product', 'quantity']
 
 
+from django.db import transaction  
+
 class OrderCreateSerializer(serializers.ModelSerializer):
     order_items = OrderItemCreateSerializer(many=True)
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -30,7 +32,6 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         attrs.setdefault('order_date', timezone.now().date())
         attrs.setdefault('payment_method', 'credit_card')
         attrs.setdefault('shipping_method', 'express')
-        attrs.setdefault('payment_status', 'pagado')
         return attrs
 
     def create(self, validated_data):
@@ -42,16 +43,18 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             quantity = order_item_data['quantity']
             subtotal = product.price * quantity
             total_amount += subtotal
-            product.stock -= quantity
-            product.save()
 
         validated_data['total_amount'] = total_amount
-        order = Order.objects.create(**validated_data)
 
-        for order_item_data in order_items_data:
-            OrderItem.objects.create(order=order, **order_item_data)
+        # Inicia una transacción atómica
+        with transaction.atomic():
+            order = Order.objects.create(**validated_data)
+
+            for order_item_data in order_items_data:
+                OrderItem.objects.create(order=order, **order_item_data)
 
         return order
+
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
