@@ -28,6 +28,10 @@
             android:name=".NotificationsActivity"
             android:exported="false" />
         <activity
+            android:name=".events.EventsActivity" />
+        <activity
+            android:name=".events.EventDetailActivity" />
+        <activity
             android:name=".CartActivity"
             android:exported="false" />
         <activity

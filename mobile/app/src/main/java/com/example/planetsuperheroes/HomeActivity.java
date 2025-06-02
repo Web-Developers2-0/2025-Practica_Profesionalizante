@@ -106,8 +106,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Configurar el botón "Ver más" para hacer scroll al siguiente cómic
         btnSeeMore.setOnClickListener(v -> {
-            int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
-            recyclerViewComics.smoothScrollToPosition(firstVisibleItem + 1);
+            Intent intent = new Intent(HomeActivity.this, com.example.planetsuperheroes.events.EventsActivity.class);
+            startActivity(intent);
         });
 
         // Configuración del botón del carrito (btnCart)

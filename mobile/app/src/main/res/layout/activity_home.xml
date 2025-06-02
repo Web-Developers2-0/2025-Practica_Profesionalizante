@@ -97,7 +97,7 @@
         android:layout_width="310dp"
         android:layout_height="85dp"
         android:layout_below="@id/btnMarvel"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_border"
         android:contentDescription="@string/dc_category"
@@ -123,17 +123,18 @@
         android:id="@+id/btnSeeMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_below="@id/btnDC"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="75dp"
         android:backgroundTint="@color/primary_button"
+        android:elevation="4dp"
         android:fontFamily="@font/bangersregular"
-        android:text="@string/btn_seemore"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="5dp"
+        android:text="Eventos"
         android:textColor="@color/black"
-        android:textSize="16sp" />
-
-
+        android:textSize="25sp" />
 
 
 </RelativeLayout>
