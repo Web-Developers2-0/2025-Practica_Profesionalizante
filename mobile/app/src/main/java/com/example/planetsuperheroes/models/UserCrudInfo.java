@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserCrudInfo {
     private int id;
-    private String email;
+
     private String first_name;
     private String last_name;
     private String address;
@@ -16,11 +16,11 @@ public class UserCrudInfo {
     @SerializedName("image")  // <-- Esto hace que Retrofit sepa que el campo JSON "image" va aquí
     private String imageUrl;
     // Constructor con todos los campos
-    public UserCrudInfo(int id, String email, String first_name, String last_name,
+    public UserCrudInfo(int id, String first_name, String last_name,
                         String address, String phone, String password,
                         String confirmPassword, String imageUrl) {
         this.id = id;
-        this.email = email;
+
         this.first_name = first_name;
         this.last_name = last_name;
         this.address = address;
@@ -40,13 +40,7 @@ public class UserCrudInfo {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getName() {
         return first_name;
@@ -111,7 +105,6 @@ public class UserCrudInfo {
         return "User{" +
                 "name='" + first_name + '\'' +
                 ", lastName='" + last_name + '\'' +
-                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }
