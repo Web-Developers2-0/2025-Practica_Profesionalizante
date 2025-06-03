@@ -134,10 +134,10 @@
     <!-- Imagen de logo -->
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="198dp"
-        android:layout_height="136dp"
+        android:layout_width="229dp"
+        android:layout_height="177dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/logoplanet"
+        android:src="@drawable/logo_blanco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/order_summary_text" />
