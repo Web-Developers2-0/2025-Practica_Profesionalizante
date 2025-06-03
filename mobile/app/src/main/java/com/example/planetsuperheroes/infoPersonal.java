@@ -1,10 +1,12 @@
 package com.example.planetsuperheroes;
+import com.bumptech.glide.Glide;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,75 +24,82 @@ public class infoPersonal extends AppCompatActivity {
     private ApiService apiService;
     private EditText nameEditText, lastNameEditText, emailEditText, addressEditText;
     private Button saveButton;
+    private ImageView imageViewContact;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_personal);
 
-        // Inicializar vistas
         nameEditText = findViewById(R.id.editTextName);
         lastNameEditText = findViewById(R.id.editTextlastName);
         emailEditText = findViewById(R.id.editTextEmail);
         addressEditText = findViewById(R.id.editTextAdress);
         saveButton = findViewById(R.id.btnGuardarCambios);
+        imageViewContact = findViewById(R.id.imageViewContact); // IMPORTANTE
 
-        // Inicializar ApiService
         apiService = RetrofitClient.getClient(this).create(ApiService.class);
 
-        // Llamar al método para obtener la información del usuario
         getUserInfo();
 
-        // Configurar el botón para actualizar los datos del usuario
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateFields()) {
                     UserCrudInfo updatedUser = new UserCrudInfo(
-                            0, // ID no es necesario para la actualización
+                            0,
                             emailEditText.getText().toString(),
                             nameEditText.getText().toString(),
                             lastNameEditText.getText().toString(),
                             addressEditText.getText().toString(),
-                            null, // No necesitamos el phone aquí
-                            null, // Password no se necesita
-                            null  // ConfirmPassword tampoco
+                            null, null, null, null
                     );
-
-                    // Llamar al método para actualizar la información del usuario
                     updateUserInfo(updatedUser);
                 }
             }
         });
     }
 
-    // Método para obtener la información del usuario
     private void getUserInfo() {
-        Call<UserCrudInfo> call = apiService.getUserCrudInfo();  // El interceptor añadirá el token automáticamente
+        Call<UserCrudInfo> call = apiService.getUserCrudInfo();
         call.enqueue(new Callback<UserCrudInfo>() {
             @Override
             public void onResponse(Call<UserCrudInfo> call, Response<UserCrudInfo> response) {
-                if (response.isSuccessful()) {
-                    UserCrudInfo user = response.body();
-                    if (user != null) {
-                        nameEditText.setText(user.getName());
-                        lastNameEditText.setText(user.getLastName());
-                        emailEditText.setText(user.getEmail());
-                        addressEditText.setText(user.getAddress());
+                if (response.isSuccessful() && response.body() != null) {
+                    UserCrudInfo userInfo = response.body();
+
+                    String imageUrl = userInfo.getImageUrl();
+                    if (imageUrl != null && !imageUrl.trim().isEmpty()) {
+                        Log.d("InfoPersonal", "Cargando imagen: " + imageUrl);
+                        Glide.with(infoPersonal.this)
+                                .load(imageUrl.trim())
+                                .placeholder(R.drawable.gatitoinfo)
+                                .error(R.drawable.gatitoinfo)
+                                .into(imageViewContact);
+                    } else {
+                        Log.w("InfoPersonal", "URL de imagen vacía o nula");
+                        imageViewContact.setImageResource(R.drawable.gatitoinfo);
                     }
+
+                    // Rellenar campos
+                    emailEditText.setText(userInfo.getEmail());
+                    nameEditText.setText(userInfo.getName());
+                    lastNameEditText.setText(userInfo.getLastName());
+                    addressEditText.setText(userInfo.getAddress());
                 } else {
-                    Log.e("InfoPersonal", "Error en la respuesta: " + response.code());
+                    Log.e("InfoPersonal", "Error al obtener usuario: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<UserCrudInfo> call, Throwable t) {
-                Log.e("InfoPersonal", "Error: " + t.getMessage());
+                Log.e("InfoPersonal", "Error al obtener usuario: " + t.getMessage());
             }
         });
     }
 
-    // Método para actualizar la información del usuario
+
     private void updateUserInfo(UserCrudInfo updatedUser) {
         Call<Void> call = apiService.updateUserCrudInfo(updatedUser);
         call.enqueue(new Callback<Void>() {
@@ -98,6 +107,9 @@ public class infoPersonal extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(infoPersonal.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+
+                    // Volver a obtener la información actualizada del usuario
+                    getUserInfo(); // Este método debería cargar la imagen también
                 } else {
                     Log.e("InfoPersonal", "Error en la actualización: " + response.code());
                 }
@@ -109,6 +121,7 @@ public class infoPersonal extends AppCompatActivity {
             }
         });
     }
+
 
     // Método para validar los campos
     private boolean validateFields() {

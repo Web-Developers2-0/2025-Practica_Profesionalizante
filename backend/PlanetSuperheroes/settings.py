@@ -96,7 +96,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.mercadopago.com.ar",]
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 CORS_ALLOW_HEADERS = ["Authorization", "Content-Type"]
 ROOT_URLCONF = 'PlanetSuperheroes.urls'
 
