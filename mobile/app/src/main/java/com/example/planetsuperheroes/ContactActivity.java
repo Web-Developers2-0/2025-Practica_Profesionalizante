@@ -99,7 +99,7 @@ public class ContactActivity extends AppCompatActivity {
                     UserCrudInfo user = response.body();
                     if (user != null) {
                         editTextName.setText(user.getName());
-                        editTextEmail.setText(user.getEmail());
+
                     }
                 } else {
                     Toast.makeText(ContactActivity.this, "Error en la respuesta: " + response.code(), Toast.LENGTH_SHORT).show();
