@@ -12,6 +12,7 @@ import time
 from rest_framework.validators import UniqueValidator
 from django.core.validators import RegexValidator
 
+
 class UserSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
     email = serializers.EmailField(
@@ -120,3 +121,7 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = '__all__'
+
+
+
+
