@@ -1,5 +1,7 @@
 package com.example.planetsuperheroes.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserCrudInfo {
     private int id;
     private String email;
@@ -10,9 +12,13 @@ public class UserCrudInfo {
     private String password;
     private String confirmPassword;
 
-    // Constructor vacío
+
+    @SerializedName("image")  // <-- Esto hace que Retrofit sepa que el campo JSON "image" va aquí
+    private String imageUrl;
     // Constructor con todos los campos
-    public UserCrudInfo(int id, String email, String first_name, String last_name, String address, String phone, String password, String confirmPassword) {
+    public UserCrudInfo(int id, String email, String first_name, String last_name,
+                        String address, String phone, String password,
+                        String confirmPassword, String imageUrl) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;
@@ -21,7 +27,9 @@ public class UserCrudInfo {
         this.phone = phone;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.imageUrl = imageUrl;
     }
+
 
     // Getters y Setters para cada campo
     public int getId() {
@@ -87,6 +95,17 @@ public class UserCrudInfo {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+
+    // Constructor, getters y setters
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "User{" +
