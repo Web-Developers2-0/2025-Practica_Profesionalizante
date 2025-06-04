@@ -39,10 +39,11 @@ public class CartActivity extends AppCompatActivity {
     private CartAdapter cartAdapter;
     private LinearLayoutManager layoutManager;
     private TextView totalAmountText;
+    private TextView productCountText; // Nuevo TextView para el contador
     private Button btnCheckout;
     private Button btnClearCart;
     private ApiService apiService;
-    private int userId;
+    private int userId = -1;
 
     // Variable para almacenar los datos de pago
     private Map<String, String> paymentData;
@@ -55,6 +56,7 @@ public class CartActivity extends AppCompatActivity {
         // Inicializar vistas
         recyclerViewCartItems = findViewById(R.id.recyclerViewCartItems);
         totalAmountText = findViewById(R.id.totalAmountText);
+        productCountText = findViewById(R.id.productCountText); // Inicializa el contador
         btnCheckout = findViewById(R.id.btnCheckout);
         btnClearCart = findViewById(R.id.btnClearCart);
 
@@ -71,6 +73,7 @@ public class CartActivity extends AppCompatActivity {
         // Crear la lista de OrderItem
         List<OrderItem> orderItems = new ArrayList<>();
         final double[] totalAmount = {0};
+        int totalProducts = 0; // Contador de productos
 
         for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
             Product product = entry.getKey();
@@ -78,14 +81,16 @@ public class CartActivity extends AppCompatActivity {
             Log.d("CartActivity", "ID del producto: " + product.getId() + ", Cantidad: " + quantity);
             orderItems.add(new OrderItem(product.getId(), product.getName(), quantity));
             totalAmount[0] += product.getPrice() * quantity;
+            totalProducts += quantity; // Suma la cantidad de cada producto
         }
 
         // Inicializar el adapter
         cartAdapter = new CartAdapter(this, orderItems);
         recyclerViewCartItems.setAdapter(cartAdapter);
 
-        // Mostrar el monto total
+        // Mostrar el monto total y el contador de productos
         totalAmountText.setText("Total: $" + totalAmount[0]);
+        productCountText.setText("Total Productos Seleccionados: " + totalProducts);
 
         // Obtener el ID del usuario
         getUserId();
@@ -126,6 +131,7 @@ public class CartActivity extends AppCompatActivity {
                                 CartManager.getInstance().clearCart(); // Limpiar el carrito
                                 cartAdapter.updateCartItems(new ArrayList<>()); // Actualizar la vista del carrito
                                 totalAmountText.setText("Total: $0.00"); // Reiniciar el total
+                                productCountText.setText("Total Productos Seleccionados: 0"); // Reiniciar el contador
                                 Toast.makeText(CartActivity.this, "El carrito ha sido limpiado", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -165,6 +171,7 @@ public class CartActivity extends AppCompatActivity {
                 CartManager.getInstance().clearCart(); // Limpiar el carrito
                 cartAdapter.updateCartItems(new ArrayList<>()); // Actualizar la vista del carrito
                 totalAmountText.setText("Total: $0.00"); // Reiniciar el total
+                productCountText.setText("Total Productos Seleccionados: 0"); // Reiniciar el contador
                 Toast.makeText(this, "El carrito se ha limpiado", Toast.LENGTH_SHORT).show();
             }
         }
