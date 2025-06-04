@@ -25,7 +25,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productNameTextView = findViewById(R.id.productNameTextView);
         productDescriptionTextView = findViewById(R.id.productDescriptionTextView);
         productPriceTextView = findViewById(R.id.productPriceTextView);
-        backArrow = findViewById(R.id.backArrow); // Inicializa la referencia a la flecha de retroceso
+       // backArrow = findViewById(R.id.backArrow); Inicializa la referencia a la flecha de retroceso
 
         // Asegúrate de que el ImageView sea clickeable
         backArrow.setClickable(true);
