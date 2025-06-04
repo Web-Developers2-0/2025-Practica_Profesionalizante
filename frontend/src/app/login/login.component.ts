@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent {
   form: FormGroup;
   errorMessage: string | null = null;
+  showPassword = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
     this.form = this.formBuilder.group({
@@ -58,5 +59,9 @@ export class LoginComponent {
       this.errorMessage = 'Completa el formulario correctamente';
       this.form.markAllAsTouched();
     }
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

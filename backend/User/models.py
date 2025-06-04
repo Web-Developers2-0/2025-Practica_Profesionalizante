@@ -28,11 +28,11 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True) 
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=30, default='',blank=False, null=True) 
-    first_name = models.CharField(max_length=30,default='', blank=False)
-    last_name = models.CharField(max_length=30,default='', blank=False)
-    address = models.CharField(max_length=255, default='', blank=False)
-    phone = models.CharField(max_length=20, default='', blank=False)
+    username = models.CharField(max_length=30, default='',blank=True) 
+    first_name = models.CharField(max_length=30,default='', blank=True)
+    last_name = models.CharField(max_length=30,default='', blank=True)
+    address = models.CharField(max_length=255, default='', blank=True)
+    phone = models.CharField(max_length=20, default='', blank=True)
     image = CloudinaryField('image', null=True, blank=True)
     date_joined = models.DateTimeField(default=timezone.now)
     is_staff = models.BooleanField(default=False)
@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     def user_orders(self):
         from Order.models import Order  # import interno (lazy import)
-        return Order.objects.filter(id_user=self)
+        return Order.objects.filter(user=self)
 
     
     class Meta:

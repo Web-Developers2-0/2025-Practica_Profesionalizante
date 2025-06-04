@@ -12,38 +12,33 @@ def load_data_script(sender, **kwargs):
         print(f'SQL file not found: {sql_file_path}')
         return
 
-    # Lista de tablas afectadas por el script
-    affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
+    affected_tables = ['categories', 'products', 'roles', '"user"', 'orders', 'order_items']
 
-    # Verificar y cargar datos en cada tabla individualmente
     with connection.cursor() as cursor:
         for table in affected_tables:
             try:
                 cursor.execute(f"SELECT COUNT(*) FROM {table}")
                 count = cursor.fetchone()[0]
                 if count == 0:
-                    # Leer datos específicos para la tabla
                     with open(sql_file_path, 'r') as file:
                         sql = file.read()
-                        # Extraer solo los datos relevantes para la tabla actual
                         table_data = extract_table_data(sql, table)
                         if table_data:
-                            cursor.execute(table_data)
+                            for stmt in table_data.split(';'):
+                                clean_stmt = stmt.strip()
+                                if clean_stmt:
+                                    cursor.execute(clean_stmt)
                             print(f'Successfully loaded data for table {table}')
             except Exception as e:
-                print(f"Skipping table {table} because it does not exist yet: {e}")
+                print(f"Skipping table {table}: {e}")
                 continue
 
 def extract_table_data(sql, table):
-    """
-    Función auxiliar para extraer los datos de la tabla específica desde el archivo SQL.
-    """
-    # Dividir el SQL en sentencias individuales
     sql_statements = sql.split(';')
     table_data = []
 
     for statement in sql_statements:
-        if table in statement:
+        if table.replace('"', '') in statement.lower():
             table_data.append(statement.strip())
 
     return ';\n'.join(table_data) + ';' if table_data else None

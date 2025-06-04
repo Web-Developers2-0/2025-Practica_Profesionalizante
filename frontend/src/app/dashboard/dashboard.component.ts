@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   dashboardData: any[] = [];
   isAuthenticated: boolean = false;
   userOrders: Order[] = [];
-  dropdownOpen: boolean = false; // <-- Aquí la variable
+  dropdownOpen: boolean = false;
 
   user: User = {
     id: 0,
@@ -92,6 +92,6 @@ export class DashboardComponent implements OnInit {
 
   onChangePassword() {
     this.dropdownOpen = false;
-    // Lógica para cambiar contraseña
+    this.router.navigate(['/password']);
   }
 }

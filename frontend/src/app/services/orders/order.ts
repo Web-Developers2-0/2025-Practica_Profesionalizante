@@ -8,6 +8,8 @@ export interface Order{
     payment_status: string;
     total_amount: number;
     order_items: OrderITem[];
+    preference_id?: string; 
+    checkout_url?: string;
 }
 export interface OrderITem{
     id_order_items: number;

@@ -123,7 +123,7 @@
     <!-- Strings para la Actividad Home -->
     <string name="user_hello">Hi User!</string>
     <string name="home_title">Elige una categoria</string>
-    <string name="btn_seemore">Recomendados</string>
+    <string name="btn_seemore">EVENTOS</string>
     <string name="faq_nav">Preguntas Frecuentes</string>
     <string name="contact_nav">Contactanos</string>
     <string name="Soporte">Soporte</string>

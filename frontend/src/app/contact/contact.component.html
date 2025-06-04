@@ -1,84 +1,107 @@
-<!-- Formulario de contacto -->
 <section id="form">
-    <div class="form_contact__container">
-      <div class="item">
-        <div class="contact">
-          <div class="first_title">
-            <h2>Donde encontrarnos</h2>
-          </div>
-          <div class="map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32392.505862546128!2d-64.19564154332299!3d-31.418458108462413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmE!5e0!3m2!1ses-419!2sar!4v1664386748040!5m2!1ses-419!2sar"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-          <div class="contact_info">
-            
-            <p><i class="fa-solid fa-phone"></i>(351) 43727282</p>
-            <p><i class="fa-solid fa-envelope"></i> info&#64;planetsuper.com.ar</p>        
-            <p>
-              <i class="fa-solid fa-location-dot"></i>Galería Muñoz-9 de julio
-              160
-            </p>
-          </div>
-          <div class="social_links">
-            <span class="second_text">Redes Sociales:</span>
-            <ul class="social_list">
-              <li>
-                <a href="https://github.com/Web-Developers2-0/ProyectoIntegrador2">
-                  <i class="fa-brands fa-square-facebook"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Web-Developers2-0/ProyectoIntegrador2">
-                  <i class="fa-brands fa-square-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Web-Developers2-0/ProyectoIntegrador2">
-                  <i class="fa-brands fa-square-instagram"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
+  <div class="form_contact__container">
+    <div class="item">
+      <div class="contact">
+        <div class="first_title">
+          <h2>Donde encontrarnos</h2>
         </div>
-        <div class="submit_form">
-          <div class="first_text">Contacto</div>
-          <div class="intro_contact_text">
-            Envíanos tu consulta o sugerencia y en la brevedad nos comunicaremos 
-            para ayudarte y proporcionarte la información que necesitas.
-          </div>
-          <form action="">
-            <div class="input_box">
-              <input
-                type="text"
-                placeholder="Ingrese su nombre completo"
-                required
-              />
-            </div>
-            <div class="input_box">
-              <input
-                type="email"
-                placeholder="Ingrese su email"
-                required
-              />
-            </div>
-            <div class="input_text">
-              <textarea
-                style="font-family: 'Patrick Hand', sans-serif"
-                name=""
-                id="message"
-                cols="30"
-                rows="8"
-                placeholder="Mensaje"
-                required
-              ></textarea>
-            </div>
-            <input class="btn_submit" type="submit" value="Enviar Mensaje" />
-          </form>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32392.505862546128!2d-64.19564154332299!3d-31.418458108462413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmE!5e0!3m2!1ses-419!2sar!4v1664386748040!5m2!1ses-419!2sar"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="contact_info">
+          <p><i class="fa-solid fa-phone"></i>(351) 43727282</p>
+          <p><i class="fa-solid fa-envelope"></i> info&#64;planetsuper.com.ar</p>
+          <p>
+            <i class="fa-solid fa-location-dot"></i>Galería Muñoz-9 de julio 160
+          </p>
+        </div>
+        <div class="social_links">
+          <span class="second_text">Redes Sociales:</span>
+          <ul class="social_list">
+            <li>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-square-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-square-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-square-instagram"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
+      <div class="submit_form">
+        <div class="first_text">Contacto</div>
+        <div class="intro_contact_text">
+          Envíanos tu consulta o sugerencia y en la brevedad nos comunicaremos
+          para ayudarte y proporcionarte la información que necesitas.
+        </div>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="input_box">
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Ingrese su nombre completo"
+              [ngClass]="{'input-error': (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) || fieldErrors.name}"
+              required
+            >
+            <div class="error-message" *ngIf="contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.touched">
+              *El nombre es obligatorio
+            </div>
+            <div class="error-message" *ngIf="contactForm.get('name')?.errors?.['minlength'] && contactForm.get('name')?.touched">
+              *Debe tener al menos 4 caracteres
+            </div>
+            <div class="error-message" *ngIf="fieldErrors.name">{{ fieldErrors.name[0] }}</div>
+          </div>
+          <div class="input_box">
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Ingrese su email"
+              [ngClass]="{'input-error': (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) || fieldErrors.email}"
+              required
+            >
+            <div class="error-message" *ngIf="contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched">
+              *El correo es obligatorio
+            </div>
+            <div class="error-message" *ngIf="contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched">
+              *Correo no válido
+            </div>
+            <div class="error-message" *ngIf="fieldErrors.email">{{ fieldErrors.email[0] }}</div>
+          </div>
+          <div class="input_text">
+            <textarea
+              formControlName="message"
+              cols="30"
+              rows="8"
+              placeholder="Mensaje"
+              [ngClass]="{'input-error': (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) || fieldErrors.message}"
+              required
+            ></textarea>
+            <div class="error-message" *ngIf="contactForm.get('message')?.errors?.['required'] && contactForm.get('message')?.touched">
+              *El mensaje es obligatorio
+            </div>
+            <div class="error-message" *ngIf="contactForm.get('message')?.errors?.['minlength'] && contactForm.get('message')?.touched">
+              *Debe tener al menos 10 caracteres
+            </div>
+            <div class="error-message" *ngIf="fieldErrors.message">{{ fieldErrors.message[0] }}</div>
+          </div>
+          <button class="btn_submit" type="submit" [disabled]="contactForm.invalid">Enviar Mensaje</button>
+          <div *ngIf="successMsg" class="success-message">{{successMsg}}</div>
+          <div *ngIf="errorMsg" class="error-message general">{{errorMsg}}</div>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
