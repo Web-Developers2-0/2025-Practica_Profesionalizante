@@ -23,6 +23,7 @@ from django.utils.crypto import get_random_string
 from datetime import timedelta
 from django.conf import settings
 
+
 # --- Registro de usuario ---
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -251,3 +252,4 @@ class ChangePasswordView(APIView):
         msg.send(fail_silently=True)
 
         return Response({'message': 'Contraseña cambiada correctamente.'}, status=status.HTTP_200_OK)
+

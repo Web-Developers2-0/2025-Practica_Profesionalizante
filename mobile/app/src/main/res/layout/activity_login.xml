@@ -9,14 +9,14 @@
 
     <!-- Logo de la tienda -->
     <ImageView
-    android:id="@+id/logoImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/logo_planet"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="40dp" />
+        android:id="@+id/logoImageView"
+        android:layout_width="198dp"
+        android:layout_height="181dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logo_blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Título principal (Borde negro más grueso) -->
     <TextView

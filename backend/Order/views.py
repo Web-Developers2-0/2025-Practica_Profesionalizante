@@ -9,6 +9,8 @@ import mercadopago
 from django.conf import settings
 from Order.models import Order
 from Order.serializers import OrderCreateSerializer, OrderSerializer
+from rest_framework.decorators import api_view
+from rest_framework.decorators import permission_classes
 
 # Crear orden sin descontar stock
 class CreateOrderView(APIView):
@@ -161,6 +163,52 @@ class MercadoPagoWebhookView(APIView):
             print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
 
         return Response({"detail": "Notificación recibida"}, status=200)
+
+#gestion boton de arrepentimiento/ cancelar orden
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def cancel_order_view(request, order_id):
+    try:
+        order = Order.objects.get(id_order=order_id, user=request.user)
+    except Order.DoesNotExist:
+        return Response({"detail": "Orden no encontrada o no te pertenece."}, status=404)
+
+    if order.state.startswith('Cancelado'):
+        return Response({"detail": "La orden ya está cancelada."}, status=400)
+
+    motivo_arrepentimiento = request.query_params.get("arrepentimiento") == "true"
+    motivo_usuario = request.data.get("motivo", "").strip()
+
+    if not motivo_usuario:
+        return Response({"detail": "Por favor ingresá un motivo para cancelar la orden."}, status=400)
+
+    fecha_creacion = order.order_date or order.created_at.date()
+    hoy = date.today()
+    diferencia = (hoy - fecha_creacion).days
+
+    if motivo_arrepentimiento:
+        if diferencia > 10:
+            return Response({"detail": "No se puede cancelar por arrepentimiento. Pasaron más de 10 días."}, status=400)
+        order.state = "Cancelado x arrepentimiento"
+    else:
+        order.state = "Cancelado"
+
+    order.cancelled_at = hoy
+    order.cancel_reason = motivo_usuario
+    order.save()
+
+    mensaje = f"Tu pedido #{order.id_order} fue cancelado"
+    if motivo_arrepentimiento:
+        mensaje += " por arrepentimiento dentro de los 10 días."
+    mensaje += " correctamente."
+
+    Notification.objects.create(
+        usuario=request.user,
+        mensaje=mensaje,
+        tipo="info"
+    )
+
+    return Response({"detail": f"La orden #{order.id_order} fue cancelada correctamente."}, status=200)
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt

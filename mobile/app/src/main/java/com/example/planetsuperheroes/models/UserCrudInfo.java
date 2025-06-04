@@ -1,8 +1,10 @@
 package com.example.planetsuperheroes.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserCrudInfo {
     private int id;
-    private String email;
+
     private String first_name;
     private String last_name;
     private String address;
@@ -10,18 +12,24 @@ public class UserCrudInfo {
     private String password;
     private String confirmPassword;
 
-    // Constructor vacío
+
+    @SerializedName("image")  // <-- Esto hace que Retrofit sepa que el campo JSON "image" va aquí
+    private String imageUrl;
     // Constructor con todos los campos
-    public UserCrudInfo(int id, String email, String first_name, String last_name, String address, String phone, String password, String confirmPassword) {
+    public UserCrudInfo(int id, String first_name, String last_name,
+                        String address, String phone, String password,
+                        String confirmPassword, String imageUrl) {
         this.id = id;
-        this.email = email;
+
         this.first_name = first_name;
         this.last_name = last_name;
         this.address = address;
         this.phone = phone;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.imageUrl = imageUrl;
     }
+
 
     // Getters y Setters para cada campo
     public int getId() {
@@ -32,13 +40,7 @@ public class UserCrudInfo {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getName() {
         return first_name;
@@ -87,12 +89,22 @@ public class UserCrudInfo {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+
+    // Constructor, getters y setters
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + first_name + '\'' +
                 ", lastName='" + last_name + '\'' +
-                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }

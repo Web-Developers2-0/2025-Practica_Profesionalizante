@@ -13,14 +13,14 @@
     <!-- Logo de la app -->
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="245dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/descripcion_logo"
-        android:src="@drawable/logoplanet"
+        android:src="@drawable/logo_blanco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Texto Registrarse -->
     <TextView

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ public class Settings extends AppCompatActivity {
     private TextView userEmail;
     private ImageButton imageButtonhistorialcompra;
     private ImageButton flechaBotonTerminos;
-
+    private ImageView imageViewPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,12 @@ public class Settings extends AppCompatActivity {
         userEmail = findViewById(R.id.userEmail);
         apiService = RetrofitClient.getClient(this).create(ApiService.class);
         imageButtonhistorialcompra = findViewById(R.id.imageButtonhistorialcompra);
-        getUserInfo();
         flechaBotonTerminos = findViewById(R.id.flechaBotonTerminos);
         logoutButton = findViewById(R.id.logoutButton);
+        imageViewPassword = findViewById(R.id.imageViewPassword);
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
+        getUserInfo();
 
         imageButtonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +98,27 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, TermsActivity.class);
                 startActivity(intent);
+                }
+        });
+
+        ImageButton flechaBotonContrasena = findViewById(R.id.flechaBotonContrasena);
+        flechaBotonContrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(Settings.this)
+                .setTitle("Cambiar contraseña")
+                .setMessage(
+                    "Por seguridad, el cambio de contraseña solo se puede hacer desde la página web.\n\n" +
+                    "Te llevaremos al sitio donde deberás iniciar sesión. Después de ingresar, busca la opción 'Cambiar contraseña' en el menú de usuario y sigue las instrucciones."
+                )
+                .setPositiveButton("Ir a la web", (dialog, which) -> {
+                    String url = "https://planetsuperheroes-git-develop-marco-virinnis-projects.vercel.app/login";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(android.net.Uri.parse(url));
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
             }
         });
 
@@ -141,8 +164,8 @@ public class Settings extends AppCompatActivity {
                         String username = user.getUsername();
                         String email = user.getEmail();
 
-                        userName.setText( username );
-                        userEmail.setText( email );
+                        userName.setText(username);
+                        userEmail.setText(email);
                     }
                 } else {
                     Log.e("SettingsActivity", "Error en la respuesta: " + response.code());

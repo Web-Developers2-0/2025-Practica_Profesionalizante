@@ -12,6 +12,7 @@ import time
 from rest_framework.validators import UniqueValidator
 from django.core.validators import RegexValidator
 
+
 class UserSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
     email = serializers.EmailField(
@@ -30,6 +31,8 @@ class UserSerializer(serializers.ModelSerializer):
         ]
     )
     first_name = serializers.CharField(
+        required=False,
+        allow_blank=True,
         validators=[
             RegexValidator(
                 regex=r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]{2,15}$",
@@ -38,6 +41,8 @@ class UserSerializer(serializers.ModelSerializer):
         ]
     )
     last_name = serializers.CharField(
+        required=False,
+        allow_blank=True,
         validators=[
             RegexValidator(
                 regex=r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]{2,15}$",
@@ -54,7 +59,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','username', 'first_name', 'last_name', 'email', 'password', 'address', 'phone', 'image']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password', 'address', 'phone', 'image']
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate_password(self, value):
@@ -70,7 +75,6 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         username = validated_data.get('username')
-        # Genera un username único a partir del email si no se proporciona uno
         if not username or username.strip() == '':
             base_username = validated_data['email'].split('@')[0][:10]
             username = f"{base_username}_{uuid.uuid4().hex[:4]}"
@@ -98,13 +102,13 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             instance.set_password(password)
 
-    # Asignar directamente la imagen
         image = validated_data.get('image', None)
         if image:
-            instance.image = image  # << No usar uploader
+            instance.image = image
 
         instance.save()
         return instance
+
 
 class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()
@@ -120,3 +124,7 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = '__all__'
+
+
+
+
