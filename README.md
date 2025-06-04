@@ -72,32 +72,29 @@ A continuación se presentan algunas vistas de la aplicación **Planet Superhero
 ### 🔹 Web (Angular + Django)
 
 1. Clonar el repositorio:
-
-# 1. Cloná el repositorio:
 `git clone https://github.com/Web-Developers2-0/2025-Practica_Profesionalizante.git`
 
-# 2. Instalá las dependencias del frontend:
+2. Instalá las dependencias del frontend:
 `cd frontend`
 `npm install`
 
-# 3. Levantá el servidor del frontend (Angular):
+3. Levantá el servidor del frontend (Angular):
 `ng serve`
 
-# 4. En otra terminal, levantá el backend (Django):
+4. En otra terminal, levantá el backend (Django):
 `cd ../backend`
 `python manage.py runserver`
 
 
 ### 🔸 Mobile (Android Studio)
 
-# 1. Abrí Android Studio
-# 2. Seleccioná la opción "Open an Existing Project"
-# 3. Navegá hasta la carpeta:
+1. Abrí Android Studio
+2. Seleccioná la opción "Open an Existing Project"
+3. Navegá hasta la carpeta:
 `2025-Practica_Profesionalizante/mobile`
-# 4. Esperá que se sincronicen las dependencias gradle
-# 5. Ejecutá la app en un emulador o dispositivo físico
-# Asegurate de que el backend esté corriendo localmente
-# para que la app pueda conectarse correctamente.
+4. Esperá que se sincronicen las dependencias gradle
+5. Ejecutá la app en un emulador o dispositivo físico
+6. Asegurate de que el backend esté corriendo localmente para que la app pueda conectarse correctamente.
 
 ---
 
