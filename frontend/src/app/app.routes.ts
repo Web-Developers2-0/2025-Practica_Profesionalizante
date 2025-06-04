@@ -21,38 +21,27 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'event', component: EventComponent },
-  { path: 'app-products', component: ProductsComponent },
-  { path: 'detailsprod', component: DetailsprodComponent },
-  { path: 'terms', component: TermsComponent },
-  { path: '', redirectTo: '/app-products', pathMatch: 'full' },
-  { path: 'app-products', component: ProductsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'payment', component: PaymentComponent },
-  { path: 'checkout', component: PaymentComponent },
+  { path: 'home', component: HomeComponent, data: { animation: 'HomePage' }},
+  { path: 'about', component: AboutComponent, data: { animation: 'AboutPage' }},
+  { path: 'contact', component: ContactComponent, data: { animation: 'ContactPage' }},
+  { path: 'event', component: EventComponent, data: { animation: 'EventPage' }},
+  { path: 'app-products', component: ProductsComponent, data: { animation: 'ProductsPage' }},
+  { path: 'detailsprod', component: DetailsprodComponent, data: { animation: 'DetailsPage' }},
+  { path: 'terms', component: TermsComponent, data: { animation: 'TermsPage' }},
+  { path: 'cart', component: CartComponent, data: { animation: 'CartPage' }},
+  { path: 'payment', component: PaymentComponent, data: { animation: 'PaymentPage' }},
+  { path: 'checkout', component: PaymentComponent, data: { animation: 'CheckoutPage' }},
+
   // auth
-  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [NoAuthGuard],
-  },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'change-password/:token', component: ChangePasswordComponent },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard], data: { animation: 'LoginPage' }},
+  { path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard], data: { animation: 'RegisterPage' }},
+  { path: 'reset-password', component: ResetPasswordComponent, data: { animation: 'ResetPage' }},
+  { path: 'change-password/:token', component: ChangePasswordComponent, data: { animation: 'ChangePasswordPage' }},
+
   // protected
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { animation: 'DashboardPage' }},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: { animation: 'ProfilePage' }},
+
   // not found
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent, data: { animation: 'NotFoundPage' }},
 ];
