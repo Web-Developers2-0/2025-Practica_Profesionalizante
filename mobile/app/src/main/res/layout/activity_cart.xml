@@ -1,38 +1,81 @@
-<!-- activity_cart.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_dark"
-    android:padding="16dp">
+    android:background="@color/background_dark">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCartItems"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:layout_margin="16dp"
+        android:scrollbars="none" />
 
     <TextView
-        android:id="@+id/totalAmountText"
+        android:id="@+id/productCountText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total: $0.00"
-        android:textSize="18sp"
-        android:gravity="end"
         android:padding="16dp"
-        android:textColor="@color/text_secondary_dark"/>
+        android:text="Total Productos Seleccionados: 0"
+        android:textColor="@color/text_secondary_dark"
+        android:textSize="16dp" />
 
-    <Button
-        android:id="@+id/btnCheckout"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/text_secondary_dark"
+        android:alpha="0.2" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proceder al pago" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnClearCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Limpiar Carrito"
-        android:layout_marginTop="16dp" /> <!-- Agregado -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/totalAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_secondary_dark" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnClearCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Limpiar"
+                android:background="@android:color/transparent"
+                android:textColor="@color/light_red" />
+
+            <Button
+                android:id="@+id/btnCheckout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Pagar" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

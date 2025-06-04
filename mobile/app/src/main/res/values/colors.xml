@@ -26,6 +26,7 @@
     <color name="text_secondary_dark">#E4AC57</color>
     <color name="text_alternative_dark">#535353</color>
     <color name="dark_red">#841212</color>
+    <color name="light_red">#D90F0F</color>
 
     <!-- Paleta del sprint 1 -->
     <color name="colorPrimary">#841212</color>
