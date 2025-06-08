@@ -137,7 +137,8 @@ class MercadoPagoWebhookView(APIView):
         except (ValueError, Order.DoesNotExist):
             return Response({"detail": "Orden no encontrada"}, status=404)
 
-        if payment["status"] == "approved" and order.payment_status != "paid":
+        if payment["status"] == "approved" and order.payment_status != "MPago recibido":
+
             # Verificar stock
             for item in order.order_items.all():
                 if item.product.stock < item.quantity:
@@ -154,13 +155,17 @@ class MercadoPagoWebhookView(APIView):
             order.state = 'Completado'
             order.save()
 
-            # Crear notificación al usuario
-            Notification.objects.create(
+            # Crear notificación al usuario solo si aún no existe
+            mensaje = f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!"
+            if not Notification.objects.filter(usuario=order.user, mensaje=mensaje).exists():
+                Notification.objects.create(
                 usuario=order.user,
-                mensaje=f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!",
+                mensaje=mensaje,
                 tipo="info"
-            )
-            print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
+                    )       
+                print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
+            else:
+                print(f"⚠️ Notificación duplicada evitada para el pedido #{order.id_order}")
 
         return Response({"detail": "Notificación recibida"}, status=200)
 
