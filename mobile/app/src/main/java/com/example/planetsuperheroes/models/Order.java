@@ -3,13 +3,17 @@ package com.example.planetsuperheroes.models;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Modelo para una Orden de compra.
+ * El campo "user" ahora es String, ya que el backend puede devolver el email del usuario.
+ */
 public class Order {
 
     @SerializedName("id_order")
     private int idOrder; // ID de la orden
 
     @SerializedName("user")
-    private User user; // Cambia a User en lugar de int
+    private String user; // Cambiado a String para aceptar email o ID como texto
 
     @SerializedName("state")
     private String state;
@@ -37,10 +41,10 @@ public class Order {
     }
 
     // Constructor con todos los campos
-    public Order(int idOrder, User user, String state, String orderDate, String paymentMethod,
+    public Order(int idOrder, String user, String state, String orderDate, String paymentMethod,
                  String shippingMethod, String paymentStatus, double totalAmount, List<OrderItem> orderItems) {
-        this.idOrder = idOrder; // Agrega este campo
-        this.user = user; // Cambia a User
+        this.idOrder = idOrder;
+        this.user = user;
         this.state = state;
         this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;
@@ -54,12 +58,16 @@ public class Order {
         return idOrder;
     }
 
-    public User getUser() {
-        return user; // Cambia el tipo de retorno a User
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
-    public void setUser(User user) {
-        this.user = user; // Cambia el método según el tipo de 'user'
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getState() {
@@ -122,7 +130,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "idOrder=" + idOrder +
-                ", user=" + user + // Incluye el objeto User en el toString
+                ", user='" + user + '\'' +
                 ", state='" + state + '\'' +
                 ", orderDate='" + orderDate + '\'' +
                 ", paymentMethod='" + paymentMethod + '\'' +
