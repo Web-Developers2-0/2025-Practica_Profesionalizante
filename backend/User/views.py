@@ -38,7 +38,7 @@ class RegisterView(APIView):
             html_content = render_to_string('welcome_email.html', {
                 'user_first_name': user.first_name,
                 'year': timezone.now().year,
-                'logo_url': 'https://i.ibb.co/6RPpCJfF/logo-blanco.png',
+                'logo_url': 'https://raw.githubusercontent.com/Web-Developers2-0/2025-Practica_Profesionalizante/main/frontend/src/assets/images/logo_blanco.png',
             })
             try:
                 msg = EmailMultiAlternatives(subject, '', from_email, to)
@@ -135,7 +135,7 @@ class PasswordResetRequestView(APIView):
             'reset_url': reset_url,
             'user_first_name': user.first_name,
             'year': timezone.now().year,
-            'logo_url': 'https://i.ibb.co/6RPpCJfF/logo-blanco.png',
+            'logo_url': 'https://raw.githubusercontent.com/Web-Developers2-0/2025-Practica_Profesionalizante/main/frontend/src/assets/images/logo_blanco.png',
         })
         try:
             msg = EmailMultiAlternatives(subject, '', from_email, to)
@@ -245,7 +245,7 @@ class ChangePasswordView(APIView):
         html_content = render_to_string('password_changed_email.html', {
             'user_first_name': user.first_name,
             'year': timezone.now().year,
-            'logo_url': 'https://i.ibb.co/6RPpCJfF/logo-blanco.png',
+            'logo_url': 'https://raw.githubusercontent.com/Web-Developers2-0/2025-Practica_Profesionalizante/main/frontend/src/assets/images/logo_blanco.png',
         })
         msg = EmailMultiAlternatives(subject, '', from_email, to)
         msg.attach_alternative(html_content, "text/html")
