@@ -1,3 +1,4 @@
+from datetime import date
 import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -11,18 +12,27 @@ from Order.models import Order
 from Order.serializers import OrderCreateSerializer, OrderSerializer
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
+from django.db import transaction
 
-# Crear orden sin descontar stock
 class CreateOrderView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = OrderCreateSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            order = serializer.save(user=request.user)  # Guardar la orden con el usuario actual
-            return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            with transaction.atomic():
+                order = serializer.save(user=request.user)  
+                order.payment_status = 'Pagado'
+                order.save()
 
+                for item in order.order_items.all():
+                    product = item.product
+                    product.stock -= item.quantity
+                    product.save()
+
+            return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Listar órdenes del usuario autenticado
 class UserOrdersView(APIView):
     permission_classes = [IsAuthenticated]
