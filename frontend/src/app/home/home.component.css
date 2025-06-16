@@ -100,7 +100,7 @@
 }
 
 .hero-button {
-    background-color: #e53e3e;
+    background-color: #AA1818;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -112,7 +112,7 @@
 }
 
 .hero-button:hover {
-    background-color: #c53030;
+    background-color: #891010;
 }
 
 
@@ -237,7 +237,7 @@
 }
 
 .comic-button {
-  background-color: #ff3333;
+  background-color: #AA1818;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -248,7 +248,7 @@
 }
 
 .comic-button:hover {
-  background-color: #e02b2b;
+  background-color: #891010;
 }
 
 .visually-hidden {
