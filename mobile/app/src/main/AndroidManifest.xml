@@ -30,7 +30,7 @@
         <activity
             android:name=".events.EventsActivity" />
         <activity
-            android:name=".events.EventDetailActivity" />
+            android:name=".events.EventsDetailActivity" />
         <activity
             android:name=".CartActivity"
             android:exported="false" />
