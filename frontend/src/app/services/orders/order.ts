@@ -14,6 +14,7 @@ export interface Order{
 export interface OrderITem{
     id_order_items: number;
     product_id: number;
+    product: string;
     quantity: number;
     order_id: number;
 }

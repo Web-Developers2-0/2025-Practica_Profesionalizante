@@ -6,13 +6,14 @@ from .serializers import NotificationSerializer
 from rest_framework.permissions import IsAuthenticated
 
 class NotificationListCreateView(generics.ListCreateAPIView):
-    queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return Notification.objects.filter(usuario=self.request.user)
+
     def perform_create(self, serializer):
         serializer.save(usuario=self.request.user)
-
 class NotificationDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
