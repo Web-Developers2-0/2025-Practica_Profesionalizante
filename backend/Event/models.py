@@ -1,11 +1,11 @@
 from django.db import models
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Event(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='events/', blank=True, null=True)
+    image = CloudinaryField('image', null=True, blank=True)
     date = models.DateField()
     location = models.CharField(max_length=200, blank=True)
     link = models.URLField(blank=True)
