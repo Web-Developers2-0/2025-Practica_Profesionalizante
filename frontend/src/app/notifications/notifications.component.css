@@ -1,0 +1,90 @@
+.notificaciones-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f4c430;
+  font-size: 1.5rem;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.lista-notificaciones {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  background: #2a2a2a;
+  color: #f9f9f9;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.lista-notificaciones li {
+  padding: 10px;
+  border-bottom: 1px solid #3a3a3a;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+}
+
+.lista-notificaciones li.no-leida {
+  font-weight: bold;
+  background-color: rgba(244, 196, 48, 0.1);
+  border-left: 4px solid #f4c430;
+  padding-left: 8px;
+}
+
+.lista-notificaciones li:last-child {
+  border-bottom: none;
+}
+
+.lista-notificaciones small {
+  color: #bbbbbb;
+  font-size: 0.8rem;
+}
+
+.filtro-notificaciones {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  color: #fcd69e;
+}
+
+.filtro-notificaciones input[type="radio"] {
+  margin-right: 6px;
+}
+
+.checkbox-leida {
+  margin-right: 8px;
+  transform: scale(1.2);
+  accent-color: #fcd69e;
+  cursor: pointer;
+}

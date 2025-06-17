@@ -1,5 +1,6 @@
 package com.example.planetsuperheroes.network;
 
+import com.example.planetsuperheroes.models.Event;
 import com.example.planetsuperheroes.models.LoginRequest;
 import com.example.planetsuperheroes.models.LoginResponse;
 import com.example.planetsuperheroes.models.LogoutRequest;
@@ -52,11 +53,16 @@ public interface ApiService {
 
     @GET("/api/products/{id}/")
     Call<Product> getProduct(@Path("id") int productId);
-
+    @GET("events/")
+    Call<List<Event>> getEvents();
     @GET("/api/orders/user/")
     Call<List<Order>> obtenerOrders();
 
 
     @POST("/api/orders/create/")
     Call<Order> createOrder(@Body Map<String, Object> orderData);
+
+
+
+
 }

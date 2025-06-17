@@ -5,42 +5,30 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class OrderItem implements Parcelable {
-    @SerializedName("id_product")
-    private int product; // ID del producto
-    private String productName; // Nombre del producto
+    @SerializedName("id_order_items")
+    private int idOrderItem;
+    private int productId;
+    @SerializedName("product") // <-- ¡GSON mapea el campo "product" del JSON a este String!
+    private String productName;
     @SerializedName("quantity")
-    private int quantity; // Cantidad del producto
-
-    // Constructor
-    public OrderItem(int product, String productName, int quantity) {
-        this.product = product;
+    private int quantity;
+    public OrderItem(int productId, String productName, int quantity) {
+        this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
     }
 
-    // Getters
-    public int getProduct() {
-        return product;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    // Métodos de Parcelable
     protected OrderItem(Parcel in) {
-        product = in.readInt();
+        idOrderItem = in.readInt();
+        productId = in.readInt(); // Lee el ID del producto
         productName = in.readString();
         quantity = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(product);
+        dest.writeInt(idOrderItem);
+        dest.writeInt(productId); // Escribe el ID del producto
         dest.writeString(productName);
         dest.writeInt(quantity);
     }
@@ -61,5 +49,21 @@ public class OrderItem implements Parcelable {
             return new OrderItem[size];
         }
     };
-}
 
+    // --- Getters ---
+    public int getIdOrderItem() {
+        return idOrderItem;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+}

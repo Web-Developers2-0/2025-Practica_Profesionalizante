@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Hachi+Maru+Pop&family=Patrick+Hand&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Hachi+Maru+Pop&family=Patrick+Hand&display=swap");
 
 /* *{
     margin: 0;
@@ -11,211 +10,225 @@
     text-decoration: none;
 } */
 header {
-    width: 100%;
-    height: 80px;
-    position: sticky; /* Makes the header stick to the top when scrolling */
-    top: 0; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px; /* Increased horizontal padding */
-    background-color: #1e1e1e;
-    z-index: 1000; /* Ensure header stays above other content */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%;
+  height: 80px;
+  position: sticky; /* Makes the header stick to the top when scrolling */
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Increased horizontal padding */
+  background-color: #1e1e1e;
+  z-index: 1000; /* Ensure header stays above other content */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 /* Navbar container */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
-
 
 .logo {
-    object-fit: contain;
-    width: 140px;
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  object-fit: contain;
+  width: 140px;
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
-  
+
 .logo:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .nav__links {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 /* Individual navigation items */
 .nav__links li {
-    display: inline-block;
-    padding: 5px;
-    position: relative; /* For potential dropdown menus */
+  display: inline-block;
+  padding: 5px;
+  position: relative; /* For potential dropdown menus */
 }
 
 /* Navigation links */
 .nav__links li a {
-    font-family: 'Bangers', sans-serif;
-    font-size: 1.5rem;
-    color: #fcd69e;
-    text-decoration: none;
-    padding: 8px 12px;
-    display: block;
-    transition: color 0.3s ease;
-    position: relative;
+  font-family: "Bangers", sans-serif;
+  font-size: 1.5rem;
+  color: #fcd69e;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+  transition: color 0.3s ease;
+  position: relative;
 }
 
 /* Hover effect with underline */
 .nav__links a:hover {
-    color: #e5ac57;
+  color: #e5ac57;
 }
 
 /* Add underline effect on hover */
 .nav__links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #e5ac57;
-    transition: width 0.3s ease;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #e5ac57;
+  transition: width 0.3s ease;
 }
 
 .nav__links a:hover::after {
-    width: 100%;
+  width: 100%;
 }
-
 
 label #btn-nav,
-label #cancel{
-    color: #fcd69e;
-    font-size: 30px;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
-    display: none;
+label #cancel {
+  color: #fcd69e;
+  font-size: 30px;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
 }
 
-#check{
-    display: none;
+#check {
+  display: none;
 }
-
 
 /* Cart Icon Styles */
 .cart .cart.fas.fa-shopping-cart {
-    color: #ffd700 !important;
-    border-radius: 50%;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    position: relative;
-    transition: box-shadow 0.18s, transform 0.18s, background 0.18s;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: #ffd700 !important;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  position: relative;
+  transition: box-shadow 0.18s, transform 0.18s, background 0.18s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart .cart.fas.fa-shopping-cart:hover {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
 
 #cart[data-totalitems]:after {
-    content: attr(data-totalitems);
-    position: absolute;
-    top: -7px;
-    right: -7px;
-    background: #ff3e41;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
+  content: attr(data-totalitems);
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  background: #ff3e41;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 1210px) {
-    .nav__links {
-        display: none;
-        padding: 0;        
-    }
+  .nav__links {
+    display: none;
+    padding: 0;
+  }
 
-    .navbar {
-        flex-direction: column;
-        align-items: flex-end;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
-    #check {
-        display: none;
-    }
+  #check {
+    display: none;
+  }
 
-    label #btn-nav,
-    label #cancel {
-        color: #fcd69e;
-        font-size: 30px;
-        cursor: pointer;
-        display: block;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-    label #cancel {
-        display: none;
-    }
-    
-    nav ul {
-        width: 100%;
-        background: #1e1e1e;
-        position: fixed; /* Fixed position instead of absolute */
-        top: 80px;
-        left: -100%;
-        text-align: center;
-        transition: all 0.3s ease; /* Smoother transition */
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-        max-height: calc(100vh - 80px); /* Prevent overflow */
-        overflow-y: auto; /* Allow scrolling if many items */
-    }
+  label #btn-nav,
+  label #cancel {
+    color: #fcd69e;
+    font-size: 30px;
+    cursor: pointer;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  label #cancel {
+    display: none;
+  }
 
-    nav ul li {
-        display: block;
-        margin: 20px 0;
-        line-height: 30px;
-    }
+  nav ul {
+    width: 100%;
+    background: #1e1e1e;
+    position: fixed; /* Fixed position instead of absolute */
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all 0.3s ease; /* Smoother transition */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    max-height: calc(100vh - 80px); /* Prevent overflow */
+    overflow-y: auto; /* Allow scrolling if many items */
+  }
 
-    nav ul li a {
-        font-size: 20px;
-        color: #fcd69e;
-    }
-    
-    nav ul li:hover {
-        background-color: rgba(252, 214, 158, 0.1); /* Subtle hover effect */
-    }
-    
+  nav ul li {
+    display: block;
+    margin: 20px 0;
+    line-height: 30px;
+  }
 
-    #check:checked ~ ul {
-        left: 0;
-    }
+  nav ul li a {
+    font-size: 20px;
+    color: #fcd69e;
+  }
 
-    #check:checked ~ label #btn-nav {
-        display: none;
-    }
+  nav ul li:hover {
+    background-color: rgba(252, 214, 158, 0.1); /* Subtle hover effect */
+  }
 
-    #check:checked ~ label #cancel {
-        display: block;
-    }
+  #check:checked ~ ul {
+    left: 0;
+  }
+
+  #check:checked ~ label #btn-nav {
+    display: none;
+  }
+
+  #check:checked ~ label #cancel {
+    display: block;
+  }
+
+  .header-icons {
+    position: absolute;
+    right: -10px;
+    top: -60px;
+    z-index: 1001;
+  }
+
+  .header-icons app-notifications,
+  .header-icons {
+    position: relative;
+  }
 }

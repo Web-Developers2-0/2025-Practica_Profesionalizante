@@ -1,3 +1,4 @@
+// EventsAdapter.java
 package com.example.planetsuperheroes.events;
 
 import android.app.Activity;
@@ -11,15 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.planetsuperheroes.R;
+import com.example.planetsuperheroes.models.Event;
 
 import java.util.List;
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
-    private final List<Event> events;
+public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewHolder> {
+    private List<Event> events;
 
-    public EventAdapter(List<Event> events) {
+    public EventsAdapter(List<Event> events) {
         this.events = events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+        notifyDataSetChanged();
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
@@ -46,18 +54,23 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = events.get(position);
 
-        holder.image.setImageResource(event.getImageResId());
         holder.title.setText(event.getTitle());
         holder.date.setText(event.getDate());
         holder.location.setText(event.getLocation());
 
+        Glide.with(holder.image.getContext())
+                .load(event.getImage()) // URL de Cloudinary
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .into(holder.image);
+
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), EventDetailActivity.class);
+            Intent intent = new Intent(v.getContext(), EventsDetailActivity.class);
             intent.putExtra("title", event.getTitle());
             intent.putExtra("date", event.getDate());
             intent.putExtra("location", event.getLocation());
-            intent.putExtra("description", event.getFullDescription());
-            intent.putExtra("image", event.getImageResId());
+            intent.putExtra("description", event.getDescription());
+            intent.putExtra("imageUrl", event.getImage());
             v.getContext().startActivity(intent);
 
             if (v.getContext() instanceof Activity) {
@@ -68,8 +81,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override
     public int getItemCount() {
-        return events.size();
+        return events != null ? events.size() : 0;
     }
 }
-
-

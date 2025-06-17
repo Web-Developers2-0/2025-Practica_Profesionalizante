@@ -69,7 +69,7 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
 
-        //Agrega / en (MM/YY)
+        // Agrega / en (MM/YY)
         editTextExpiryDate.addTextChangedListener(new TextWatcher() {
             private boolean isFormatting;
 
@@ -90,7 +90,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 String input = s.toString().replace("/", "");
 
                 if (input.length() >= 2) {
-
                     String month = input.substring(0, 2);
                     String year = input.length() > 2 ? input.substring(2) : "";
                     editTextExpiryDate.setText(month + "/" + year);
@@ -198,7 +197,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         for (OrderItem item : orderItems) {
             Map<String, Object> orderItemMap = new HashMap<>();
-            orderItemMap.put("product", item.getProduct());
+            orderItemMap.put("product", item.getProductId()); 
             orderItemMap.put("quantity", item.getQuantity());
             orderItemsList.add(orderItemMap);
         }
@@ -217,19 +216,28 @@ public class CheckoutActivity extends AppCompatActivity {
                     Log.d("CheckoutActivity", "Orden creada: " + createdOrder);
                     Toast.makeText(CheckoutActivity.this, "Orden creada con éxito!", Toast.LENGTH_SHORT).show();
 
-                    // Enviar resultado a CartActivity
-                    Intent intent = new Intent();
-                    intent.putExtra("orderCreated", true);
-                    setResult(RESULT_OK, intent);
-                    finish(); // Cerrar la actividad actual
+                    CartManager.getInstance().clearCart();
+                    Intent intent = new Intent(CheckoutActivity.this, Historial_Compras.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Log.e("CheckoutActivity", "Error al crear la orden: " + response.code() + " - " + response.message());
+                    try {
+                        if (response.errorBody() != null) {
+                            Log.e("CheckoutActivity", "Cuerpo del error: " + response.errorBody().string());
+                        }
+                    } catch (Exception e) {
+                        Log.e("CheckoutActivity", "Error al obtener el cuerpo del error: " + e.getMessage());
+                    }
+                    Toast.makeText(CheckoutActivity.this, "Error al crear la orden: " + response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
                 Log.e("CheckoutActivity", "Error en la llamada al crear orden: " + t.getMessage());
+                Toast.makeText(CheckoutActivity.this, "Error de conexión al crear la orden", Toast.LENGTH_SHORT).show();
             }
         });
     }

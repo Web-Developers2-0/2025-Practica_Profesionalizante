@@ -1,3 +1,4 @@
+from datetime import date
 import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -11,18 +12,27 @@ from Order.models import Order
 from Order.serializers import OrderCreateSerializer, OrderSerializer
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
+from django.db import transaction
 
-# Crear orden sin descontar stock
 class CreateOrderView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = OrderCreateSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            order = serializer.save(user=request.user)  # Guardar la orden con el usuario actual
-            return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            with transaction.atomic():
+                order = serializer.save(user=request.user)  
+                order.payment_status = 'Pagado'
+                order.save()
 
+                for item in order.order_items.all():
+                    product = item.product
+                    product.stock -= item.quantity
+                    product.save()
+
+            return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Listar órdenes del usuario autenticado
 class UserOrdersView(APIView):
     permission_classes = [IsAuthenticated]
@@ -137,7 +147,8 @@ class MercadoPagoWebhookView(APIView):
         except (ValueError, Order.DoesNotExist):
             return Response({"detail": "Orden no encontrada"}, status=404)
 
-        if payment["status"] == "approved" and order.payment_status != "paid":
+        if payment["status"] == "approved" and order.payment_status != "MPago recibido":
+
             # Verificar stock
             for item in order.order_items.all():
                 if item.product.stock < item.quantity:
@@ -154,13 +165,17 @@ class MercadoPagoWebhookView(APIView):
             order.state = 'Completado'
             order.save()
 
-            # Crear notificación al usuario
-            Notification.objects.create(
+            # Crear notificación al usuario solo si aún no existe
+            mensaje = f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!"
+            if not Notification.objects.filter(usuario=order.user, mensaje=mensaje).exists():
+                Notification.objects.create(
                 usuario=order.user,
-                mensaje=f"Tu pedido #{order.id_order} fue pagado exitosamente. ¡Gracias por tu compra!",
+                mensaje=mensaje,
                 tipo="info"
-            )
-            print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
+                    )       
+                print(f"✅ Notificación creada para el usuario {order.user.username} por el pedido #{order.id_order}")
+            else:
+                print(f"⚠️ Notificación duplicada evitada para el pedido #{order.id_order}")
 
         return Response({"detail": "Notificación recibida"}, status=200)
 
