@@ -1,3 +1,4 @@
+// EventsDetailActivity.java
 package com.example.planetsuperheroes.events;
 
 import android.content.Intent;
@@ -8,9 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.planetsuperheroes.R;
 
-public class EventDetailActivity extends AppCompatActivity {
+public class EventsDetailActivity extends AppCompatActivity {
 
     ImageView image;
     TextView title, date, location, description;
@@ -28,16 +30,15 @@ public class EventDetailActivity extends AppCompatActivity {
         description = findViewById(R.id.eventDetailDescription);
         backButton = findViewById(R.id.backButton);
 
-        // Obtenemos los datos que vienen del intent
         Intent intent = getIntent();
         if (intent != null) {
             title.setText(intent.getStringExtra("title"));
             date.setText(intent.getStringExtra("date"));
             location.setText(intent.getStringExtra("location"));
             description.setText(intent.getStringExtra("description"));
-            int imageRes = intent.getIntExtra("image", 0);
-            if (imageRes != 0) {
-                image.setImageResource(imageRes);
+            String imageUrl = intent.getStringExtra("imageUrl");
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(this).load(imageUrl).into(image);
             }
         }
 
@@ -47,4 +48,3 @@ public class EventDetailActivity extends AppCompatActivity {
         });
     }
 }
-
