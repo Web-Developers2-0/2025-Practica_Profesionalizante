@@ -1,0 +1,39 @@
+<div class="notificaciones-wrapper">
+  <button class="btn-icon" (click)="toggleLista()">
+    <i class="fas fa-bell"></i>
+    <span class="badge" *ngIf="cantidadNoLeidas > 0">
+      {{ cantidadNoLeidas }}
+    </span>
+  </button>
+
+  <ul
+    *ngIf="mostrarLista && isLoggedIn && notificaciones.length > 0"
+    class="lista-notificaciones"
+  >
+    <li
+      *ngFor="let noti of notificaciones"
+      [ngClass]="{ 'no-leida': !noti.leida }"
+    >
+      {{ noti.mensaje }}
+      <br />
+      <small>{{ noti.fecha | date : "short" }}</small>
+    </li>
+  </ul>
+  <div
+    *ngIf="mostrarLista && isLoggedIn && notificaciones.length === 0"
+    class="lista-notificaciones"
+  >
+    <li>
+      <strong>No tenés notificaciones nuevas.</strong>
+    </li>
+  </div>
+
+  <div
+    *ngIf="mostrarLista && !isLoggedIn"
+    class="lista-notificaciones mensaje-aviso"
+  >
+    <li>
+      <strong>Iniciá sesión para ver tus notificaciones.</strong>
+    </li>
+  </div>
+</div>
