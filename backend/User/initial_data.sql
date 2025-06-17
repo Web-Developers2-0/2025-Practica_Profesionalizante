@@ -169,7 +169,7 @@ VALUES
 ('Admin');
 
 
-INSERT INTO user (
+INSERT INTO "user" (
     email, username, first_name, last_name, password,address, phone, image, date_joined,
     is_active, is_staff, is_superuser, role_id)
 VALUES
