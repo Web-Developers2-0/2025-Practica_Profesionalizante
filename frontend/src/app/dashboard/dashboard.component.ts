@@ -11,11 +11,9 @@ import { Order } from '../services/orders/order';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   dashboardData: any[] = [];
@@ -44,11 +42,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser(1).subscribe(
-      (userData: User) => {
-        this.user = userData;
-      },
-    );
+    this.userService.getUser(1).subscribe((userData: User) => {
+      this.user = userData;
+    });
 
     this.loginService.userLogin.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
@@ -58,21 +54,19 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserOrders() {
-    this.ordersService.getUserOrders().subscribe(
-      (ordersData: any[]) => {
-        this.userOrders = ordersData.map((orderData: any) => ({
-          id_order: orderData.id_order,
-          user: orderData.user,
-          state: orderData.state,
-          order_date: orderData.order_date,
-          payment_method: orderData.payment_method,
-          shipping_method: orderData.shipping_method,
-          payment_status: orderData.payment_status,
-          total_amount: orderData.total_amount,
-          order_items: orderData.order_items
-        }));
-      },
-    );
+    this.ordersService.getUserOrders().subscribe((ordersData: any[]) => {
+      this.userOrders = ordersData.map((orderData: any) => ({
+        id_order: orderData.id_order,
+        user: orderData.user,
+        state: orderData.state,
+        order_date: orderData.order_date,
+        payment_method: orderData.payment_method,
+        shipping_method: orderData.shipping_method,
+        payment_status: orderData.payment_status,
+        total_amount: orderData.total_amount,
+        order_items: orderData.order_items,
+      }));
+    });
   }
 
   logout() {
@@ -93,5 +87,30 @@ export class DashboardComponent implements OnInit {
   onChangePassword() {
     this.dropdownOpen = false;
     this.router.navigate(['/password']);
+  }
+
+  //boton arrepentimiento
+
+  cancelarOrden(orderId: number): void {
+    const motivo = prompt(
+      '¿Por qué querés cancelar esta orden? Ingresá un motivo:'
+    );
+    if (!motivo || motivo.trim() === '') {
+      alert('Debés ingresar un motivo válido.');
+      return;
+    }
+
+    const url = `https://planetsuperheroes.onrender.com/api/orders/${orderId}/cancelled/`;
+
+    this.ordersService.cancelarOrden(url, { motivo }).subscribe({
+      next: (res: any) => {
+        alert(res.detail || 'Orden cancelada con éxito.');
+        this.getUserOrders(); // recarga el historial
+      },
+      error: (err) => {
+        console.error('Error al cancelar orden:', err);
+        alert(err.error?.detail || 'No se pudo cancelar la orden.');
+      },
+    });
   }
 }

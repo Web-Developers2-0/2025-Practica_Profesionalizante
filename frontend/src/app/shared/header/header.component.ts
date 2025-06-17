@@ -1,16 +1,29 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
-import { Router, RouterLink, RouterModule, RouterLinkActive } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterModule,
+  RouterLinkActive,
+} from '@angular/router';
 import { LoginService } from '../../services/auth/login.service';
 import { CartService } from '../../services/cart/cart.service';
 import { Subscription } from 'rxjs';
+import { NotificationsComponent } from '../../notifications/notifications.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterLinkActive, NgIf, CommonModule],
+  imports: [
+    RouterLink,
+    RouterModule,
+    RouterLinkActive,
+    NgIf,
+    CommonModule,
+    NotificationsComponent,
+  ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
@@ -27,11 +40,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loginSub = this.loginService.currentUserLogin.subscribe({
       next: (isLoggedIn) => {
         this.isLoggedIn = isLoggedIn;
-      }
+      },
     });
 
-    this.cartSub = this.cartService.cartItems$.subscribe(items => {
-      this.totalCartItems = items.reduce((total, item) => total + item.quantity, 0);
+    this.cartSub = this.cartService.cartItems$.subscribe((items) => {
+      this.totalCartItems = items.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
     });
   }
 
