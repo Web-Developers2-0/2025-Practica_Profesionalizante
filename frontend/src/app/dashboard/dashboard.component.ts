@@ -7,6 +7,7 @@ import { User } from '../services/user/user';
 import { UserService } from '../services/user/user.service';
 import { OrdersService } from '../services/orders/orders.service';
 import { Order } from '../services/orders/order';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -100,7 +101,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    const url = `https://planetsuperheroes.onrender.com/api/orders/${orderId}/cancelled/`;
+  const url = `${environment.apiUrl}orders/${orderId}/cancelled/`;
 
     this.ordersService.cancelarOrden(url, { motivo }).subscribe({
       next: (res: any) => {
