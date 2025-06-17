@@ -44,6 +44,6 @@ export class OrdersService {
     } else {
       console.error(`Backend retornó el código de estado ${error.status}:`, error.error);
     }
-    return throwError(() => new Error('Algo salió mal, intente nuevamente.'));
+  return throwError(() => error);
   }
 }
