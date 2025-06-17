@@ -64,6 +64,6 @@ export class OrdersService {
         error.error
       );
     }
-    return throwError(() => new Error('Algo salió mal, intente nuevamente.'));
+  return throwError(() => error);
   }
 }

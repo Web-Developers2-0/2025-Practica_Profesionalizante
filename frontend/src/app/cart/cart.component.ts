@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private router: Router,
     private ordersService: OrdersService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
@@ -78,33 +78,36 @@ export class CartComponent implements OnInit {
     this.cartService.updateItems(this.items);
     this.showStockWarning.splice(index, 1);
   }
-
-goToPayment(): void {
-  if (this.hasInvalidQuantity()) {
-    alert('Verifica las cantidades.');
-    return;
-  }
-
-  const orderItems = this.items.map(item => ({
-    product: item.product.id_product,
-    quantity: item.quantity
-  }));
-
-  this.ordersService.createOrder(orderItems).subscribe({
-    next: (response) => {
-      if (response.checkout_url) {
-        window.location.href = response.checkout_url;
-      } else {
-        alert('No se pudo iniciar el pago.');
-      }
-    },
-    error: (err) => {
-      console.error('Error al crear orden:', err);
-      alert('Error al procesar el pago.');
+  
+  goToPayment(): void {
+    if (this.hasInvalidQuantity()) {
+      alert('Verifica las cantidades.');
+      return;
     }
-  });
-}
 
+    const orderItems = this.items.map(item => ({
+      product: item.product.id_product,
+      quantity: item.quantity
+    }));
+
+    this.ordersService.createOrder(orderItems).subscribe({
+      next: (response) => {
+        if (response.checkout_url) {
+          window.location.href = response.checkout_url;
+        } else {
+          alert('No se pudo iniciar el pago.');
+        }
+      },
+      error: (err) => {
+        console.error('Error al crear orden:', err);
+        if (err.status === 401) {
+          alert('Debes iniciar sesión para poder realizar una compra.');
+        } else {
+          alert('Error al procesar el pago.');
+        }
+      }
+    });
+  }
 
   getTotal(): number {
     // Calcular el precio total sumando el precio de cada ítem multiplicado por su cantidad
