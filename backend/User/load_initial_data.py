@@ -12,7 +12,7 @@ def load_data_script(sender, **kwargs):
         print(f'SQL file not found: {sql_file_path}')
         return
 
-    affected_tables = ['categories', 'products', 'roles', 'user', 'orders', 'order_items']
+    affected_tables = ['categories', 'products', 'roles', '"user"', 'orders', 'order_items']
 
     with connection.cursor() as cursor:
         for table in affected_tables:
