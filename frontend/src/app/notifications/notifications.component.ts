@@ -52,6 +52,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     return this.notificaciones.filter((n) => !n.leida).length;
   }
 
+  //  get cantidadNoLeidas(): number {
+  //   return this.notificaciones.filter((n) => !n.leida).length;
+  // }
+
   ngOnDestroy(): void {
     this.loginSub?.unsubscribe();
   }
